@@ -3,7 +3,6 @@ import Apps from "./apps/Apps";
 import Login from "./login/Login";
 
 export interface IAuthenticatorProps {
-
 }
 
 export interface IAuthenticatorState {
