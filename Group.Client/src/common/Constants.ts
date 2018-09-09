@@ -12,4 +12,9 @@ export class Constants {
      * Token de l'application
      */
     public static APP_TOKEN: string = "R4F7TTY54==";
+
+    /**
+     * Id de l'application Facebook
+     */
+    public static FACEBOOK_APP_IP: string = "251675342125195";
 }

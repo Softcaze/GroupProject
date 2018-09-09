@@ -1,5 +1,6 @@
 import * as React from "react";
 import FacebookLogin from 'react-facebook-login';
+import { Constants } from "../../common/Constants";
 
 export interface ILoginProps {
 
@@ -22,21 +23,18 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
         return (
             <div>
                 <FacebookLogin
-                    appId="1088597931155576"
+                    appId={Constants.FACEBOOK_APP_IP}
                     autoLoad={true}
                     fields="name,email,picture"
-                    onClick={this.componentClicked.bind(this)}
                     callback={this.responseFacebook.bind(this)}
                 />
             </div>
         );
     }
 
-    private componentClicked() {
-
-    }
-
-    private responseFacebook() {
-
+    private responseFacebook(data) {
+        console.log("AccessToken : " + data.accessToken);
+        console.log("Email : " + data.email);
+        console.log("Name : " + data.name);
     }
 }
