@@ -6,7 +6,8 @@ export interface IAuthenticatorProps {
 }
 
 export interface IAuthenticatorState {
-    accessToken: string;
+    facebookToken: string;
+    webToken: string;
     isLoading: boolean;
 }
 
@@ -19,7 +20,8 @@ export default class Authenticator extends React.Component<IAuthenticatorProps, 
         super(props);
 
         this.state = {
-            accessToken: "fsrdrrffs5f4sdr",
+            facebookToken: "fsrdrrffs5f4sdr",
+            webToken: "dfsrdgf",
             isLoading: false
         };
 
@@ -27,10 +29,10 @@ export default class Authenticator extends React.Component<IAuthenticatorProps, 
     }
 
     public render() {
-        const { accessToken, isLoading } = this.state;
+        const { facebookToken, webToken, isLoading } = this.state;
 
-        if (accessToken && this.isValid(accessToken)) {
-            return <Apps accessToken={accessToken} />;
+        if (facebookToken && webToken) {
+            return <Apps accessToken={webToken} />;
         } else if (!isLoading) {
             return <Login />;
         } else {
