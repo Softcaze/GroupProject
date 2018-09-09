@@ -1,5 +1,4 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import FacebookLogin from 'react-facebook-login';
 
 export interface ILoginProps {
@@ -22,8 +21,22 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
     public render() {
         return (
             <div>
-                <FacebookLogin />
+                <FacebookLogin
+                    appId="1088597931155576"
+                    autoLoad={true}
+                    fields="name,email,picture"
+                    onClick={this.componentClicked.bind(this)}
+                    callback={this.responseFacebook.bind(this)}
+                />
             </div>
         );
+    }
+
+    private componentClicked() {
+
+    }
+
+    private responseFacebook() {
+
     }
 }

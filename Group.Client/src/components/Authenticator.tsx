@@ -20,7 +20,7 @@ export default class Authenticator extends React.Component<IAuthenticatorProps, 
         super(props);
 
         this.state = {
-            facebookToken: "fsrdrrffs5f4sdr",
+            facebookToken: null,//"fsrdrrffs5f4sdr",
             webToken: "dfsrdgf",
             isLoading: false
         };
