@@ -6,7 +6,6 @@ import * as favicon from 'serve-favicon';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
-import index from './routes/index';
 import user from './routes/user.route';
 import * as ejs from 'ejs';
 import "reflect-metadata";
@@ -15,14 +14,11 @@ import * as dbConfig from "./common/db.config";
 
 const app: express.Express = express();
 
-//view engine setup
-
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.renderFile);
 app.set('view engine', 'html');
 
 //uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

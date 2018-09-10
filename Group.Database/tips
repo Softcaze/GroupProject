@@ -1,0 +1,2 @@
+// Générer les entités depuis la base de données
+typeorm-model-generator -h localhost -d groupdb -u root -e mysql -o
