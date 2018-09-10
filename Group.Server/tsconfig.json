@@ -5,9 +5,11 @@
     "removeComments": true,
     "sourceMap": true,
     "outDir": "app",
-    "rootDir": "src"
+    "rootDir": "src",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
   },
-  "exclude":[
+  "exclude": [
     "node_modules"
   ]
 }
