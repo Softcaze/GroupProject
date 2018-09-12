@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 import { Constants } from "./Constants";
 
 const API_PREFIX: string = "/_api/group/";
-const CONNECT_FACEBOOK_API: string = ""
+const CONNECT_FACEBOOK_API: string = "facebook_connect";
 
 export class SecurityService {
 

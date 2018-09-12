@@ -10,8 +10,16 @@ export class UserRepo {
         return getManager().getRepository(users).find();
     }
 
-    saveEmployee(user: users) {
+    saveUser(user: users) {
         return getManager().getRepository(users).save(user);
+    }
+
+    checkIfUserExists(user: users) {
+        return getManager().getRepository(users).find({
+            where: {
+                facebook_id: user.facebook_id
+            }
+        })
     }
 
 }

@@ -6,8 +6,15 @@ class UserRepo {
     getAllUsers() {
         return typeorm_1.getManager().getRepository(users_1.users).find();
     }
-    saveEmployee(user) {
+    saveUser(user) {
         return typeorm_1.getManager().getRepository(users_1.users).save(user);
+    }
+    checkIfUserExists(user) {
+        return typeorm_1.getManager().getRepository(users_1.users).find({
+            where: {
+                facebook_id: user.facebook_id
+            }
+        });
     }
 }
 exports.UserRepo = UserRepo;

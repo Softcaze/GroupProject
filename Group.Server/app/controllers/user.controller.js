@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_repository_1 = require("../repositories/user.repository");
 const users_1 = require("../entities/users");
 exports.saveUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    let empRepo = new user_repository_1.UserRepo();
+    let usersRepo = new user_repository_1.UserRepo();
     console.log("Received UserEmployee ==> POST");
     console.log(req.body);
     let user = new users_1.users();
@@ -26,7 +26,7 @@ exports.saveUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
     user.last_connection_ip = req.body.last_connection_ip;
     user.home_adress = req.body.home_adress;
     user.last_gps_location = req.body.last_gps_location;
-    empRepo.saveEmployee(user).then((result) => {
+    usersRepo.saveUser(user).then((result) => {
         console.log("Result : " + result);
         res.send(result);
     });

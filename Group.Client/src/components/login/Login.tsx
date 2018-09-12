@@ -41,6 +41,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     private responseFacebook(data: any) {
+        console.log(data);
         // console.log("AccessToken : " + data.accessToken);
         // console.log("Email : " + data.email);
         // console.log("Name : " + data.name);
