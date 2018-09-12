@@ -17,4 +17,9 @@ export class Constants {
      * Id de l'application Facebook
      */
     public static FACEBOOK_APP_IP: string = "251675342125195";
+
+    /**
+     * API Rest Group
+     */
+    public static GROUP_API_URL: string = "http://localhost:3001";
 }
