@@ -12,12 +12,13 @@ const passport = require('passport');
 const FacebookTokenStrategy = require('passport-facebook-token');
 const user_repository_1 = require("../repositories/user.repository");
 const users_1 = require("../entities/users");
-const config = require('./app.config');
+const config = require("./app.config");
 passport.use(new FacebookTokenStrategy({
     clientID: config.oauth.facebook.clientID,
     clientSecret: config.oauth.facebook.clientSecret,
-    profileFields: ["name", "email", "first_name", "last_name"]
+    profileFields: ["name", "email", "first_name", "last_name", "address"]
 }, (accessToken, refreshToken, profile, done) => __awaiter(this, void 0, void 0, function* () {
+    console.log("passeport config");
     try {
         let userRepo = new user_repository_1.UserRepo();
         console.log("accessToken : " + accessToken);

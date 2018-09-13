@@ -38,6 +38,26 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+// Add headers
+app.use(function (req, res, next) {
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+  // Request headers you wish to allow
+  //res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', "true");
+
+  // Pass to next layer of middleware
+  next();
+});
+
 // API
 app.use('/_api/user', user);
 
@@ -45,7 +65,7 @@ app.use('/_api/auth', auth);
 
 //catch 404 and forward to error handler
 app.use((req, res, next) => {
-  console.log(req);
+  console.log("404 not found");
   var err = new Error('Not Found');
   err['status'] = 404;
   next(err);

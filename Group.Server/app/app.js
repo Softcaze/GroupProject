@@ -30,7 +30,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-<<<<<<< HEAD
 app.use(session({
     secret: 'A!/@52D65OàùLD998D;.DS',
     resave: true,
@@ -38,13 +37,17 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/api/user', user_route_1.default);
-=======
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+    res.setHeader('Access-Control-Allow-Credentials', "true");
+    next();
+});
 app.use('/_api/user', user_route_1.default);
-app.use('/_api/user', auth_route_1.default);
->>>>>>> 57a25c05848a9c20c17845f521292565910b989a
+app.use('/_api/auth', auth_route_1.default);
 app.use((req, res, next) => {
-    console.log(req);
+    console.log("404 not found");
     var err = new Error('Not Found');
     err['status'] = 404;
     next(err);

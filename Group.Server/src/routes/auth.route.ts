@@ -8,6 +8,6 @@ const passport = require('passport');
 // facebook login
 //router.post("/facebook_connect", AuthController.setFacebookConnection);
 
-router.post("/auth/facebook", passport.authenticate("facebook-token", { session: false }), AuthController.authFacebook);
+router.post("/facebook", passport.authenticate("facebook-token", { session: false }), AuthController.authFacebook);
 
 export default router;

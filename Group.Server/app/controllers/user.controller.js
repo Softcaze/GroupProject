@@ -12,18 +12,6 @@ const JWT = require('jsonwebtoken');
 const user_repository_1 = require("../repositories/user.repository");
 const users_1 = require("../entities/users");
 const config = require('../common/app.config');
-exports.signToken = user => {
-    return JWT.sign({
-        iss: 'Group',
-        sub: user.id,
-        iat: new Date().getTime(),
-        exp: new Date().setDate(new Date().getDate() + 1)
-    }, config.JWT_SECRET);
-};
-exports.authFacebook = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const token = exports.signToken(req.body.user);
-    res.status(200).json({ token });
-});
 exports.saveUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let usersRepo = new user_repository_1.UserRepo();
     console.log("Received UserEmployee ==> POST");
@@ -40,7 +28,7 @@ exports.saveUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
     user.last_connection_ip = req.body.last_connection_ip;
     user.home_adress = req.body.home_adress;
     user.last_gps_location = req.body.last_gps_location;
-    usersRepo.saveUser(user).then((result) => {
+    usersRepo.addUser(user).then((result) => {
         console.log("Result : " + result);
         res.send(result);
     });

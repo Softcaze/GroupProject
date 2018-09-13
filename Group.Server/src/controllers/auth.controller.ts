@@ -23,6 +23,7 @@ export let signToken = user => {
 }
 
 export let authFacebook = async (req: Request, res: Response) => {
+    console.log("Nouvelle connexion : " + req);
     const token = signToken(req.body.user);
     res.status(200).json({ token });
 }

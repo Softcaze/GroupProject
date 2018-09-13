@@ -13,6 +13,7 @@ passport.use(new FacebookTokenStrategy({
     clientSecret: config.oauth.facebook.clientSecret,
     profileFields: ["name", "email", "first_name", "last_name", "address"]
 }, async (accessToken, refreshToken, profile, done) => {
+    console.log("passeport config");
     try {
         let userRepo: UserRepo = new UserRepo();
 

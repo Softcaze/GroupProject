@@ -9,10 +9,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_repository_1 = require("../repositories/user.repository");
+const JWT = require('jsonwebtoken');
+const config = require('../common/app.config');
 exports.setFacebookConnection = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let usersRepo = new user_repository_1.UserRepo();
     console.log("Received Facebook Connection ==> POST");
     console.log(req.body);
     res.send("OK, connexion de " + req.body.name);
+});
+exports.signToken = user => {
+    return JWT.sign({
+        iss: 'Group',
+        sub: user.id,
+        iat: new Date().getTime(),
+        exp: new Date().setDate(new Date().getDate() + 1)
+    }, config.JWT_SECRET);
+};
+exports.authFacebook = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    console.log("Nouvelle connexion : " + req);
+    const token = exports.signToken(req.body.user);
+    res.status(200).json({ token });
 });
 //# sourceMappingURL=auth.controller.js.map
