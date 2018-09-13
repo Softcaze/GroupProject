@@ -1,6 +1,22 @@
 import { Request, Response } from "express";
+const JWT = require('jsonwebtoken');
 import { UserRepo } from "../repositories/user.repository";
 import { users } from "../entities/users";
+const config = require('../common/app.config');
+
+export let signToken = user => {
+    return JWT.sign({
+        iss: 'Group',
+        sub: user.id,
+        iat: new Date().getTime(), // current time
+        exp: new Date().setDate(new Date().getDate() + 1) // current time + 1 day ahead
+    }, config.JWT_SECRET);
+}
+
+export let authFacebook = async (req: Request, res: Response) => {
+    const token = signToken(req.body.user);
+    res.status(200).json({ token });
+}
 
 export let saveUser = async (req: Request, res: Response) => {
     let empRepo: UserRepo = new UserRepo();

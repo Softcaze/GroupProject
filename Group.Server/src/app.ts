@@ -11,6 +11,9 @@ import * as ejs from 'ejs';
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import * as dbConfig from "./common/db.config";
+import * as passportConfig from "./common/passport.config";
+import * as session from "express-session";
+import * as passport from "passport";
 
 const app: express.Express = express();
 
@@ -24,6 +27,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: 'A!/@52D65OàùLD998D;.DS',
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // API
 app.use('/api/user', user);

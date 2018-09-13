@@ -18,6 +18,8 @@ const ejs = require("ejs");
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const dbConfig = require("./common/db.config");
+const session = require("express-session");
+const passport = require("passport");
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.renderFile);
@@ -27,6 +29,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+    secret: 'A!/@52D65OàùLD998D;.DS',
+    resave: true,
+    saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/api/user', user_route_1.default);
 app.use((req, res, next) => {
     var err = new Error('Not Found');

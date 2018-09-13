@@ -7,11 +7,28 @@ import { getManager } from "typeorm";
 export class UserRepo {
 
     getAllUsers() {
-        return getManager().getRepository(users).find();
+        return getManager().getRepository(users).query("SELECT firstname FROM users WHERE id = 1");
     }
 
     saveEmployee(user: users) {
         return getManager().getRepository(users).save(user);
     }
+
+    getUserById(id: string) {
+        return getManager().getRepository(users).findOne({ id: id });
+    }
+
+    addUser(user: users) {
+        return getManager().getRepository(users).save(user);
+    }
+
+    getUsers() {
+        return getManager().getRepository(users).find();
+    }
+
+    getUserByEmail(mail: string) {
+        return getManager().getRepository(users).findOne({ email: mail });
+    }
+
 
 }

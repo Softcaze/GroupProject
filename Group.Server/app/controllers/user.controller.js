@@ -8,8 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const JWT = require('jsonwebtoken');
 const user_repository_1 = require("../repositories/user.repository");
 const users_1 = require("../entities/users");
+const config = require('../common/app.config');
+exports.signToken = user => {
+    return JWT.sign({
+        iss: 'Group',
+        sub: user.id,
+        iat: new Date().getTime(),
+        exp: new Date().setDate(new Date().getDate() + 1)
+    }, config.JWT_SECRET);
+};
+exports.authFacebook = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const token = exports.signToken(req.body.user);
+    res.status(200).json({ token });
+});
 exports.saveUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let empRepo = new user_repository_1.UserRepo();
     console.log("Received UserEmployee ==> POST");
