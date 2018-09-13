@@ -10,8 +10,8 @@ export class UserRepo {
         return getManager().getRepository(users).query("SELECT firstname FROM users WHERE id = 1");
     }
 
-    getUserById(id: string) {
-        return getManager().getRepository(users).findOne({ id: id });
+    getUserByFacebookId(id: string) {
+        return getManager().getRepository(users).findOne({ facebook_id: id });
     }
 
     addUser(user: users) {

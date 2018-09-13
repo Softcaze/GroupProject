@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { UserRepo } from "../repositories/user.repository";
 const JWT = require('jsonwebtoken');
-import { users } from "../entities/users";
 const config = require('../common/app.config');
 
 export let setFacebookConnection = async (req: Request, res: Response) => {
     let usersRepo: UserRepo = new UserRepo();
+    console.log("setFacebookConnection");
 
     console.log("Received Facebook Connection ==> POST");
     console.log(req.body);
@@ -13,7 +13,9 @@ export let setFacebookConnection = async (req: Request, res: Response) => {
     res.send("OK, connexion de " + req.body.name);
 }
 
-export let signToken = user => {
+export let signToken = (user) => {
+    console.log(user);
+    console.log(user.id);
     return JWT.sign({
         iss: 'Group',
         sub: user.id,
@@ -23,7 +25,10 @@ export let signToken = user => {
 }
 
 export let authFacebook = async (req: Request, res: Response) => {
-    console.log("Nouvelle connexion : " + req);
-    const token = signToken(req.body.user);
+    console.log("Nouvelle connexion : " + JSON.stringify(req.body));
+
+    let userRepo: UserRepo = new UserRepo();
+
+    const token = signToken(userRepo.getUserByFacebookId(req.body.id));
     res.status(200).json({ token });
 }

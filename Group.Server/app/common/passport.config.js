@@ -13,31 +13,35 @@ const FacebookTokenStrategy = require('passport-facebook-token');
 const user_repository_1 = require("../repositories/user.repository");
 const users_1 = require("../entities/users");
 const config = require("./app.config");
+const JWT = require('jsonwebtoken');
 passport.use(new FacebookTokenStrategy({
     clientID: config.oauth.facebook.clientID,
     clientSecret: config.oauth.facebook.clientSecret,
-    profileFields: ["name", "email", "first_name", "last_name", "address"]
+    profileFields: ["name", "email"]
 }, (accessToken, refreshToken, profile, done) => __awaiter(this, void 0, void 0, function* () {
-    console.log("passeport config");
     try {
         let userRepo = new user_repository_1.UserRepo();
-        console.log("accessToken : " + accessToken);
-        console.log("refreshToken : " + refreshToken);
-        console.log("profile : " + profile);
+        console.log("Connected to password");
         let userExisting = new users_1.users();
-        userExisting = yield userRepo.getUserById(profile.id);
+        userExisting = yield userRepo.getUserByFacebookId(profile.id);
         if (userExisting) {
             return done(null, userExisting);
         }
         let user = new users_1.users();
+        console.log(profile._json.first_name);
+        console.log(profile._json.last_name);
+        console.log(profile._json.email);
+        console.log(profile.id);
+        console.log(new Date(Date.now()));
         user.firstname = profile._json.first_name;
         user.lastname = profile._json.last_name;
         user.email = profile._json.email;
+        user.profil_picture = "";
         user.facebook_id = profile.id;
-        user.home_adress = profile.address;
+        user.home_adress = "";
         user.password = "";
-        user.creation_date = new Date(Date.now());
-        user.last_connection = new Date(Date.now());
+        user.creation_date = "2018-09-15 08:19:25";
+        user.last_connection = "2018-09-15 08:19:25";
         user.last_connection_ip = "";
         user.last_gps_location = "";
         yield userRepo.addUser(user);

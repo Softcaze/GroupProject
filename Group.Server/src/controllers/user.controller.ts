@@ -30,6 +30,7 @@ export let saveUser = async (req: Request, res: Response) => {
 };
 
 export let getAllUsers = async (req: Request, res: Response) => {
+    console.log("GetAllUser")
     let userRepo: UserRepo = new UserRepo();
 
     console.log("Received GetAllUsers ==> GET");

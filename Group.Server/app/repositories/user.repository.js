@@ -6,8 +6,8 @@ class UserRepo {
     getAllUsers() {
         return typeorm_1.getManager().getRepository(users_1.users).query("SELECT firstname FROM users WHERE id = 1");
     }
-    getUserById(id) {
-        return typeorm_1.getManager().getRepository(users_1.users).findOne({ id: id });
+    getUserByFacebookId(id) {
+        return typeorm_1.getManager().getRepository(users_1.users).findOne({ facebook_id: id });
     }
     addUser(user) {
         return typeorm_1.getManager().getRepository(users_1.users).save(user);
