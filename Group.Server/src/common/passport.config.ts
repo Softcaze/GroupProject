@@ -11,7 +11,7 @@ const config = require("./app.config");
 passport.use(new FacebookTokenStrategy({
     clientID: config.oauth.facebook.clientID,
     clientSecret: config.oauth.facebook.clientSecret,
-    profileFields: ["name", "email", "first_name", "last_name"]
+    profileFields: ["name", "email", "first_name", "last_name", "address"]
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         let userRepo: UserRepo = new UserRepo();

@@ -6,7 +6,10 @@ import * as favicon from 'serve-favicon';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
+
 import user from './routes/user.route';
+import auth from './routes/auth.route';
+
 import * as ejs from 'ejs';
 import "reflect-metadata";
 import { createConnection } from "typeorm";
@@ -36,10 +39,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // API
-app.use('/api/user', user);
+app.use('/_api/user', user);
+
+app.use('/_api/auth', auth);
 
 //catch 404 and forward to error handler
 app.use((req, res, next) => {
+  console.log(req);
   var err = new Error('Not Found');
   err['status'] = 404;
   next(err);
@@ -76,7 +82,6 @@ app.use((err: Error, req, res, next) => {
  */
 createConnection(dbConfig.dbOptions).then(async connection => {
   console.log("Connected to DB");
-
 }).catch(error => console.log("TypeORM connection error: ", error));
 
 export default app;

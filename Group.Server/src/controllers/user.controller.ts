@@ -4,22 +4,8 @@ import { UserRepo } from "../repositories/user.repository";
 import { users } from "../entities/users";
 const config = require('../common/app.config');
 
-export let signToken = user => {
-    return JWT.sign({
-        iss: 'Group',
-        sub: user.id,
-        iat: new Date().getTime(), // current time
-        exp: new Date().setDate(new Date().getDate() + 1) // current time + 1 day ahead
-    }, config.JWT_SECRET);
-}
-
-export let authFacebook = async (req: Request, res: Response) => {
-    const token = signToken(req.body.user);
-    res.status(200).json({ token });
-}
-
 export let saveUser = async (req: Request, res: Response) => {
-    let empRepo: UserRepo = new UserRepo();
+    let usersRepo: UserRepo = new UserRepo();
 
     console.log("Received UserEmployee ==> POST");
     console.log(req.body);
@@ -37,7 +23,7 @@ export let saveUser = async (req: Request, res: Response) => {
     user.home_adress = req.body.home_adress;
     user.last_gps_location = req.body.last_gps_location;
 
-    empRepo.saveEmployee(user).then((result: any) => {
+    usersRepo.addUser(user).then((result: any) => {
         console.log("Result : " + result);
         res.send(result);
     });

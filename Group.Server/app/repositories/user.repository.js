@@ -6,9 +6,10 @@ class UserRepo {
     getAllUsers() {
         return typeorm_1.getManager().getRepository(users_1.users).query("SELECT firstname FROM users WHERE id = 1");
     }
-    saveEmployee(user) {
+    saveUser(user) {
         return typeorm_1.getManager().getRepository(users_1.users).save(user);
     }
+<<<<<<< HEAD
     getUserById(id) {
         return typeorm_1.getManager().getRepository(users_1.users).findOne({ id: id });
     }
@@ -20,6 +21,14 @@ class UserRepo {
     }
     getUserByEmail(mail) {
         return typeorm_1.getManager().getRepository(users_1.users).findOne({ email: mail });
+=======
+    checkIfUserExists(user) {
+        return typeorm_1.getManager().getRepository(users_1.users).find({
+            where: {
+                facebook_id: user.facebook_id
+            }
+        });
+>>>>>>> 57a25c05848a9c20c17845f521292565910b989a
     }
 }
 exports.UserRepo = UserRepo;
