@@ -45,9 +45,9 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use('/_api/auth', auth_route_1.default);
 app.use('*', middleware_1.verifyJWT_MW);
 app.use('/_api/user', user_route_1.default);
+app.use('/_api/auth', auth_route_1.default);
 app.use((req, res, next) => {
     console.log("404 not found");
     var err = new Error('Not Found');

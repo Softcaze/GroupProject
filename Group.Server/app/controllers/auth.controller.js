@@ -11,16 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const user_repository_1 = require("../repositories/user.repository");
 const JWT = require('jsonwebtoken');
 const config = require('../common/app.config');
-exports.setFacebookConnection = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    let usersRepo = new user_repository_1.UserRepo();
-    console.log("setFacebookConnection");
-    console.log("Received Facebook Connection ==> POST");
-    console.log(req.body);
-    res.send("OK, connexion de " + req.body.name);
-});
 exports.signToken = (user) => {
-    console.log(user);
-    console.log(user.id);
     return JWT.sign({
         iss: 'Group',
         sub: user.id,
@@ -40,7 +31,6 @@ function verifyJWTToken(token) {
 }
 exports.verifyJWTToken = verifyJWTToken;
 exports.authFacebook = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    console.log("Nouvelle connexion : " + JSON.stringify(req.body));
     let userRepo = new user_repository_1.UserRepo();
     const token = exports.signToken(userRepo.getUserByFacebookId(req.body.id));
     res.status(200).json({ token });

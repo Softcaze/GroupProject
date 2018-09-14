@@ -2,8 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const auth_controller_1 = require("../controllers/auth.controller");
 function verifyJWT_MW(req, res, next) {
+    console.log(req);
+    if (req.baseUrl == "/_api/auth/facebook") {
+        return next();
+    }
     let token = (req.method === 'POST') ? req.body.token : req.query.token;
-    console.log("token : " + token);
     auth_controller_1.verifyJWTToken(token)
         .then((decodedToken) => {
         req.user = decodedToken;

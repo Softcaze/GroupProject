@@ -5,7 +5,7 @@ import "./Login.scss";
 import { SecurityService } from "../../common/SecurityService";
 
 export interface ILoginProps {
-
+    onWebTokenReceived: (webToken: string) => any;
 }
 
 export interface ILoginState {
@@ -30,7 +30,7 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
                 <div className="facebook-login-container">
                     <FacebookLogin
                         appId={Constants.FACEBOOK_APP_IP}
-                        autoLoad={true}
+                        autoLoad={false}
                         fields="name,email,picture"
                         callback={this.responseFacebook.bind(this)}
                         className="facebook-login"
@@ -41,10 +41,8 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     private responseFacebook(data: any) {
-        console.log(data);
-        // console.log("AccessToken : " + data.accessToken);
-        // console.log("Email : " + data.email);
-        // console.log("Name : " + data.name);
-        SecurityService.ConnectToFacebook(data);
+        SecurityService.ConnectToFacebook(data).then((webToken: string) => {
+            this.props.onWebTokenReceived && this.props.onWebTokenReceived(webToken);
+        });
     }
 }

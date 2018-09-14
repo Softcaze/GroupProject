@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import Authenticator from "./components/Authenticator";
+import Apps from "./components/apps/Apps";
 
 ReactDOM.render(
-    <Authenticator />,
+    <Apps />,
     document.getElementById("root") as HTMLElement
 );

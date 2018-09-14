@@ -16,24 +16,13 @@ passport.use(new FacebookTokenStrategy({
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         let userRepo: UserRepo = new UserRepo();
-
-        console.log("Connected to password");
-
-        let userExisting = new users();
-
-        userExisting = await userRepo.getUserByFacebookId(profile.id);
+        let userExisting = await userRepo.getUserByFacebookId(profile.id);
 
         if (userExisting) {
             return done(null, userExisting);
         }
 
         let user = new users();
-
-        console.log(profile._json.first_name);
-        console.log(profile._json.last_name);
-        console.log(profile._json.email);
-        console.log(profile.id);
-        console.log(new Date(Date.now()));
 
         user.firstname = profile._json.first_name;
         user.lastname = profile._json.last_name;

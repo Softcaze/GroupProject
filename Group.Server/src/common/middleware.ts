@@ -1,8 +1,12 @@
 import { verifyJWTToken } from '../controllers/auth.controller'
 
 export function verifyJWT_MW(req, res, next) {
+    console.log(req);
+    if (req.baseUrl == "/_api/auth/facebook") {
+        return next();
+    }
+
     let token = (req.method === 'POST') ? req.body.token : req.query.token
-    console.log("token : " + token);
 
     verifyJWTToken(token)
         .then((decodedToken) => {
