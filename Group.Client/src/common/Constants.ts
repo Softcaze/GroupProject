@@ -27,4 +27,9 @@ export class Constants {
      * Key du local storage de la webtoken
      */
     public static LOCAL_STORAGE_WEBTOKEN_KEY: string = "GroupWebTokenKey";
+
+    /**
+     * Key du local storage du facebookId
+     */
+    public static LOCAL_STORAGE_FACEBOOKID_KEY: string = "GroupFacebookIdKey";
 }

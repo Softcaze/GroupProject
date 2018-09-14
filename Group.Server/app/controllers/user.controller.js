@@ -12,9 +12,7 @@ const JWT = require('jsonwebtoken');
 const user_repository_1 = require("../repositories/user.repository");
 const config = require('../common/app.config');
 exports.getAllUsers = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    console.log("GetAllUser");
     let userRepo = new user_repository_1.UserRepo();
-    console.log("Received GetAllUsers ==> GET");
     userRepo.getUsers().then((result) => {
         console.log("Result : " + JSON.stringify(result));
         res.send(result);

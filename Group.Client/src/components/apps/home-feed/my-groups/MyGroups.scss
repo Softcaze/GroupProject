@@ -1,0 +1,73 @@
+@import "../../../../common/Constants.scss";
+
+.mygroups-container {
+
+    .mygroups-title {
+        color: $primaryColor;
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .mygroups-groupl-list-container {
+        margin-top: 10px;
+        
+        .group-display-container {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+
+            .image-container {
+                height: 70px;
+                width: 70px;
+                border-radius: 500px;
+                overflow: hidden;
+                margin-left: 15px;
+                margin-bottom: 10px;
+
+                img {
+                    height: 70px;
+                    width: 70px;
+                }
+            }
+
+            .name {
+                height: 20px;
+                width: 100%;
+                text-align: center;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                font-size: 14px;
+            }
+
+            .create-group-button-container {
+                height: 70px;
+                width: 70px;
+                border-radius: 500px;
+                overflow: hidden;
+                margin-left: 15px;
+                margin-bottom: 10px;
+                background-color: #dbdbdb;
+                cursor: pointer;
+                position: relative;
+
+                .create-group-icon {
+                    color: #fcfcfc;
+                    font-size: 30px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform:translate(-50%, -50%);
+                }
+            }
+
+            .create-group-button-container:hover {
+                background-color:#fcfcfc;
+
+                .create-group-icon {
+                    color: #dbdbdb;
+                }
+            }
+        }
+    }
+}

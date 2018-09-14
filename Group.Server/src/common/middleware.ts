@@ -1,7 +1,6 @@
 import { verifyJWTToken } from '../controllers/auth.controller'
 
 export function verifyJWT_MW(req, res, next) {
-    console.log(req);
     if (req.baseUrl == "/_api/auth/facebook") {
         return next();
     }

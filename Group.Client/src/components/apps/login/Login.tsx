@@ -1,8 +1,8 @@
 import * as React from "react";
 import FacebookLogin from 'react-facebook-login';
-import { Constants } from "../../common/Constants";
+import { Constants } from "../../../common/Constants";
 import "./Login.scss";
-import { SecurityService } from "../../common/SecurityService";
+import { SecurityService } from "../../../common/SecurityService";
 
 export interface ILoginProps {
     onWebTokenReceived: (webToken: string) => any;
@@ -41,8 +41,10 @@ export default class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     private responseFacebook(data: any) {
-        SecurityService.ConnectToFacebook(data).then((webToken: string) => {
-            this.props.onWebTokenReceived && this.props.onWebTokenReceived(webToken);
+        SecurityService.ConnectToFacebook(data).then((receivedData: any) => {
+            if (this.props.onWebTokenReceived) {
+                this.props.onWebTokenReceived(receivedData);
+            }
         });
     }
 }

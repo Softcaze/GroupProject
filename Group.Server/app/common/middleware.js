@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const auth_controller_1 = require("../controllers/auth.controller");
 function verifyJWT_MW(req, res, next) {
-    console.log(req);
     if (req.baseUrl == "/_api/auth/facebook") {
         return next();
     }
