@@ -10,6 +10,5 @@ const router = express.Router();
 
 // user
 router.get('/getUsers', UserController.getAllUsers);
-router.post('/addUser', UserController.saveUser);
 
 export default router;
