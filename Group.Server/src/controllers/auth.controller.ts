@@ -24,6 +24,18 @@ export let signToken = (user) => {
     }, config.JWT_SECRET);
 }
 
+export function verifyJWTToken(token) {
+    return new Promise((resolve, reject) => {
+        JWT.verify(token, config.JWT_SECRET, (err, decodedToken) => {
+            if (err || !decodedToken) {
+                return reject(err)
+            }
+
+            resolve(decodedToken)
+        })
+    })
+}
+
 export let authFacebook = async (req: Request, res: Response) => {
     console.log("Nouvelle connexion : " + JSON.stringify(req.body));
 

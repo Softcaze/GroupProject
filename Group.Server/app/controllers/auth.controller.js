@@ -28,6 +28,17 @@ exports.signToken = (user) => {
         exp: new Date().setDate(new Date().getDate() + 1)
     }, config.JWT_SECRET);
 };
+function verifyJWTToken(token) {
+    return new Promise((resolve, reject) => {
+        JWT.verify(token, config.JWT_SECRET, (err, decodedToken) => {
+            if (err || !decodedToken) {
+                return reject(err);
+            }
+            resolve(decodedToken);
+        });
+    });
+}
+exports.verifyJWTToken = verifyJWTToken;
 exports.authFacebook = (req, res) => __awaiter(this, void 0, void 0, function* () {
     console.log("Nouvelle connexion : " + JSON.stringify(req.body));
     let userRepo = new user_repository_1.UserRepo();

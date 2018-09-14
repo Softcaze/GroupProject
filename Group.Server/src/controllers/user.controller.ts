@@ -35,8 +35,8 @@ export let getAllUsers = async (req: Request, res: Response) => {
 
     console.log("Received GetAllUsers ==> GET");
 
-    userRepo.getAllUsers().then((result: any) => {
-        console.log("Result : " + result);
+    userRepo.getUsers().then((result: any) => {
+        console.log("Result : " + JSON.stringify(result));
         res.send(result);
     });
 };

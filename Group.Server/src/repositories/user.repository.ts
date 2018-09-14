@@ -5,11 +5,6 @@ import { getManager } from "typeorm";
  * User repository
  */
 export class UserRepo {
-
-    getAllUsers() {
-        return getManager().getRepository(users).query("SELECT firstname FROM users WHERE id = 1");
-    }
-
     getUserByFacebookId(id: string) {
         return getManager().getRepository(users).findOne({ facebook_id: id });
     }

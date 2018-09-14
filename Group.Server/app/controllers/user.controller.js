@@ -37,8 +37,8 @@ exports.getAllUsers = (req, res) => __awaiter(this, void 0, void 0, function* ()
     console.log("GetAllUser");
     let userRepo = new user_repository_1.UserRepo();
     console.log("Received GetAllUsers ==> GET");
-    userRepo.getAllUsers().then((result) => {
-        console.log("Result : " + result);
+    userRepo.getUsers().then((result) => {
+        console.log("Result : " + JSON.stringify(result));
         res.send(result);
     });
 });

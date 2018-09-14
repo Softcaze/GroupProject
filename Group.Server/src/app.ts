@@ -17,6 +17,8 @@ import * as dbConfig from "./common/db.config";
 import * as passportConfig from "./common/passport.config";
 import * as session from "express-session";
 import * as passport from "passport";
+import { verifyJWT_MW } from './common/middleware';
+
 
 const app: express.Express = express();
 
@@ -58,6 +60,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // API
+app.use('*', verifyJWT_MW);
+
 app.use('/_api/user', user);
 
 app.use('/_api/auth', auth);
