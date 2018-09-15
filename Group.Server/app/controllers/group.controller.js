@@ -20,6 +20,14 @@ exports.getGroups = (req, res) => __awaiter(this, void 0, void 0, function* () {
         res.status(400).send(err);
     });
 });
+exports.getGroupSuggestion = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let groupRepo = new group_repository_1.GroupRepo();
+    groupRepo.getGroupSuggestion(req.query.id).then((result) => {
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+});
 exports.addGroup = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let groupRepo = new group_repository_1.GroupRepo();
     let group = new groups_1.groups();

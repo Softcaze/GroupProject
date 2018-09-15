@@ -16,6 +16,13 @@ class GroupRepo {
     joinGroup(group) {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).save(group);
     }
+    getGroupSuggestion(id) {
+        return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_group", "group")
+            .where("lt_user_group.id_user != :id", { id: id })
+            .take(3)
+            .getMany();
+    }
 }
 exports.GroupRepo = GroupRepo;
 //# sourceMappingURL=group.repository.js.map

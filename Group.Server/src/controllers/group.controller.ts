@@ -20,6 +20,21 @@ export let getGroups = async (req: Request, res: Response) => {
 };
 
 /**
+ * Récupèrer les groupes de suggestion
+ * @param req 
+ * @param res 
+ */
+export let getGroupSuggestion = async (req: Request, res: Response) => {
+    let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.getGroupSuggestion(req.query.id).then((result: any) => {
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+};
+
+/**
  * Ajouter un groupe
  * @param req 
  * @param res 
