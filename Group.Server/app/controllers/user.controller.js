@@ -8,14 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const JWT = require('jsonwebtoken');
 const user_repository_1 = require("../repositories/user.repository");
-const config = require('../common/app.config');
-exports.getAllUsers = (req, res) => __awaiter(this, void 0, void 0, function* () {
+exports.getUsers = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let userRepo = new user_repository_1.UserRepo();
     userRepo.getUsers().then((result) => {
-        console.log("Result : " + JSON.stringify(result));
-        res.send(result);
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
     });
 });
 //# sourceMappingURL=user.controller.js.map

@@ -15,6 +15,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const user_route_1 = require("./routes/user.route");
 const auth_route_1 = require("./routes/auth.route");
+const group_route_1 = require("./routes/group.route");
 const ejs = require("ejs");
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
@@ -48,6 +49,7 @@ app.use(passport.session());
 app.use('*', middleware_1.verifyJWT_MW);
 app.use('/_api/user', user_route_1.default);
 app.use('/_api/auth', auth_route_1.default);
+app.use('/_api/group', group_route_1.default);
 app.use((req, res, next) => {
     console.log("404 not found");
     var err = new Error('Not Found');

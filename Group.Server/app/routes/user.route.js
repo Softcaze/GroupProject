@@ -1,10 +1,8 @@
 'use strict';
 Object.defineProperty(exports, "__esModule", { value: true });
-const passport = require('passport');
 const express = require("express");
 const UserController = require("../controllers/user.controller");
-const passportConf = require('../common/passport.config');
 const router = express.Router();
-router.get('/getUsers', UserController.getAllUsers);
+router.get('/getUsers', UserController.getUsers);
 exports.default = router;
 //# sourceMappingURL=user.route.js.map

@@ -2,19 +2,18 @@
 
 import * as express from 'express';
 import * as path from 'path';
-import * as favicon from 'serve-favicon';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
 
 import user from './routes/user.route';
 import auth from './routes/auth.route';
+import group from './routes/group.route';
 
 import * as ejs from 'ejs';
 import "reflect-metadata";
 import { createConnection } from "typeorm";
 import * as dbConfig from "./common/db.config";
-import * as passportConfig from "./common/passport.config";
 import * as session from "express-session";
 import * as passport from "passport";
 import { verifyJWT_MW } from './common/middleware';
@@ -65,6 +64,8 @@ app.use('*', verifyJWT_MW);
 app.use('/_api/user', user);
 
 app.use('/_api/auth', auth);
+
+app.use('/_api/group', group);
 
 //catch 404 and forward to error handler
 app.use((req, res, next) => {

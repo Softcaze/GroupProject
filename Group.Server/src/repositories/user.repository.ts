@@ -1,4 +1,5 @@
 import { users } from "../entities/users";
+import { groups } from "../entities/groups";
 import { getManager } from "typeorm";
 
 /**
@@ -21,11 +22,9 @@ export class UserRepo {
         return getManager().getRepository(users).findOne({ email: mail });
     }
 
-    checkIfUserExists(user: users) {
-        return getManager().getRepository(users).find({
-            where: {
-                facebook_id: user.facebook_id
-            }
+    getGroups(id: number) {
+        return getManager().getRepository(groups).find({
+            where: { id: id }
         })
     }
 }
