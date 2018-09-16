@@ -8,11 +8,11 @@ import { NOTFOUND } from "dns";
  * User repository
  */
 export class GroupRepo {
-    getGroups(id: number) {
+    getGroups(userid: number) {
         return getManager().getRepository(lt_user_group).find({
-            where: { id_user: id, state: 1 },
+            where: { id_user: userid, state: 1 },
             relations: ["id_group"]
-        })
+        });
     }
 
     addGroup(group: groups) {

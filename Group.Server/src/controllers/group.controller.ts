@@ -10,9 +10,10 @@ import { getDateTimeNow } from "../common/functions";
  * @param res 
  */
 export let getGroups = async (req: Request, res: Response) => {
+    console.log("getGroups");
     let groupRepo: GroupRepo = new GroupRepo();
 
-    groupRepo.getGroups(req.query.id).then((result: any) => {
+    groupRepo.getGroups(req.query.userid).then((result: any) => {
         res.status(200).send(result);
     }).catch((err) => {
         res.status(400).send(err);

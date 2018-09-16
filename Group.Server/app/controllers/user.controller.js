@@ -17,4 +17,12 @@ exports.getUsers = (req, res) => __awaiter(this, void 0, void 0, function* () {
         res.status(400).send(err);
     });
 });
+exports.getUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let userRepo = new user_repository_1.UserRepo();
+    userRepo.getUserByFacebookId(req.query.fbid).then((user) => {
+        res.status(200).send(user);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+});
 //# sourceMappingURL=user.controller.js.map

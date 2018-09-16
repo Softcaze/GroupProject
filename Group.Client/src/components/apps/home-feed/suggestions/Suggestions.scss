@@ -1,0 +1,14 @@
+@import "../../../../common/Constants.scss";
+
+.suggestions-container {
+    .suggestions-title {
+        .suggestion-icon {
+            color: #25b7d3;
+            vertical-align: middle;
+        }
+
+        .suggestion-text {
+            vertical-align: middle;
+        }
+    }    
+}

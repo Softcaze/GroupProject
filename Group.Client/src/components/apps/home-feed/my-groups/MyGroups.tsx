@@ -3,10 +3,15 @@ import { HomeFeedStrings } from "../loc/strings";
 import "./MyGroups.scss";
 import { IGroup } from "../../../../model/IGroup";
 import { GoPlus } from "react-icons/go";
+import { FeedService } from "../Feed.service";
+import { IUser } from "../../../../model/IUser";
+import ReactPlaceholder from "react-placeholder";
+import "react-placeholder/lib/reactPlaceholder.css";;
 
 export interface IMyGroupsProps {
     webToken: string;
     facebookId: string;
+    currentUser: IUser;
 }
 
 export interface IMyGroupsState {
@@ -22,11 +27,13 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
         super(props);
 
         this.state = {
-            myGroups: [
-                { name: "Les copains", cover_picture: "https://cdn.pixabay.com/photo/2016/06/18/17/42/image-1465348_960_720.jpg" },
-                { name: "Tarbes", cover_picture: "https://i2.wp.com/beebom.com/wp-content/uploads/2016/01/Reverse-Image-Search-Engines-Apps-And-Its-Uses-2016.jpg?resize=640%2C426" }
-            ]
+            myGroups: null
         };
+
+        // on charge les groupes de l'utilisateur
+        FeedService.getMyGroups(this.props.webToken, this.props.currentUser.id).then((myGroups: IGroup[]) => {
+            this.setState({ myGroups: myGroups });
+        });
     }
 
     public render() {
@@ -36,7 +43,9 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                     {HomeFeedStrings.myGroupsTitle}
                 </div>
                 <div className="mygroups-groupl-list-container">
-                    {this.getMyGroupsList(this.state.myGroups)}
+                    <ReactPlaceholder type='media' rows={4} ready={this.state.myGroups != null}>
+                        {this.getMyGroupsList(this.state.myGroups)}
+                    </ReactPlaceholder>
                 </div>
             </div >
         );
@@ -67,7 +76,7 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
         return (
             <div key={"key_" + group.name.toLowerCase().trim()} className="group-display-container">
                 <div className="image-container">
-                    <img src={group.cover_picture} />
+                    <img src={group.profil_picture} />
                 </div>
                 <div className="name">
                     {group.name}

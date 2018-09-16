@@ -1,15 +1,14 @@
 export interface IUser {
-    id?: number;
-    facebookId?: number;
-    firstName?: string;
-    lastName?: string;
-    displayName?: string;
-    profilPicture?: string;
+    id?: string;
+    facebook_id?: string;
+    firstname?: string;
+    lastname?: string;
+    profil_picture?: string;
     email?: string;
     password?: string;
-    creationDate?: Date;
-    lastConnection?: Date;
-    lastConnectionIp?: string;
-    homeAdress?: string;
-    lastGpsLocation?: string;
+    creation_date?: Date;
+    last_connection?: Date;
+    last_connection_ip?: string;
+    home_adress?: string;
+    last_gps_location?: string;
 }

@@ -1,0 +1,21 @@
+
+.home-feed-container {
+    .left-feed {
+        display: inline-block;
+        width: 540px; 
+    }
+
+    .right-feed {
+        display: inline-block;
+        width: 240px;
+        margin-left: 20px;
+        vertical-align: top;
+    }
+
+    .component-container {
+        border: 1px solid #dddfe2;
+        margin: 10 0;
+        background-color: #ffffff;
+        padding: 10px;
+    }
+}

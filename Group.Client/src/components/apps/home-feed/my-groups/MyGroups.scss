@@ -3,7 +3,7 @@
 .mygroups-container {
 
     .mygroups-title {
-        color: $primaryColor;
+        color: $primaryColorLight;
         font-size: 17px;
         font-weight: 600;
     }
@@ -14,19 +14,18 @@
         .group-display-container {
             display: inline-block;
             width: 100px;
-            height: 100px;
 
             .image-container {
-                height: 70px;
-                width: 70px;
+                height: 60px;
+                width: 60px;
                 border-radius: 500px;
                 overflow: hidden;
-                margin-left: 15px;
+                margin-left: 20px;
                 margin-bottom: 10px;
 
                 img {
-                    height: 70px;
-                    width: 70px;
+                    height: 60px;
+                    width: 60px;
                 }
             }
 
@@ -41,11 +40,11 @@
             }
 
             .create-group-button-container {
-                height: 70px;
-                width: 70px;
+                height: 60px;
+                width: 60px;
                 border-radius: 500px;
                 overflow: hidden;
-                margin-left: 15px;
+                margin-left: 20px;
                 margin-bottom: 10px;
                 background-color: #dbdbdb;
                 cursor: pointer;

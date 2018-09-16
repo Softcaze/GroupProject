@@ -13,8 +13,9 @@ const lt_user_group_1 = require("../entities/lt_user_group");
 const groups_1 = require("../entities/groups");
 const functions_1 = require("../common/functions");
 exports.getGroups = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    console.log("getGroups");
     let groupRepo = new group_repository_1.GroupRepo();
-    groupRepo.getGroups(req.query.id).then((result) => {
+    groupRepo.getGroups(req.query.userid).then((result) => {
         res.status(200).send(result);
     }).catch((err) => {
         res.status(400).send(err);

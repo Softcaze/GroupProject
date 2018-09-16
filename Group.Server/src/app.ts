@@ -17,7 +17,7 @@ import * as dbConfig from "./common/db.config";
 import * as session from "express-session";
 import * as passport from "passport";
 import { verifyJWT_MW } from './common/middleware';
-
+import { PasspordStrategies } from './common/passport.config';
 
 const app: express.Express = express();
 
@@ -57,6 +57,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+PasspordStrategies.initialize();
 
 // API
 app.use('*', verifyJWT_MW);

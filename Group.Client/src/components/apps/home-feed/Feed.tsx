@@ -1,9 +1,13 @@
 import * as React from "react";
 import MyGroups from "./my-groups/MyGroups";
+import { IUser } from "../../../model/IUser";
+import "./Feed.scss";
+import Suggestions from "./suggestions/Suggestions";
 
 export interface IFeedProps {
     webToken: string;
     facebookId: string;
+    currentUser: IUser;
 }
 
 export interface IFeedState {
@@ -25,11 +29,18 @@ export default class Feed extends React.Component<IFeedProps, IFeedState> {
 
     public render() {
         return (
-            <div>
-                <div>
-                    <MyGroups webToken={this.props.webToken} facebookId={this.props.facebookId} />
+            <div className="home-feed-container">
+                <div className="left-feed">
+                    <div className="component-container">
+                        <MyGroups webToken={this.props.webToken} facebookId={this.props.facebookId} currentUser={this.props.currentUser} />
+                    </div>
                 </div>
-            </div>
+                <div className="right-feed">
+                    <div className="component-container">
+                        <Suggestions webToken={this.props.webToken} facebookId={this.props.facebookId} currentUser={this.props.currentUser} />
+                    </div>
+                </div>
+            </div >
         );
     }
 }

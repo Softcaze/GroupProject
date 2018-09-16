@@ -24,6 +24,20 @@ export class Constants {
     public static GROUP_API_URL: string = "http://localhost:3001";
 
     /**
+     * Prefix de la rest api
+     */
+    public static API_PREFIX: string = "/_api";
+
+    /**
+     * Route de la rest api
+     */
+    public static API_ROUTES = {
+        USER: "/user",
+        AUTH: "/auth",
+        GROUP: "/group"
+    };
+
+    /**
      * Key du local storage de la webtoken
      */
     public static LOCAL_STORAGE_WEBTOKEN_KEY: string = "GroupWebTokenKey";

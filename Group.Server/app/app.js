@@ -23,6 +23,7 @@ const dbConfig = require("./common/db.config");
 const session = require("express-session");
 const passport = require("passport");
 const middleware_1 = require("./common/middleware");
+const passport_config_1 = require("./common/passport.config");
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.renderFile);
@@ -46,6 +47,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+passport_config_1.PasspordStrategies.initialize();
 app.use('*', middleware_1.verifyJWT_MW);
 app.use('/_api/user', user_route_1.default);
 app.use('/_api/auth', auth_route_1.default);

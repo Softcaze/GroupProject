@@ -4,6 +4,10 @@ import Feed from "./home-feed/Feed";
 import GroupFeed from "./group-feed/GroupFeed";
 import { Constants } from "../../common/Constants";
 import Login from "./login/Login";
+import { SecurityService } from "../../common/SecurityService";
+import { IUser } from "../../model/IUser";
+import AppBar from "./app-bar/AppBar";
+import "./Apps.scss";
 
 export interface IAppsProps {
 
@@ -12,6 +16,8 @@ export interface IAppsProps {
 export interface IAppsState {
     webToken: string;
     facebookId: string;
+    currentUser: IUser;
+    isLoading: boolean;
 }
 
 /**
@@ -24,21 +30,40 @@ export default class Apps extends React.Component<IAppsProps, IAppsState> {
 
         this.state = {
             webToken: localStorage.getItem(Constants.LOCAL_STORAGE_WEBTOKEN_KEY),
-            facebookId: localStorage.getItem(Constants.LOCAL_STORAGE_FACEBOOKID_KEY)
+            facebookId: localStorage.getItem(Constants.LOCAL_STORAGE_FACEBOOKID_KEY),
+            currentUser: null,
+            isLoading: true
         };
+
+        // si on est déjà connecté, on charge l'utilisateur
+        if (this.state.webToken && this.state.facebookId) {
+            this.getCurrentUser(this.state.facebookId, this.state.webToken).then((user) => {
+                this.setState({ currentUser: user, isLoading: false });
+            });
+        }
     }
 
     public render() {
-        if (this.state.webToken && this.state.facebookId) {
+        if (this.state.isLoading) {
+            return null;
+        }
+        if (this.state.webToken && this.state.facebookId && this.state.currentUser) {
             return (
-                <Router>
-                    <div>
-                        <Switch>
-                            <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed groupid={props.match.params.groupid} />} />
-                            <Route component={() => <Feed webToken={this.state.webToken} facebookId={this.state.facebookId} />} /> {/* Page par defaut */}
-                        </Switch>
+                <div>
+                    <AppBar />
+                    <div className="app-content-container">
+                        <div className="app-content-subcontainer">
+                            <Router>
+                                <div>
+                                    <Switch>
+                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed groupid={props.match.params.groupid} />} />
+                                        <Route component={() => <Feed webToken={this.state.webToken} facebookId={this.state.facebookId} currentUser={this.state.currentUser} />} /> {/* Page par defaut */}
+                                    </Switch>
+                                </div>
+                            </Router>
+                        </div>
                     </div>
-                </Router>
+                </div>
             );
         } else {
             return (
@@ -49,7 +74,14 @@ export default class Apps extends React.Component<IAppsProps, IAppsState> {
 
     private onWebTokenReceived(data: any) {
         if (data && data.webToken && data.facebookId) {
-            this.setState({ webToken: data.webToken, facebookId: data.facebookId });
+            this.getCurrentUser(data.facebookId, data.webToken).then((user: IUser) => {
+                this.setState({ webToken: data.webToken, facebookId: data.facebookId, currentUser: user, isLoading: false });
+            });
         }
+    }
+
+    private getCurrentUser(facebookId: string, webToken: string) {
+        // on récupère l'utilisateur
+        return SecurityService.GetUser(facebookId, webToken);
     }
 }

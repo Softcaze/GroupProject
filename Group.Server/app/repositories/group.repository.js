@@ -4,9 +4,9 @@ const groups_1 = require("../entities/groups");
 const lt_user_group_1 = require("../entities/lt_user_group");
 const typeorm_1 = require("typeorm");
 class GroupRepo {
-    getGroups(id) {
+    getGroups(userid) {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).find({
-            where: { id_user: id, state: 1 },
+            where: { id_user: userid, state: 1 },
             relations: ["id_group"]
         });
     }
