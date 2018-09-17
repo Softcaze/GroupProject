@@ -2,12 +2,12 @@ import LocalizedStrings from "react-localization";
 
 export const HomeFeedStrings = new LocalizedStrings({
     en: {
-        myGroupsTitle: "MY GROUPS",
+        MyGroupsTitle: "MY GROUPS",
         AddGroup: "Create a group",
         Suggestions: "Suggestions",
     },
     fr: {
-        myGroupsTitle: "MES GROUPES",
+        MyGroupsTitle: "MES GROUPES",
         AddGroup: "Créer un groupe",
         Suggestions: "Suggestions",
     }

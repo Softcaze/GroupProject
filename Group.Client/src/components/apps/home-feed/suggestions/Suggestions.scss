@@ -1,7 +1,11 @@
 @import "../../../../common/Constants.scss";
 
 .suggestions-container {
+    padding: 10px;
+
     .suggestions-title {
+        margin-bottom: 20px;
+
         .suggestion-icon {
             color: #25b7d3;
             vertical-align: middle;

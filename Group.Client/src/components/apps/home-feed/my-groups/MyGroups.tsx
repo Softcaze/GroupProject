@@ -40,7 +40,7 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
         return (
             <div className="mygroups-container">
                 <div className="mygroups-title">
-                    {HomeFeedStrings.myGroupsTitle}
+                    {HomeFeedStrings.MyGroupsTitle}
                 </div>
                 <div className="mygroups-groupl-list-container">
                     <ReactPlaceholder type='media' rows={4} ready={this.state.myGroups != null}>

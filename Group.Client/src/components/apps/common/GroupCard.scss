@@ -1,9 +1,75 @@
+@import "../../../common/Constants.scss";
 
 .groupcard-container {
     height: 120px;
+    border: 1px solid $lightGray;
 
-    .cover-picture {
+    .group-card-top {
         height: 60px;
         width: 100%;
+
+        .cover-picture {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+
+            .cover-picture-img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+
+    .group-card-bottom {
+        height: 60px;
+        width: 100%;
+
+        .profile-picture {
+            width: 40px;
+            height: 40px;
+            margin-left: 20px;
+            margin-top: -20px;
+        
+            .profile-picture-img {
+                width: 100%;
+                height: 100%;
+                border-radius: 100px;
+                border: 1px solid #ffffff; 
+            }
+        }
+
+        .group-name {
+            line-height: 15px;
+            font-size: 13px;
+            margin-left: 70px;
+            margin-top: -15px;
+            max-width: 125px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: $darkGray;
+        }
+
+        .group-stats-container {
+            width: 100%;
+            margin-top: 10px;
+
+            .group-stats-item {
+                width: 33%;
+                display: inline-block;
+                text-align: center;
+
+                .group-stats-item-value {
+                    font-size: 14px;
+                    color: #d91e18;
+                }
+
+                .group-stats-item-title {
+                    font-size: 8px;
+                    color: #90949c;
+                    line-height: 0.2;
+                }
+            }
+        }
     }
 }
