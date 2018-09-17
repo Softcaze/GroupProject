@@ -46,7 +46,7 @@ export default class GroupCard extends React.Component<IGroupCardProps, IGroupCa
             );
         }
         else {
-            return <div>Group unknow</div>
+            return <div>Group unknow</div>;
         }
     }
 

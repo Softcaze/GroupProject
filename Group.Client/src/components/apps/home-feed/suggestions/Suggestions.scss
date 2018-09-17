@@ -14,5 +14,17 @@
         .suggestion-text {
             vertical-align: middle;
         }
-    }    
+    }
+
+    .suggestions-content {
+        .group-card-container {
+            margin: 10px 0px;
+        }
+
+        .no-suggestion {
+            color: $darkGray;
+            font-size: 11px;
+            font-style: italic;
+        }
+    }
 }

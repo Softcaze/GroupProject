@@ -5,15 +5,15 @@ export function verifyJWT_MW(req, res, next) {
         return next();
     }
 
-    let token = (req.method === 'POST') ? req.body.token : req.query.token
+    let webToken = (req.method === 'POST') ? req.body.webToken : req.query.webToken
 
-    verifyJWTToken(token)
+    verifyJWTToken(webToken)
         .then((decodedToken) => {
             req.user = decodedToken
             next()
         })
         .catch((err) => {
             res.status(400)
-                .json({ message: "Invalid auth token provided." })
+                .json({ message: "Invalid auth webToken provided." })
         })
 }

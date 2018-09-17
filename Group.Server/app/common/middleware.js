@@ -5,15 +5,15 @@ function verifyJWT_MW(req, res, next) {
     if (req.baseUrl == "/_api/auth/facebook") {
         return next();
     }
-    let token = (req.method === 'POST') ? req.body.token : req.query.token;
-    auth_controller_1.verifyJWTToken(token)
+    let webToken = (req.method === 'POST') ? req.body.webToken : req.query.webToken;
+    auth_controller_1.verifyJWTToken(webToken)
         .then((decodedToken) => {
         req.user = decodedToken;
         next();
     })
         .catch((err) => {
         res.status(400)
-            .json({ message: "Invalid auth token provided." });
+            .json({ message: "Invalid auth webToken provided." });
     });
 }
 exports.verifyJWT_MW = verifyJWT_MW;

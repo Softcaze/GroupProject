@@ -18,11 +18,11 @@ export let signToken = (user) => {
 
 /**
  * Vérifie le token d'accès
- * @param token 
+ * @param webToken 
  */
-export function verifyJWTToken(token) {
+export function verifyJWTToken(webToken) {
     return new Promise((resolve, reject) => {
-        JWT.verify(token, config.JWT_SECRET, (err, decodedToken) => {
+        JWT.verify(webToken, config.JWT_SECRET, (err, decodedToken) => {
             if (err || !decodedToken) {
                 return reject(err)
             }
@@ -40,6 +40,6 @@ export function verifyJWTToken(token) {
 export let authFacebook = async (req: Request, res: Response) => {
     let userRepo: UserRepo = new UserRepo();
 
-    const token = signToken(userRepo.getUserByFacebookId(req.body.id));
-    res.status(200).json({ token });
+    const facebookToken = signToken(userRepo.getUserByFacebookId(req.body.facebookId));
+    res.status(200).json({ facebookToken });
 }

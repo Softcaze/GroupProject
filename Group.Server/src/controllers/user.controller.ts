@@ -25,7 +25,7 @@ export let getUsers = async (req: Request, res: Response) => {
 export let getUser = async (req: Request, res: Response) => {
     let userRepo: UserRepo = new UserRepo();
 
-    userRepo.getUserByFacebookId(req.query.fbid).then((user: users) => {
+    userRepo.getUserByFacebookId(req.query.facebookId).then((user: users) => {
         res.status(200).send(user);
     }).catch((err) => {
         res.status(400).send(err);

@@ -19,7 +19,7 @@ exports.getUsers = (req, res) => __awaiter(this, void 0, void 0, function* () {
 });
 exports.getUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let userRepo = new user_repository_1.UserRepo();
-    userRepo.getUserByFacebookId(req.query.fbid).then((user) => {
+    userRepo.getUserByFacebookId(req.query.facebookId).then((user) => {
         res.status(200).send(user);
     }).catch((err) => {
         res.status(400).send(err);

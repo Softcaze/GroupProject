@@ -4,18 +4,37 @@ import { Constants } from "../../../common/Constants";
 import { ILT_User_Group } from "../../../model/ILT_User_Group";
 
 const GET_MY_GROUPS_API: string = "/getGroups";
+const GET_SUGGESTED_GROUPS: string = "/getGroupSuggestion";
 
 export class FeedService {
 
     public static getMyGroups(webToken: string, userId: string): Promise<IGroup[]> {
         return new Promise<IGroup[]>((resolve, reject) => {
-            axios.get(`${Constants.GROUP_API_URL}${Constants.API_PREFIX}${Constants.API_ROUTES.GROUP}${GET_MY_GROUPS_API}?userid=${userId}&token=${webToken}`, {
+            axios.get(`${Constants.GROUP_API_URL}${Constants.API_PREFIX}${Constants.API_ROUTES.GROUP}${GET_MY_GROUPS_API}?userId=${userId}&webToken=${webToken}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },
             } as AxiosRequestConfig).then((result: any) => {
                 if (result)
                     resolve(result.data.map(lt => lt.id_group));
+                else
+                    resolve(null);
+            }).catch((err) => {
+                console.log(err);
+            });
+        });
+    }
+
+    public static getSuggestedGroups(webToken: string, userId: string): Promise<IGroup[]> {
+        return new Promise<IGroup[]>((resolve, reject) => {
+            axios.get(`${Constants.GROUP_API_URL}${Constants.API_PREFIX}${Constants.API_ROUTES.GROUP}${GET_SUGGESTED_GROUPS}?userId=${userId}&webToken=${webToken}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            } as AxiosRequestConfig).then((result: any) => {
+                console.log(result);
+                if (result)
+                    resolve(result.data);
                 else
                     resolve(null);
             }).catch((err) => {

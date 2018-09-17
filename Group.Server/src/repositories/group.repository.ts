@@ -8,9 +8,9 @@ import { NOTFOUND } from "dns";
  * User repository
  */
 export class GroupRepo {
-    getGroups(userid: number) {
+    getGroups(userId: number) {
         return getManager().getRepository(lt_user_group).find({
-            where: { id_user: userid, state: 1 },
+            where: { id_user: userId, state: 1 },
             relations: ["id_group"]
         });
     }
@@ -23,11 +23,12 @@ export class GroupRepo {
         return getManager().getRepository(lt_user_group).save(group);
     }
 
-    getGroupSuggestion(id: number) {
-        return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
-            .leftJoinAndSelect("lt_user_group.id_group", "group")
-            .where("lt_user_group.id_user != :id", { id: id })
-            .take(3)
-            .getMany();
+    getGroupSuggestion(userId: number) {
+        // return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
+        //     .leftJoinAndSelect("lt_user_group.id_group", "group")
+        //     .where("lt_user_group.id_user != :id", { id: id })
+        //     .take(3)
+        //     .getMany();
+        return getManager().getRepository(groups).find();
     }
 }

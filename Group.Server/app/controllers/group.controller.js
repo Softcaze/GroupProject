@@ -15,7 +15,7 @@ const functions_1 = require("../common/functions");
 exports.getGroups = (req, res) => __awaiter(this, void 0, void 0, function* () {
     console.log("getGroups");
     let groupRepo = new group_repository_1.GroupRepo();
-    groupRepo.getGroups(req.query.userid).then((result) => {
+    groupRepo.getGroups(req.query.userId).then((result) => {
         res.status(200).send(result);
     }).catch((err) => {
         res.status(400).send(err);
@@ -23,7 +23,7 @@ exports.getGroups = (req, res) => __awaiter(this, void 0, void 0, function* () {
 });
 exports.getGroupSuggestion = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let groupRepo = new group_repository_1.GroupRepo();
-    groupRepo.getGroupSuggestion(req.query.id).then((result) => {
+    groupRepo.getGroupSuggestion(req.query.userId).then((result) => {
         res.status(200).send(result);
     }).catch((err) => {
         res.status(400).send(err);

@@ -4,9 +4,9 @@ const groups_1 = require("../entities/groups");
 const lt_user_group_1 = require("../entities/lt_user_group");
 const typeorm_1 = require("typeorm");
 class GroupRepo {
-    getGroups(userid) {
+    getGroups(userId) {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).find({
-            where: { id_user: userid, state: 1 },
+            where: { id_user: userId, state: 1 },
             relations: ["id_group"]
         });
     }
@@ -16,12 +16,8 @@ class GroupRepo {
     joinGroup(group) {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).save(group);
     }
-    getGroupSuggestion(id) {
-        return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).createQueryBuilder("lt_user_group")
-            .leftJoinAndSelect("lt_user_group.id_group", "group")
-            .where("lt_user_group.id_user != :id", { id: id })
-            .take(3)
-            .getMany();
+    getGroupSuggestion(userId) {
+        return typeorm_1.getManager().getRepository(groups_1.groups).find();
     }
 }
 exports.GroupRepo = GroupRepo;
