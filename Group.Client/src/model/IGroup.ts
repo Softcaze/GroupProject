@@ -14,5 +14,4 @@ export interface IGroup {
     albumss?: IAlbum[];
     eventss?: IEvent[];
     users?: IUser[];
-
 }

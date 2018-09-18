@@ -46,4 +46,13 @@ export class Constants {
      * Key du local storage du facebookId
      */
     public static LOCAL_STORAGE_FACEBOOKID_KEY: string = "GroupFacebookIdKey";
+
+    /**
+     * Type de feed dans le fil d'actualité home
+     */
+    public static FeedEventType = {
+        GROUP_JOINED: 1,
+        GROUP_EVENT: 2,
+        GROUP_ALBUM: 3
+    };
 }

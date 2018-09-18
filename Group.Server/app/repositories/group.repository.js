@@ -17,7 +17,11 @@ class GroupRepo {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).save(group);
     }
     getGroupSuggestion(userId) {
-        return typeorm_1.getManager().getRepository(groups_1.groups).find();
+        return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_group", "group")
+            .where("lt_user_group.id_user != :id", { id: userId })
+            .take(3)
+            .getMany();
     }
 }
 exports.GroupRepo = GroupRepo;

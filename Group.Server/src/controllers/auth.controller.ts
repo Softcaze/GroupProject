@@ -40,6 +40,6 @@ export function verifyJWTToken(webToken) {
 export let authFacebook = async (req: Request, res: Response) => {
     let userRepo: UserRepo = new UserRepo();
 
-    const facebookToken = signToken(userRepo.getUserByFacebookId(req.body.facebookId));
-    res.status(200).json({ facebookToken });
+    const webToken = signToken(userRepo.getUserByFacebookId(req.body.facebookId));
+    res.status(200).json({ webToken });
 }

@@ -1,7 +1,6 @@
 import { IGroup } from "../../../model/IGroup";
 import axios, { AxiosRequestConfig } from "axios";
 import { Constants } from "../../../common/Constants";
-import { ILT_User_Group } from "../../../model/ILT_User_Group";
 
 const GET_MY_GROUPS_API: string = "/getGroups";
 const GET_SUGGESTED_GROUPS: string = "/getGroupSuggestion";
@@ -32,7 +31,6 @@ export class FeedService {
                     "Content-Type": "application/json",
                 },
             } as AxiosRequestConfig).then((result: any) => {
-                console.log(result);
                 if (result)
                     resolve(result.data);
                 else

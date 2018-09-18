@@ -32,7 +32,7 @@ function verifyJWTToken(webToken) {
 exports.verifyJWTToken = verifyJWTToken;
 exports.authFacebook = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let userRepo = new user_repository_1.UserRepo();
-    const facebookToken = exports.signToken(userRepo.getUserByFacebookId(req.body.facebookId));
-    res.status(200).json({ facebookToken });
+    const webToken = exports.signToken(userRepo.getUserByFacebookId(req.body.facebookId));
+    res.status(200).json({ webToken });
 });
 //# sourceMappingURL=auth.controller.js.map

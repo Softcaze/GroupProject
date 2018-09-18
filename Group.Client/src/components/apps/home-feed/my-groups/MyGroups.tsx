@@ -6,7 +6,7 @@ import { GoPlus } from "react-icons/go";
 import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
 import ReactPlaceholder from "react-placeholder";
-import "react-placeholder/lib/reactPlaceholder.css";;
+import "react-placeholder/lib/reactPlaceholder.css";
 
 export interface IMyGroupsProps {
     webToken: string;

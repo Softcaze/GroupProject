@@ -24,11 +24,10 @@ export class GroupRepo {
     }
 
     getGroupSuggestion(userId: number) {
-        // return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
-        //     .leftJoinAndSelect("lt_user_group.id_group", "group")
-        //     .where("lt_user_group.id_user != :id", { id: id })
-        //     .take(3)
-        //     .getMany();
-        return getManager().getRepository(groups).find();
+        return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_group", "group")
+            .where("lt_user_group.id_user != :id", { id: userId })
+            .take(3)
+            .getMany();
     }
 }

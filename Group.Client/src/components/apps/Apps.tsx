@@ -32,7 +32,7 @@ export default class Apps extends React.Component<IAppsProps, IAppsState> {
             webToken: localStorage.getItem(Constants.LOCAL_STORAGE_WEBTOKEN_KEY),
             facebookId: localStorage.getItem(Constants.LOCAL_STORAGE_FACEBOOKID_KEY),
             currentUser: null,
-            isLoading: true
+            isLoading: (localStorage.getItem(Constants.LOCAL_STORAGE_WEBTOKEN_KEY) != null && localStorage.getItem(Constants.LOCAL_STORAGE_FACEBOOKID_KEY) != null)
         };
 
         // si on est déjà connecté, on charge l'utilisateur

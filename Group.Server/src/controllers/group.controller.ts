@@ -28,8 +28,8 @@ export let getGroups = async (req: Request, res: Response) => {
 export let getGroupSuggestion = async (req: Request, res: Response) => {
     let groupRepo: GroupRepo = new GroupRepo();
 
-    groupRepo.getGroupSuggestion(req.query.userId).then((result: any) => {
-        res.status(200).send(result);
+    groupRepo.getGroupSuggestion(req.query.userId).then((result: lt_user_group[]) => {
+        res.status(200).send(result.map((item) => item.id_group));
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -53,13 +53,13 @@ export let addGroup = async (req: Request, res: Response) => {
         let groupJoin: lt_user_group = new lt_user_group();
 
         groupJoin.creation_date = getDateTimeNow();
-        groupJoin.id_user = req.body.id;
+        groupJoin.id_user = req.body.userId;
         groupJoin.id_group = result.id;
         groupJoin.state = 1;
         groupJoin.last_change_date = getDateTimeNow();
 
         groupRepo.joinGroup(groupJoin).then((resultJoin) => {
-            res.status(200).send(resultJoin);
+            res.status(200).send(resultJoin.id_group.id);
         }).catch((err) => {
             res.status(400).send(err);
         });

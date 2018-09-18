@@ -13,6 +13,7 @@ export class SecurityService {
                     "Content-Type": "application/json",
                 },
             } as AxiosRequestConfig).then((result) => {
+                console.log(result);
                 localStorage.setItem(Constants.LOCAL_STORAGE_WEBTOKEN_KEY, result.data.webToken);
                 localStorage.setItem(Constants.LOCAL_STORAGE_FACEBOOKID_KEY, facebookDetails.id);
                 resolve({ webToken: result.data.webToken, facebookId: facebookDetails.id });

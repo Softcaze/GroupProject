@@ -24,7 +24,7 @@ exports.getGroups = (req, res) => __awaiter(this, void 0, void 0, function* () {
 exports.getGroupSuggestion = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let groupRepo = new group_repository_1.GroupRepo();
     groupRepo.getGroupSuggestion(req.query.userId).then((result) => {
-        res.status(200).send(result);
+        res.status(200).send(result.map((item) => item.id_group));
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -38,12 +38,12 @@ exports.addGroup = (req, res) => __awaiter(this, void 0, void 0, function* () {
     groupRepo.addGroup(group).then((result) => {
         let groupJoin = new lt_user_group_1.lt_user_group();
         groupJoin.creation_date = functions_1.getDateTimeNow();
-        groupJoin.id_user = req.body.id;
+        groupJoin.id_user = req.body.userId;
         groupJoin.id_group = result.id;
         groupJoin.state = 1;
         groupJoin.last_change_date = functions_1.getDateTimeNow();
         groupRepo.joinGroup(groupJoin).then((resultJoin) => {
-            res.status(200).send(resultJoin);
+            res.status(200).send(resultJoin.id_group.id);
         }).catch((err) => {
             res.status(400).send(err);
         });

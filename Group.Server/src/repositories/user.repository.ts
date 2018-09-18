@@ -6,8 +6,8 @@ import { getManager } from "typeorm";
  * User repository
  */
 export class UserRepo {
-    getUserByFacebookId(id: string) {
-        return getManager().getRepository(users).findOne({ facebook_id: id });
+    getUserByFacebookId(facebookId: string) {
+        return getManager().getRepository(users).findOne({ facebook_id: facebookId });
     }
 
     addUser(user: users) {
@@ -22,9 +22,9 @@ export class UserRepo {
         return getManager().getRepository(users).findOne({ email: mail });
     }
 
-    getGroups(id: number) {
+    getGroups(userId: number) {
         return getManager().getRepository(groups).find({
-            where: { id: id }
+            where: { id: userId }
         })
     }
 }

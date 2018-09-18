@@ -4,4 +4,37 @@
     height: 50px;
     width:100%;
     background-color: $primaryColor;
+
+    .appbar-group-logo-container {
+        display: inline-block;
+        width: 33%;
+        text-align: center;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 21px;
+        margin-top: 10px;
+    }
+
+    .appbar-search-container {
+        text-align: center;
+        display: inline-block;
+        width: 33%;
+
+        .appbar-search-edittext-container {
+            width: 300px;
+            margin: auto;
+            display: inline-block;
+
+            .app-bar-search-input {
+                width: 100%;
+                height: 20px;
+            }
+        }
+    }
+
+    .appbar-action-container {
+        display: inline-block;
+        width: 33%;
+    }
+    
 }

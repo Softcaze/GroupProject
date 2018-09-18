@@ -1,3 +1,5 @@
+import { IGroup } from "./IGroup";
+
 export interface IUser {
     id?: string;
     facebook_id?: string;
@@ -11,4 +13,5 @@ export interface IUser {
     last_connection_ip?: string;
     home_adress?: string;
     last_gps_location?: string;
+    groups?: IGroup[];
 }
