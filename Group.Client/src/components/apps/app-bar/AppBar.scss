@@ -8,11 +8,14 @@
     .appbar-group-logo-container {
         display: inline-block;
         width: 33%;
-        text-align: center;
-        color: #ffffff;
-        font-weight: 600;
-        font-size: 21px;
+        text-align: right;
         margin-top: 10px;
+
+        .appbar-group-logo-text {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 21px;
+        }
     }
 
     .appbar-search-container {
@@ -24,10 +27,24 @@
             width: 300px;
             margin: auto;
             display: inline-block;
+            white-space: nowrap;
 
             .app-bar-search-input {
                 width: 100%;
-                height: 20px;
+                height: 25px;
+                background-color: #ffffff;
+                border-radius: 2px;
+                border: 2px solid #f5f6f7;
+                padding-left: 5px;
+                padding-right: 30px;
+            }
+
+            .app-bar-search-icon {
+                margin-left: -25px;
+                vertical-align: middle;
+                color: $gray;
+                font-weight: bold;
+                cursor: pointer;
             }
         }
     }
@@ -35,6 +52,17 @@
     .appbar-action-container {
         display: inline-block;
         width: 33%;
+
+        .appbar-action-subcontainer {
+            margin-left: 20px;
+
+            .appbar-action-icon {
+                color: #ffffff;
+                margin-left: 10px;
+                vertical-align: middle;
+                cursor: pointer;
+            }
+        }
     }
     
 }
