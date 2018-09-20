@@ -9,6 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.uploadedFile = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    res.send("OK");
+    res.status(200).send(req.file.filename);
 });
 //# sourceMappingURL=file.controller.js.map

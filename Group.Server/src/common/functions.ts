@@ -21,7 +21,7 @@ export let getRandomString = function () {
     let str: string = "";
 
     for (var i = 0; i < 16; i++) {
-        str += (Math.floor(Math.random() * Math.floor(10)));
+        str += (Math.floor(Math.random() * Math.floor(20)));
     }
 
     return str;
@@ -29,12 +29,12 @@ export let getRandomString = function () {
 
 /**
  * Récupère l'extension d'un fichier
- * @param name 
+ * @param fileName 
  */
 export let getExtension = function (fileName: string) {
     let tab: string[];
 
-    if (name != undefined) {
+    if (fileName != undefined) {
         tab = fileName.split(".");
         return tab[tab.length - 1];
     }

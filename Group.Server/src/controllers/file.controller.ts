@@ -5,7 +5,7 @@ import { Request, Response } from "express";
  * @param req 
  * @param res 
  */
-export let uploadedFile = async (req: Request, res: Response) => {
+export let uploadedFile = async (req: any, res: Response) => {
     // Réponse après upload file
-    res.send("OK");
+    res.status(200).send(req.file.filename);
 }

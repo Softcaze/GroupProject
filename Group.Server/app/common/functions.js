@@ -10,15 +10,14 @@ exports.getNow = function () {
 exports.getRandomString = function () {
     let str = "";
     for (var i = 0; i < 16; i++) {
-        str += (Math.floor(Math.random() * Math.floor(10)));
+        str += (Math.floor(Math.random() * Math.floor(20)));
     }
     return str;
 };
-exports.getExtension = function (name) {
+exports.getExtension = function (fileName) {
     let tab;
-    console.log(name);
-    if (name != undefined) {
-        tab = name.split(".");
+    if (fileName != undefined) {
+        tab = fileName.split(".");
         return tab[tab.length - 1];
     }
     return "png";
