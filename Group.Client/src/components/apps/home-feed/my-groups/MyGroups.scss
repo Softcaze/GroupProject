@@ -43,6 +43,7 @@
                 height: 60px;
                 width: 60px;
                 border-radius: 500px;
+                border: 1px solid $lightGray;
                 overflow: hidden;
                 margin-left: 20px;
                 margin-bottom: 10px;
@@ -51,7 +52,7 @@
                 position: relative;
 
                 .create-group-icon {
-                    color: #fcfcfc;
+                    color: $primaryColor;
                     font-size: 30px;
                     position: absolute;
                     top: 50%;
@@ -64,8 +65,55 @@
                 background-color:#fcfcfc;
 
                 .create-group-icon {
-                    color: #dbdbdb;
+                    color: $primaryColor;
                 }
+            }
+        }
+    }
+}
+
+.dialog-new-group-container {
+    .dialog-new-group-picture-picker-container {
+        .dialog-new-group-picture-picker-icon-container {
+            height: 100px;
+            width: 100px;
+            border: 2px solid $lightGray;
+            border-radius: 500px;
+            overflow: hidden;
+            margin-left: 20px;
+            margin-bottom: 10px;
+            background-color: #dbdbdb;
+            cursor: pointer;
+            position: relative;
+            margin: auto;
+
+            .dialog-new-group-picture-picker-icon {
+                color: $primaryColor;
+                font-size: 40px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform:translate(-50%, -50%);
+            }
+        }
+
+        .dialog-new-group-picture-picker-icon-container:hover {
+            background-color:#fcfcfc;
+
+            .dialog-new-group-picture-picker-icon {
+                color: $primaryColor;
+            }
+        }
+
+        .dialog-new-group-picture-picker-description {
+            width: 100%;
+            text-align: center;
+
+            .dialog-new-group-picture-picker-description-text {
+                display: inline-block;
+                font-size: 9px;
+                color: $gray;
+                width: 150px;
             }
         }
     }
