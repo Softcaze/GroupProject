@@ -73,10 +73,18 @@
 }
 
 .dialog-new-group {
-    .ms-Dialog-title {
+    .new-group-dialog-title {
         text-align: center;
     }
-    
+
+    .diaog-create-button {
+        color: $primaryColor;
+    }
+
+    .diaog-cancel-button {
+        color: $gray;
+    }
+
     .dialog-new-group-container {
         .dialog-new-group-picture-picker-container {
             .dialog-new-group-picture-picker-icon-container {
@@ -113,12 +121,27 @@
             .dialog-new-group-picture-picker-description {
                 width: 100%;
                 text-align: center;
+                margin-top: 5px;
 
                 .dialog-new-group-picture-picker-description-text {
                     display: inline-block;
-                    font-size: 9px;
+                    font-size: 11px;
                     color: $gray;
                     width: 150px;
+                }
+            }
+        }
+
+        .dialog-group-name-container {
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+
+            .dialog-group-name-textfield {
+                width: 300px;
+                
+                label  {
+                    font-size: 15px;
                 }
             }
         }

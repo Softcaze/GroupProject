@@ -7,9 +7,14 @@ import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-// import { Dialog, DialogType, TextField } from "office-ui-fabric-react";
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle'
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle"
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
 
 export interface IMyGroupsProps {
     webToken: string;
@@ -53,21 +58,18 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                     </ReactPlaceholder>
                 </div>
 
-                {/* <Dialog isOpen={this.state.isAddGroupVisible}
-                    onDismiss={this.closeAddGroupDialog.bind(this)}
-                    containerClassName="dialog-new-group"
-                    dialogContentProps={{
-                        type: DialogType.normal,
-                        title: HomeFeedStrings.CreateNewGroup,
-                    }}
-                    modalProps={{
-                        isBlocking: false,
-                    }} >
-                    {this.getAddNewGroupDialogContent()}
-                </Dialog> */}
-
-                <Dialog onClose={this.closeAddGroupDialog} open={this.state.isAddGroupVisible}>
-                    <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+                <Dialog onClose={this.closeAddGroupDialog.bind(this)} open={this.state.isAddGroupVisible}
+                    className="dialog-new-group" maxWidth="sm" fullWidth={true} >
+                    <DialogTitle className="new-group-dialog-title">{HomeFeedStrings.CreateNewGroup}</DialogTitle>
+                    <DialogContent>{this.getAddNewGroupDialogContent()}</DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.closeAddGroupDialog.bind(this)} className="diaog-cancel-button">
+                            {HomeFeedStrings.Cancel}
+                        </Button>
+                        <Button onClick={this.closeAddGroupDialog.bind(this)} className="diaog-create-button" autoFocus>
+                            {HomeFeedStrings.Create}
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div >
         );
@@ -78,6 +80,12 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
     }
 
     private getAddNewGroupDialogContent(): JSX.Element {
+        const theme = createMuiTheme({
+            palette: {
+                primary: red,
+            },
+        });
+
         return (
             <div className="dialog-new-group-container">
                 <div className="dialog-new-group-picture-picker-container">
@@ -89,7 +97,13 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                     </div>
                 </div>
                 <div className="dialog-group-name-container">
-                    {/* <TextField placeholder={HomeFeedStrings.GroupName} underlined={true} /> */}
+                    <MuiThemeProvider theme={theme}>
+                        <TextField
+                            label={HomeFeedStrings.GroupName}
+                            helperText={HomeFeedStrings.GroupNameHelper}
+                            className="dialog-group-name-textfield"
+                        />
+                    </MuiThemeProvider>
                 </div>
             </div>
         );
