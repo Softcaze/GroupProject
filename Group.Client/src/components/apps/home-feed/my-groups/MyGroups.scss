@@ -72,48 +72,54 @@
     }
 }
 
-.dialog-new-group-container {
-    .dialog-new-group-picture-picker-container {
-        .dialog-new-group-picture-picker-icon-container {
-            height: 100px;
-            width: 100px;
-            border: 2px solid $lightGray;
-            border-radius: 500px;
-            overflow: hidden;
-            margin-left: 20px;
-            margin-bottom: 10px;
-            background-color: #dbdbdb;
-            cursor: pointer;
-            position: relative;
-            margin: auto;
+.dialog-new-group {
+    .ms-Dialog-title {
+        text-align: center;
+    }
+    
+    .dialog-new-group-container {
+        .dialog-new-group-picture-picker-container {
+            .dialog-new-group-picture-picker-icon-container {
+                height: 100px;
+                width: 100px;
+                border: 2px solid $lightGray;
+                border-radius: 500px;
+                overflow: hidden;
+                margin-left: 20px;
+                margin-bottom: 10px;
+                background-color: #dbdbdb;
+                cursor: pointer;
+                position: relative;
+                margin: auto;
 
-            .dialog-new-group-picture-picker-icon {
-                color: $primaryColor;
-                font-size: 40px;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform:translate(-50%, -50%);
+                .dialog-new-group-picture-picker-icon {
+                    color: $primaryColor;
+                    font-size: 40px;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform:translate(-50%, -50%);
+                }
             }
-        }
 
-        .dialog-new-group-picture-picker-icon-container:hover {
-            background-color:#fcfcfc;
+            .dialog-new-group-picture-picker-icon-container:hover {
+                background-color:#fcfcfc;
 
-            .dialog-new-group-picture-picker-icon {
-                color: $primaryColor;
+                .dialog-new-group-picture-picker-icon {
+                    color: $primaryColor;
+                }
             }
-        }
 
-        .dialog-new-group-picture-picker-description {
-            width: 100%;
-            text-align: center;
+            .dialog-new-group-picture-picker-description {
+                width: 100%;
+                text-align: center;
 
-            .dialog-new-group-picture-picker-description-text {
-                display: inline-block;
-                font-size: 9px;
-                color: $gray;
-                width: 150px;
+                .dialog-new-group-picture-picker-description-text {
+                    display: inline-block;
+                    font-size: 9px;
+                    color: $gray;
+                    width: 150px;
+                }
             }
         }
     }

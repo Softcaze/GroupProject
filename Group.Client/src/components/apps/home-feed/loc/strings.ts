@@ -7,6 +7,7 @@ export const HomeFeedStrings = new LocalizedStrings({
         Suggestions: "Suggestions",
         NoSuggestion: "No suggestion",
         CreateNewGroup: "Create a new group",
+        GroupName: "Group name",
     },
     fr: {
         MyGroupsTitle: "MES GROUPES",
@@ -14,5 +15,6 @@ export const HomeFeedStrings = new LocalizedStrings({
         Suggestions: "Suggestions",
         NoSuggestion: "Aucune suggestion",
         CreateNewGroup: "Créer un group",
+        GroupName: "Nom du groupe",
     }
 });
