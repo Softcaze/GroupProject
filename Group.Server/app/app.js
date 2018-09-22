@@ -16,13 +16,13 @@ const bodyParser = require("body-parser");
 const user_route_1 = require("./routes/user.route");
 const auth_route_1 = require("./routes/auth.route");
 const group_route_1 = require("./routes/group.route");
+const file_route_1 = require("./routes/file.route");
 const ejs = require("ejs");
 require("reflect-metadata");
 const typeorm_1 = require("typeorm");
 const dbConfig = require("./common/db.config");
 const session = require("express-session");
 const passport = require("passport");
-const middleware_1 = require("./common/middleware");
 const passport_config_1 = require("./common/passport.config");
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
@@ -48,10 +48,10 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 passport_config_1.PasspordStrategies.initialize();
-app.use('*', middleware_1.verifyJWT_MW);
 app.use('/_api/user', user_route_1.default);
 app.use('/_api/auth', auth_route_1.default);
 app.use('/_api/group', group_route_1.default);
+app.use('/_api/file', file_route_1.default);
 app.use((req, res, next) => {
     console.log("404 not found");
     var err = new Error('Not Found');
