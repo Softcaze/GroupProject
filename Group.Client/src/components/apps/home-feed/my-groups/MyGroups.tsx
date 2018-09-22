@@ -7,6 +7,7 @@ import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
+import { Dialog, DialogType } from "office-ui-fabric-react";
 
 export interface IMyGroupsProps {
     webToken: string;
@@ -16,6 +17,7 @@ export interface IMyGroupsProps {
 
 export interface IMyGroupsState {
     myGroups: IGroup[];
+    isAddGroupVisible: boolean;
 }
 
 /**
@@ -27,7 +29,8 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
         super(props);
 
         this.state = {
-            myGroups: null
+            myGroups: null,
+            isAddGroupVisible: false
         };
 
         // on charge les groupes de l'utilisateur
@@ -47,7 +50,38 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                         {this.getMyGroupsList(this.state.myGroups)}
                     </ReactPlaceholder>
                 </div>
+
+                <Dialog isOpen={this.state.isAddGroupVisible}
+                    onDismiss={this.closeAddGroupDialog.bind(this)}
+                    dialogContentProps={{
+                        type: DialogType.normal,
+                        title: HomeFeedStrings.CreateNewGroup,
+                    }}
+                    modalProps={{
+                        isBlocking: false,
+                    }} >
+                    {this.getAddNewGroupDialogContent()}
+                </Dialog>
             </div >
+        );
+    }
+
+    private closeAddGroupDialog() {
+        this.setState({ isAddGroupVisible: false });
+    }
+
+    private getAddNewGroupDialogContent(): JSX.Element {
+        return (
+            <div className="dialog-new-group-container">
+                <div className="dialog-new-group-picture-picker-container">
+                    <div className="dialog-new-group-picture-picker-icon-container">
+                        <GoPlus className="dialog-new-group-picture-picker-icon" />
+                    </div>
+                    <div className="dialog-new-group-picture-picker-description" >
+                        <span className="dialog-new-group-picture-picker-description-text">Choisissez une photo de profile pour votre groupe</span>
+                    </div>
+                </div>
+            </div>
         );
     }
 
@@ -87,8 +121,8 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
 
     private getDisplayedAddGroup(): JSX.Element {
         return (
-            <div className="group-display-container">
-                <div className="create-group-button-container">
+            <div className="group-display-container" >
+                <div className="create-group-button-container" onClick={() => { this.setState({ isAddGroupVisible: true }); }}>
                     <GoPlus className="create-group-icon" />
                 </div>
                 <div className="name">
