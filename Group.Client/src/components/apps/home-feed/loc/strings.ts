@@ -11,6 +11,7 @@ export const HomeFeedStrings = new LocalizedStrings({
         GroupNameHelper: "You will be able to change the name later.",
         Cancel: "Cancel",
         Create: "Create",
+        InviteFriends: "Invite friends",
     },
     fr: {
         MyGroupsTitle: "MES GROUPES",
@@ -22,5 +23,6 @@ export const HomeFeedStrings = new LocalizedStrings({
         GroupNameHelper: "Vous pourrez changer de nom plus tard.",
         Cancel: "Annuler",
         Create: "Créer",
+        InviteFriends: "Inviter des amis",
     }
 });

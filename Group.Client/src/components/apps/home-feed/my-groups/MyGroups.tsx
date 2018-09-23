@@ -15,6 +15,7 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export interface IMyGroupsProps {
     webToken: string;
@@ -25,6 +26,7 @@ export interface IMyGroupsProps {
 export interface IMyGroupsState {
     myGroups: IGroup[];
     isAddGroupVisible: boolean;
+    friendsToInvite: IUser[];
 }
 
 /**
@@ -37,7 +39,39 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
 
         this.state = {
             myGroups: null,
-            isAddGroupVisible: false
+            isAddGroupVisible: false,
+            friendsToInvite: [
+                {
+                    firstname: "Nicolas",
+                    lastname: "Cazenave",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Julie",
+                    lastname: "Casasus",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Kévin",
+                    lastname: "Bahurlet",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Niou",
+                    lastname: "Niou",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Guillaume",
+                    lastname: "Cazenave",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                }
+            ]
         };
 
         // on charge les groupes de l'utilisateur
@@ -104,6 +138,39 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                             className="dialog-group-name-textfield"
                         />
                     </MuiThemeProvider>
+                </div>
+                <div className="dialog-group-invite-friend">
+                    <div className="invite-friend-title">
+                        {HomeFeedStrings.InviteFriends}
+                    </div>
+                    <div className="invite-friend-scroll">
+                        {this.state.friendsToInvite.map((friend) => this.getFriendTemplate(friend))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    private getFriendTemplate(friend: IUser): JSX.Element {
+        return (
+            <div key={"friend_" + friend.id} className="friend-container">
+                <div className="friend-profil-picture">
+                    <img className="friend-profil-picture-image" src={friend.profil_picture} />
+                </div>
+                <div className="friend-details">
+                    <div className="friend-details-name">
+                        {friend.firstname} {friend.lastname}
+                    </div>
+                    <div className="friend-details-additional">
+                        Utilise déjà group
+                    </div>
+                </div>
+                <div className="friend-check">
+                    <Checkbox
+                        classes={{
+                            root: "friend-checkbox"
+                        }}
+                    />
                 </div>
             </div>
         );
