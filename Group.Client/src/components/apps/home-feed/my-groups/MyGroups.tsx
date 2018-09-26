@@ -7,9 +7,15 @@ import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
 import ReactPlaceholder from "react-placeholder";
 import "react-placeholder/lib/reactPlaceholder.css";
-// import { Dialog, DialogType, TextField } from "office-ui-fabric-react";
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle'
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle"
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+import TextField from '@material-ui/core/TextField';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import red from '@material-ui/core/colors/red';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export interface IMyGroupsProps {
     webToken: string;
@@ -20,6 +26,7 @@ export interface IMyGroupsProps {
 export interface IMyGroupsState {
     myGroups: IGroup[];
     isAddGroupVisible: boolean;
+    friendsToInvite: IUser[];
 }
 
 /**
@@ -32,7 +39,39 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
 
         this.state = {
             myGroups: null,
-            isAddGroupVisible: false
+            isAddGroupVisible: false,
+            friendsToInvite: [
+                {
+                    firstname: "Nicolas",
+                    lastname: "Cazenave",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Julie",
+                    lastname: "Casasus",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Kévin",
+                    lastname: "Bahurlet",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Niou",
+                    lastname: "Niou",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                },
+                {
+                    firstname: "Guillaume",
+                    lastname: "Cazenave",
+                    profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
+                    id: "1242423",
+                }
+            ]
         };
 
         // on charge les groupes de l'utilisateur
@@ -53,21 +92,18 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                     </ReactPlaceholder>
                 </div>
 
-                {/* <Dialog isOpen={this.state.isAddGroupVisible}
-                    onDismiss={this.closeAddGroupDialog.bind(this)}
-                    containerClassName="dialog-new-group"
-                    dialogContentProps={{
-                        type: DialogType.normal,
-                        title: HomeFeedStrings.CreateNewGroup,
-                    }}
-                    modalProps={{
-                        isBlocking: false,
-                    }} >
-                    {this.getAddNewGroupDialogContent()}
-                </Dialog> */}
-
-                <Dialog onClose={this.closeAddGroupDialog} open={this.state.isAddGroupVisible}>
-                    <DialogTitle id="simple-dialog-title">Set backup account</DialogTitle>
+                <Dialog onClose={this.closeAddGroupDialog.bind(this)} open={this.state.isAddGroupVisible}
+                    className="dialog-new-group" maxWidth="sm" fullWidth={true} >
+                    <DialogTitle className="new-group-dialog-title">{HomeFeedStrings.CreateNewGroup}</DialogTitle>
+                    <DialogContent>{this.getAddNewGroupDialogContent()}</DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.closeAddGroupDialog.bind(this)} className="diaog-cancel-button">
+                            {HomeFeedStrings.Cancel}
+                        </Button>
+                        <Button onClick={this.closeAddGroupDialog.bind(this)} className="diaog-create-button" autoFocus>
+                            {HomeFeedStrings.Create}
+                        </Button>
+                    </DialogActions>
                 </Dialog>
             </div >
         );
@@ -78,6 +114,12 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
     }
 
     private getAddNewGroupDialogContent(): JSX.Element {
+        const theme = createMuiTheme({
+            palette: {
+                primary: red,
+            },
+        });
+
         return (
             <div className="dialog-new-group-container">
                 <div className="dialog-new-group-picture-picker-container">
@@ -89,7 +131,46 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                     </div>
                 </div>
                 <div className="dialog-group-name-container">
-                    {/* <TextField placeholder={HomeFeedStrings.GroupName} underlined={true} /> */}
+                    <MuiThemeProvider theme={theme}>
+                        <TextField
+                            label={HomeFeedStrings.GroupName}
+                            helperText={HomeFeedStrings.GroupNameHelper}
+                            className="dialog-group-name-textfield"
+                        />
+                    </MuiThemeProvider>
+                </div>
+                <div className="dialog-group-invite-friend">
+                    <div className="invite-friend-title">
+                        {HomeFeedStrings.InviteFriends}
+                    </div>
+                    <div className="invite-friend-scroll">
+                        {this.state.friendsToInvite.map((friend) => this.getFriendTemplate(friend))}
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
+    private getFriendTemplate(friend: IUser): JSX.Element {
+        return (
+            <div key={"friend_" + friend.id} className="friend-container">
+                <div className="friend-profil-picture">
+                    <img className="friend-profil-picture-image" src={friend.profil_picture} />
+                </div>
+                <div className="friend-details">
+                    <div className="friend-details-name">
+                        {friend.firstname} {friend.lastname}
+                    </div>
+                    <div className="friend-details-additional">
+                        Utilise déjà group
+                    </div>
+                </div>
+                <div className="friend-check">
+                    <Checkbox
+                        classes={{
+                            root: "friend-checkbox"
+                        }}
+                    />
                 </div>
             </div>
         );

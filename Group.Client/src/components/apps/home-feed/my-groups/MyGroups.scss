@@ -73,10 +73,18 @@
 }
 
 .dialog-new-group {
-    .ms-Dialog-title {
+    .new-group-dialog-title {
         text-align: center;
     }
-    
+
+    .diaog-create-button {
+        color: $primaryColor;
+    }
+
+    .diaog-cancel-button {
+        color: $gray;
+    }
+
     .dialog-new-group-container {
         .dialog-new-group-picture-picker-container {
             .dialog-new-group-picture-picker-icon-container {
@@ -113,12 +121,90 @@
             .dialog-new-group-picture-picker-description {
                 width: 100%;
                 text-align: center;
+                margin-top: 5px;
 
                 .dialog-new-group-picture-picker-description-text {
                     display: inline-block;
-                    font-size: 9px;
+                    font-size: 11px;
                     color: $gray;
                     width: 150px;
+                }
+            }
+        }
+
+        .dialog-group-name-container {
+            text-align: center;
+            width: 100%;
+            margin-top: 10px;
+
+            .dialog-group-name-textfield {
+                width: 300px;
+
+                label  {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .dialog-group-invite-friend {           
+            margin-top: 30px;
+
+            .invite-friend-title {
+                text-align: center;
+                font-size: 17px;
+                color: $primaryColorLight;
+                font-weight: 600;
+            }
+
+            .invite-friend-scroll {
+                width: 400px;
+                height: 200px;
+                overflow-y: scroll;
+                overflow-x: hidden;
+                margin: auto;
+                border: 1px solid $lightGray;
+                margin-top: 10px;
+
+                .friend-container {
+                    padding: 10px;
+
+                    .friend-profil-picture {
+                        display: inline-block;
+                        width: 40px;
+                        height: 40px;
+
+                        .friend-profil-picture-image {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 50px;
+                        }
+                    }
+
+                    .friend-details {
+                        display: inline-block;
+                        margin-left: 15px;
+                        vertical-align: top;
+
+                        .friend-details-name {
+                            font-weight: 600;
+                            font-size: 15px;
+                        }
+
+                        .friend-details-additional {
+                            font-size: 11px;
+                            color: $gray;
+                            margin-top: 3px;
+                        }
+                    }
+
+                    .friend-check {
+                        display: inline-block;
+                        float: right;
+
+                        .friend-checkbox {
+                            color: $primaryColor;
+                        }
+                    }
                 }
             }
         }
