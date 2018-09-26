@@ -30,4 +30,19 @@ export class GroupRepo {
             .take(3)
             .getMany();
     }
+
+
+    getGroupMembers(groupId: number) {
+        return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_user", "users")
+            .where("lt_user_group.id_group = :id AND state = 1", { id: groupId })
+            .getMany();
+    }
+
+    getGroupSubscribers(groupId: number) {
+        return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_group", "users")
+            .where("lt_user_group.id_group = :id AND state = 2", { id: groupId })
+            .getMany();
+    }
 }

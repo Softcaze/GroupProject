@@ -10,7 +10,6 @@ import { getDateTimeNow } from "../common/functions";
  * @param res 
  */
 export let getGroups = async (req: Request, res: Response) => {
-    console.log("getGroups");
     let groupRepo: GroupRepo = new GroupRepo();
 
     groupRepo.getGroups(req.query.userId).then((result: any) => {
@@ -19,6 +18,36 @@ export let getGroups = async (req: Request, res: Response) => {
         res.status(400).send(err);
     });
 };
+
+/**
+ * Retourne la liste des membres d'un groupe
+ * @param req 
+ * @param res 
+ */
+export let getMembers = async (req: Request, res: Response) => {
+    let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.getGroupMembers(req.query.groupId).then((result) => {
+        res.status(200).send(result.map((item) => item.id_user));
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+}
+
+/**
+ * Retourne la lsite des abonnées d'un groupe
+ * @param req 
+ * @param res 
+ */
+export let getSubscribers = async (req: Request, res: Response) => {
+    let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.getGroupSubscribers(req.query.groupId).then((result) => {
+        res.status(200).send(result.map((item) => item.id_user));
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+}
 
 /**
  * Récupèrer les groupes de suggestion

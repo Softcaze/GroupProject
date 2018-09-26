@@ -13,10 +13,25 @@ const lt_user_group_1 = require("../entities/lt_user_group");
 const groups_1 = require("../entities/groups");
 const functions_1 = require("../common/functions");
 exports.getGroups = (req, res) => __awaiter(this, void 0, void 0, function* () {
-    console.log("getGroups");
     let groupRepo = new group_repository_1.GroupRepo();
     groupRepo.getGroups(req.query.userId).then((result) => {
         res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+});
+exports.getMembers = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let groupRepo = new group_repository_1.GroupRepo();
+    groupRepo.getGroupMembers(req.query.groupId).then((result) => {
+        res.status(200).send(result.map((item) => item.id_user));
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+});
+exports.getSubscribers = (req, res) => __awaiter(this, void 0, void 0, function* () {
+    let groupRepo = new group_repository_1.GroupRepo();
+    groupRepo.getGroupSubscribers(req.query.groupId).then((result) => {
+        res.status(200).send(result.map((item) => item.id_user));
     }).catch((err) => {
         res.status(400).send(err);
     });

@@ -23,6 +23,18 @@ class GroupRepo {
             .take(3)
             .getMany();
     }
+    getGroupMembers(groupId) {
+        return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_user", "users")
+            .where("lt_user_group.id_group = :id AND state = 1", { id: groupId })
+            .getMany();
+    }
+    getGroupSubscribers(groupId) {
+        return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.id_group", "users")
+            .where("lt_user_group.id_group = :id AND state = 2", { id: groupId })
+            .getMany();
+    }
 }
 exports.GroupRepo = GroupRepo;
 //# sourceMappingURL=group.repository.js.map

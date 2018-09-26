@@ -32,6 +32,7 @@ export let getUser = async (req: Request, res: Response) => {
     });
 };
 
+
 /**
  * Récupère les activités d'un utilisateurs
  * @param req 
