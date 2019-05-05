@@ -6,8 +6,8 @@ const typeorm_1 = require("typeorm");
 class GroupRepo {
     getGroups(userId) {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).find({
-            where: { id_user: userId, state: 1 },
-            relations: ["id_group"]
+            where: { idUser: userId, state: 1 },
+            relations: ["idGroup"]
         });
     }
     addGroup(group) {
@@ -18,8 +18,8 @@ class GroupRepo {
     }
     getGroupSuggestion(userId) {
         return typeorm_1.getManager().getRepository(lt_user_group_1.lt_user_group).createQueryBuilder("lt_user_group")
-            .leftJoinAndSelect("lt_user_group.id_group", "group")
-            .where("lt_user_group.id_user != :id", { id: userId })
+            .leftJoinAndSelect("lt_user_group.idGroup", "group")
+            .where("lt_user_group.idUser != :id", { id: userId })
             .take(3)
             .getMany();
     }

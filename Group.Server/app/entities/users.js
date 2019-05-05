@@ -19,6 +19,7 @@ let users = class users {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -34,7 +35,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "firstname"
     }),
     __metadata("design:type", String)
@@ -42,7 +42,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "lastname"
     }),
     __metadata("design:type", String)
@@ -59,7 +58,6 @@ __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
         unique: true,
-        length: 255,
         name: "email"
     }),
     __metadata("design:type", String)
@@ -67,7 +65,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "password"
     }),
     __metadata("design:type", String)
@@ -89,7 +86,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "last_connection_ip"
     }),
     __metadata("design:type", String)
@@ -97,7 +93,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "home_adress"
     }),
     __metadata("design:type", String)
@@ -105,31 +100,30 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "last_gps_location"
     }),
     __metadata("design:type", String)
 ], users.prototype, "last_gps_location", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => events_1.events, events => events.id_author, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => events_1.events, events => events.idAuthor, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
 ], users.prototype, "eventss", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => lt_user_event_1.lt_user_event, lt_user_event => lt_user_event.id_user, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => lt_user_event_1.lt_user_event, lt_user_event => lt_user_event.idUser, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
-], users.prototype, "lt_user_events", void 0);
+], users.prototype, "ltUserEvents", void 0);
 __decorate([
-    typeorm_1.OneToOne(type => lt_user_group_1.lt_user_group, lt_user_group => lt_user_group.id_user, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
-    __metadata("design:type", lt_user_group_1.lt_user_group)
-], users.prototype, "lt_user_group", void 0);
-__decorate([
-    typeorm_1.OneToMany(type => photo_comments_1.photo_comments, photo_comments => photo_comments.id_user, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => lt_user_group_1.lt_user_group, lt_user_group => lt_user_group.idUser, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
-], users.prototype, "photo_commentss", void 0);
+], users.prototype, "ltUserGroups", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => photo_likes_1.photo_likes, photo_likes => photo_likes.id_user, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => photo_comments_1.photo_comments, photo_comments => photo_comments.idUser, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
-], users.prototype, "photo_likess", void 0);
+], users.prototype, "photoCommentss", void 0);
+__decorate([
+    typeorm_1.OneToMany(type => photo_likes_1.photo_likes, photo_likes => photo_likes.idUser, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    __metadata("design:type", Array)
+], users.prototype, "photoLikess", void 0);
 users = __decorate([
     typeorm_1.Entity("users", { schema: "groupdb" }),
     typeorm_1.Index("unique_facebook_id", ["facebook_id",], { unique: true }),

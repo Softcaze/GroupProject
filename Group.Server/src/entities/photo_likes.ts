@@ -1,15 +1,15 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {users} from "./users";
 import {photos} from "./photos";
 
 
-@Entity("photo_likes",{schema:"groupdb"})
-@Index("fk_like_id_photo_lt",["id_photo",])
-@Index("fk_like_id_user_lt",["id_user",])
+@Entity("photo_likes",{schema:"groupdb" } )
+@Index("fk_like_id_photo_lt",["idPhoto",])
+@Index("fk_like_id_user_lt",["idUser",])
 export class photo_likes {
 
     @PrimaryGeneratedColumn({
-   
+        type:"bigint", 
         name:"id"
         })
     id:string;
@@ -23,14 +23,14 @@ export class photo_likes {
         
 
    
-    @ManyToOne(type=>users, users=>users.photo_likess,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>users, users=>users.photoLikess,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_user'})
-    id_user:users | null;
+    idUser:users | null;
 
 
    
-    @ManyToOne(type=>photos, photos=>photos.photo_likess,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>photos, photos=>photos.photoLikess,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_photo'})
-    id_photo:photos | null;
+    idPhoto:photos | null;
 
 }

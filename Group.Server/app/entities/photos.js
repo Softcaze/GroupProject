@@ -16,6 +16,7 @@ let photos = class photos {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -64,13 +65,13 @@ __decorate([
     __metadata("design:type", Number)
 ], photos.prototype, "like_count", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => photo_comments_1.photo_comments, photo_comments => photo_comments.id_photo, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => photo_comments_1.photo_comments, photo_comments => photo_comments.idPhoto, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
-], photos.prototype, "photo_commentss", void 0);
+], photos.prototype, "photoCommentss", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => photo_likes_1.photo_likes, photo_likes => photo_likes.id_photo, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => photo_likes_1.photo_likes, photo_likes => photo_likes.idPhoto, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
-], photos.prototype, "photo_likess", void 0);
+], photos.prototype, "photoLikess", void 0);
 photos = __decorate([
     typeorm_1.Entity("photos", { schema: "groupdb" })
 ], photos);

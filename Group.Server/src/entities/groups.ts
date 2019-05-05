@@ -1,14 +1,14 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {albums} from "./albums";
 import {events} from "./events";
 import {lt_user_group} from "./lt_user_group";
 
 
-@Entity("groups",{schema:"groupdb"})
+@Entity("groups",{schema:"groupdb" } )
 export class groups {
 
     @PrimaryGeneratedColumn({
-   
+        type:"bigint", 
         name:"id"
         })
     id:string;
@@ -16,7 +16,6 @@ export class groups {
 
     @Column("varchar",{ 
         nullable:false,
-        length:255,
         name:"name"
         })
     name:string;
@@ -31,7 +30,7 @@ export class groups {
 
     @Column("int",{ 
         nullable:false,
-        default:"1",
+        default: () => "'1'",
         name:"type"
         })
     type:number;
@@ -55,7 +54,7 @@ export class groups {
 
     @Column("int",{ 
         nullable:false,
-        default:"0",
+        default: () => "'0'",
         name:"member_count"
         })
     member_count:number;
@@ -63,24 +62,32 @@ export class groups {
 
     @Column("int",{ 
         nullable:false,
-        default:"0",
+        default: () => "'0'",
         name:"follower_count"
         })
     follower_count:number;
         
 
+    @Column("int",{ 
+        nullable:false,
+        default: () => "'0'",
+        name:"score"
+        })
+    score:number;
+        
+
    
-    @OneToMany(type=>albums, albums=>albums.id_group,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    @OneToMany(type=>albums, albums=>albums.idGroup,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
     albumss:albums[];
     
 
    
-    @OneToMany(type=>events, events=>events.id_group,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    @OneToMany(type=>events, events=>events.idGroup,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
     eventss:events[];
     
 
    
-    @OneToOne(type=>lt_user_group, lt_user_group=>lt_user_group.id_group,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
-    lt_user_group:lt_user_group | null;
-
+    @OneToMany(type=>lt_user_group, lt_user_group=>lt_user_group.idGroup,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    ltUserGroups:lt_user_group[];
+    
 }

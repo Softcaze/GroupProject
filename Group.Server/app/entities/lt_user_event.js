@@ -16,6 +16,7 @@ let lt_user_event = class lt_user_event {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -28,15 +29,15 @@ __decorate([
     __metadata("design:type", Date)
 ], lt_user_event.prototype, "creation_date", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => users_1.users, users => users.lt_user_events, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.ManyToOne(type => users_1.users, users => users.ltUserEvents, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_user' }),
     __metadata("design:type", users_1.users)
-], lt_user_event.prototype, "id_user", void 0);
+], lt_user_event.prototype, "idUser", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => events_1.events, events => events.lt_user_events, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.ManyToOne(type => events_1.events, events => events.ltUserEvents, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_event' }),
     __metadata("design:type", events_1.events)
-], lt_user_event.prototype, "id_event", void 0);
+], lt_user_event.prototype, "idEvent", void 0);
 __decorate([
     typeorm_1.Column("smallint", {
         nullable: false,
@@ -60,8 +61,8 @@ __decorate([
 ], lt_user_event.prototype, "params", void 0);
 lt_user_event = __decorate([
     typeorm_1.Entity("lt_user_event", { schema: "groupdb" }),
-    typeorm_1.Index("fk_id_event_lt", ["id_event",]),
-    typeorm_1.Index("fk_id_user_lt", ["id_user",]),
+    typeorm_1.Index("fk_id_event_lt", ["idEvent",]),
+    typeorm_1.Index("fk_id_user_lt", ["idUser",]),
     typeorm_1.Index("fk_id_state_lt", ["state",])
 ], lt_user_event);
 exports.lt_user_event = lt_user_event;

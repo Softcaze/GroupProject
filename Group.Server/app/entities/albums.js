@@ -15,6 +15,7 @@ let albums = class albums {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -22,7 +23,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "name"
     }),
     __metadata("design:type", String)
@@ -31,7 +31,7 @@ __decorate([
     typeorm_1.ManyToOne(type => groups_1.groups, groups => groups.albumss, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_group' }),
     __metadata("design:type", groups_1.groups)
-], albums.prototype, "id_group", void 0);
+], albums.prototype, "idGroup", void 0);
 __decorate([
     typeorm_1.Column("int", {
         nullable: false,
@@ -41,7 +41,7 @@ __decorate([
 ], albums.prototype, "photo_count", void 0);
 albums = __decorate([
     typeorm_1.Entity("albums", { schema: "groupdb" }),
-    typeorm_1.Index("fk_id_group_album", ["id_group",])
+    typeorm_1.Index("fk_id_group_album", ["idGroup",])
 ], albums);
 exports.albums = albums;
 //# sourceMappingURL=albums.js.map

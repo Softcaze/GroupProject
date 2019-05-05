@@ -1,12 +1,12 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 
 
-@Entity("event_state",{schema:"groupdb"})
+@Entity("event_state",{schema:"groupdb" } )
 @Index("state",["state",],{unique:true})
 export class event_state {
 
     @PrimaryGeneratedColumn({
-   
+        type:"int", 
         name:"id"
         })
     id:number;
@@ -15,7 +15,6 @@ export class event_state {
     @Column("varchar",{ 
         nullable:false,
         unique: true,
-        length:255,
         name:"state"
         })
     state:string;

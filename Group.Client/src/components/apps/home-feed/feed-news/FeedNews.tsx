@@ -5,6 +5,7 @@ import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
 import "react-placeholder/lib/reactPlaceholder.css"; import { IFeedEvent } from "../../../../model/IFeedEvent";
 import { Constants } from "../../../../common/Constants";
+import GroupCard, { GroupCardSize } from "../../common/GroupCard";
 
 export interface IFeedNewsProps {
     webToken: string;
@@ -62,8 +63,18 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
 
     public getFeedEventGroupJoined(feedEvent: IFeedEvent): JSX.Element {
         return (
-            <div>
-                Group joinded
+            <div className="feed-item-container">
+                <img className="feed-user-picture" src={feedEvent.value.user.profile_picture} alt="Profile picture" />
+                <div className="feed-content">
+                    <div className="feed-content-title">
+                        <span className="feed-content-title-user">Kevin Bahurlet</span> a rejoint le groupe
+                    </div>
+                    <div className="feed-content-date">9 aout 2017</div>
+
+                    <div className="feed-card-container">
+                        <GroupCard size={GroupCardSize.Medium} group={feedEvent.value.group} centered={true} />
+                    </div>
+                </div>
             </div>
         );
     }

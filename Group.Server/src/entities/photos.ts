@@ -1,13 +1,13 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {photo_comments} from "./photo_comments";
 import {photo_likes} from "./photo_likes";
 
 
-@Entity("photos",{schema:"groupdb"})
+@Entity("photos",{schema:"groupdb" } )
 export class photos {
 
     @PrimaryGeneratedColumn({
-   
+        type:"bigint", 
         name:"id"
         })
     id:string;
@@ -57,12 +57,12 @@ export class photos {
         
 
    
-    @OneToMany(type=>photo_comments, photo_comments=>photo_comments.id_photo,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
-    photo_commentss:photo_comments[];
+    @OneToMany(type=>photo_comments, photo_comments=>photo_comments.idPhoto,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    photoCommentss:photo_comments[];
     
 
    
-    @OneToMany(type=>photo_likes, photo_likes=>photo_likes.id_photo,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
-    photo_likess:photo_likes[];
+    @OneToMany(type=>photo_likes, photo_likes=>photo_likes.idPhoto,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    photoLikess:photo_likes[];
     
 }

@@ -11,6 +11,7 @@ export interface IGroup {
     cover_picture?: string;
     member_count?: number;
     follower_count?: number;
+    score?: number;
     albumss?: IAlbum[];
     eventss?: IEvent[];
     users?: IUser[];

@@ -16,6 +16,7 @@ let photo_likes = class photo_likes {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -28,19 +29,19 @@ __decorate([
     __metadata("design:type", Date)
 ], photo_likes.prototype, "creation_date", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => users_1.users, users => users.photo_likess, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.ManyToOne(type => users_1.users, users => users.photoLikess, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_user' }),
     __metadata("design:type", users_1.users)
-], photo_likes.prototype, "id_user", void 0);
+], photo_likes.prototype, "idUser", void 0);
 __decorate([
-    typeorm_1.ManyToOne(type => photos_1.photos, photos => photos.photo_likess, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.ManyToOne(type => photos_1.photos, photos => photos.photoLikess, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_photo' }),
     __metadata("design:type", photos_1.photos)
-], photo_likes.prototype, "id_photo", void 0);
+], photo_likes.prototype, "idPhoto", void 0);
 photo_likes = __decorate([
     typeorm_1.Entity("photo_likes", { schema: "groupdb" }),
-    typeorm_1.Index("fk_like_id_photo_lt", ["id_photo",]),
-    typeorm_1.Index("fk_like_id_user_lt", ["id_user",])
+    typeorm_1.Index("fk_like_id_photo_lt", ["idPhoto",]),
+    typeorm_1.Index("fk_like_id_user_lt", ["idUser",])
 ], photo_likes);
 exports.photo_likes = photo_likes;
 //# sourceMappingURL=photo_likes.js.map

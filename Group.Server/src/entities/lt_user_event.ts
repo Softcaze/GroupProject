@@ -1,16 +1,16 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {users} from "./users";
 import {events} from "./events";
 
 
-@Entity("lt_user_event",{schema:"groupdb"})
-@Index("fk_id_event_lt",["id_event",])
-@Index("fk_id_user_lt",["id_user",])
+@Entity("lt_user_event",{schema:"groupdb" } )
+@Index("fk_id_event_lt",["idEvent",])
+@Index("fk_id_user_lt",["idUser",])
 @Index("fk_id_state_lt",["state",])
 export class lt_user_event {
 
     @PrimaryGeneratedColumn({
-   
+        type:"bigint", 
         name:"id"
         })
     id:string;
@@ -24,15 +24,15 @@ export class lt_user_event {
         
 
    
-    @ManyToOne(type=>users, users=>users.lt_user_events,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>users, users=>users.ltUserEvents,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_user'})
-    id_user:users | null;
+    idUser:users | null;
 
 
    
-    @ManyToOne(type=>events, events=>events.lt_user_events,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
+    @ManyToOne(type=>events, events=>events.ltUserEvents,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_event'})
-    id_event:events | null;
+    idEvent:events | null;
 
 
     @Column("smallint",{ 

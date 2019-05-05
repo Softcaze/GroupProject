@@ -10,8 +10,8 @@ import { NOTFOUND } from "dns";
 export class GroupRepo {
     getGroups(userId: number) {
         return getManager().getRepository(lt_user_group).find({
-            where: { id_user: userId, state: 1 },
-            relations: ["id_group"]
+            where: { idUser: userId, state: 1 },
+            relations: ["idGroup"]
         });
     }
 
@@ -25,8 +25,8 @@ export class GroupRepo {
 
     getGroupSuggestion(userId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
-            .leftJoinAndSelect("lt_user_group.id_group", "group")
-            .where("lt_user_group.id_user != :id", { id: userId })
+            .leftJoinAndSelect("lt_user_group.idGroup", "group")
+            .where("lt_user_group.idUser != :id", { id: userId })
             .take(3)
             .getMany();
     }

@@ -38,16 +38,16 @@ exports.getNews = (req, res) => __awaiter(this, void 0, void 0, function* () {
                     type: 2,
                     location: "-0.434402;43.333177",
                     address: "8 rue de la chiasse",
-                    id_group: 2,
-                    id_author: 3
+                    idGroup: 2,
+                    idAuthor: 3
                 },
                 user_event: [{
-                    id_user: 2,
-                    id_event: 1,
-                }, {
-                    id_user: 3,
-                    id_event: 1
-                }
+                        idUser: 2,
+                        idEvent: 1,
+                    }, {
+                        idUser: 3,
+                        idEvent: 1
+                    }
                 ]
             }
         },
@@ -56,14 +56,17 @@ exports.getNews = (req, res) => __awaiter(this, void 0, void 0, function* () {
             type: "JOIN_GROUP",
             value: {
                 last_change_date: "2018-10-12 17:49:00",
-                id_user: "3",
+                user: {
+                    id: "3",
+                    profile_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
+                },
                 group: {
                     id: "3",
                     name: "Les Copains",
                     creation_date: "2018-09-06 08:19:25",
                     type: 1,
-                    profile_picture: "http://localhost:3001/file/profilePicture/1537480103860-66216714095112314151319.jpg",
-                    cover_picture: "http://localhost:3001/file/coverPicture/1537480103860-66216714095112314151319.jpg",
+                    profile_picture: "https://bde-eeigm.fr/wp-content/uploads/2016/11/photo-de-profil-generique-garcon.png",
+                    cover_picture: "https://spark.adobe.com/images/landing/examples/hiking-fb-cover.jpg",
                     member_count: 10,
                     follower_count: 28
                 }
@@ -76,26 +79,26 @@ exports.getNews = (req, res) => __awaiter(this, void 0, void 0, function* () {
                 album: {
                     id: 1,
                     name: "Karting",
-                    id_group: 2,
+                    idGroup: 2,
                     photo_count: 2,
                     photos: [{
-                        url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
-                        creation_date: "2018-10-12 15:40:20",
-                        id_author: "3",
-                        id_album: "1",
-                        comment_count: 5,
-                        like_count: 2
-                    }, {
-                        url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
-                        creation_date: "2018-10-12 15:40:20",
-                        id_author: "3",
-                        comment_count: 5,
-                        like_count: 2
-                    }
+                            url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
+                            creation_date: "2018-10-12 15:40:20",
+                            id_author: "3",
+                            id_album: "1",
+                            comment_count: 5,
+                            like_count: 2
+                        }, {
+                            url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
+                            creation_date: "2018-10-12 15:40:20",
+                            id_author: "3",
+                            comment_count: 5,
+                            like_count: 2
+                        }
                     ]
                 }
             }
-        },
+        }
     ];
     res.status(200).send(result);
 });

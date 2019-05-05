@@ -1,16 +1,16 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {groups} from "./groups";
 import {users} from "./users";
 import {lt_user_event} from "./lt_user_event";
 
 
-@Entity("events",{schema:"groupdb"})
-@Index("fk_id_group_event",["id_group",])
-@Index("id_author",["id_author",])
+@Entity("events",{schema:"groupdb" } )
+@Index("fk_id_group_event",["idGroup",])
+@Index("id_author",["idAuthor",])
 export class events {
 
     @PrimaryGeneratedColumn({
-   
+        type:"bigint", 
         name:"id"
         })
     id:string;
@@ -18,7 +18,6 @@ export class events {
 
     @Column("varchar",{ 
         nullable:false,
-        length:255,
         name:"name"
         })
     name:string;
@@ -40,7 +39,6 @@ export class events {
 
     @Column("varchar",{ 
         nullable:false,
-        length:255,
         name:"location"
         })
     location:string;
@@ -48,7 +46,6 @@ export class events {
 
     @Column("varchar",{ 
         nullable:false,
-        length:255,
         name:"address"
         })
     address:string;
@@ -57,17 +54,17 @@ export class events {
    
     @ManyToOne(type=>groups, groups=>groups.eventss,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_group'})
-    id_group:groups | null;
+    idGroup:groups | null;
 
 
    
     @ManyToOne(type=>users, users=>users.eventss,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_author'})
-    id_author:users | null;
+    idAuthor:users | null;
 
 
    
-    @OneToMany(type=>lt_user_event, lt_user_event=>lt_user_event.id_event,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
-    lt_user_events:lt_user_event[];
+    @OneToMany(type=>lt_user_event, lt_user_event=>lt_user_event.idEvent,{ onDelete: 'RESTRICT' ,onUpdate: 'RESTRICT' })
+    ltUserEvents:lt_user_event[];
     
 }

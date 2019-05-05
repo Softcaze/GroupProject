@@ -29,7 +29,7 @@ export let getMembers = async (req: Request, res: Response) => {
     let groupRepo: GroupRepo = new GroupRepo();
 
     groupRepo.getGroupMembers(req.query.groupId).then((result) => {
-        res.status(200).send(result.map((item) => item.id_user));
+        res.status(200).send(result.map((item) => item.idUser));
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -44,7 +44,7 @@ export let getSubscribers = async (req: Request, res: Response) => {
     let groupRepo: GroupRepo = new GroupRepo();
 
     groupRepo.getGroupSubscribers(req.query.groupId).then((result) => {
-        res.status(200).send(result.map((item) => item.id_user));
+        res.status(200).send(result.map((item) => item.idUser));
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -59,7 +59,7 @@ export let getGroupSuggestion = async (req: Request, res: Response) => {
     let groupRepo: GroupRepo = new GroupRepo();
 
     groupRepo.getGroupSuggestion(req.query.userId).then((result: lt_user_group[]) => {
-        res.status(200).send(result.map((item) => item.id_group));
+        res.status(200).send(result.map((item) => item.idGroup));
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -85,7 +85,7 @@ export let addGroup = async (req: Request, res: Response) => {
         groupJoin = joinUserGroup(req.body.userId, result.id, 1);
 
         groupRepo.joinGroup(groupJoin).then((resultJoin) => {
-            res.status(200).send(resultJoin.id_group.id);
+            res.status(200).send(resultJoin.idGroup.id);
         }).catch((err) => {
             res.status(400).send(err);
         });
@@ -106,7 +106,7 @@ export let joinAExistingGroup = async (req: Request, res: Response) => {
     groupJoin = joinUserGroup(req.body.userId, req.body.groupId, 1);
 
     groupRepo.joinGroup(groupJoin).then((resultJoin) => {
-        res.status(200).send(resultJoin.id_group.id);
+        res.status(200).send(resultJoin.idGroup.id);
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -124,7 +124,7 @@ export let subscribeAExistingGroup = async (req: Request, res: Response) => {
     groupJoin = joinUserGroup(req.body.userId, req.body.groupId, 2);
 
     groupRepo.joinGroup(groupJoin).then((resultSubscribe) => {
-        res.status(200).send(resultSubscribe.id_group.id);
+        res.status(200).send(resultSubscribe.idGroup.id);
     }).catch((err) => {
         res.status(400).send(err);
     });
@@ -148,8 +148,8 @@ export let joinUserGroup = function (userId: any, groupId: any, state: any) {
     let groupJoin: lt_user_group = new lt_user_group();
 
     groupJoin.creation_date = getDateTimeNow();
-    groupJoin.id_user = userId.body.userId;
-    groupJoin.id_group = groupId.body.groupId;
+    groupJoin.idUser = userId.body.userId;
+    groupJoin.idGroup = groupId.body.groupId;
     groupJoin.state = state;
     groupJoin.last_change_date = getDateTimeNow();
 

@@ -3,7 +3,7 @@ import { IGroup } from "./IGroup";
 export interface IAlbum {
     id: string;
     name: string;
-    id_group: IGroup;
+    idGroup: IGroup;
     photo_count: number;
 
 }

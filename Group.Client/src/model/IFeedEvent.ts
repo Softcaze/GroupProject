@@ -4,9 +4,6 @@ import { IGroup } from "./IGroup";
 
 export interface IFeedEvent {
     type: string;
-    idUser: number;
-    ablum?: IAlbum;
-    event?: IEvent;
-    group?: IGroup;
-    date?: Date;
+    position: number;
+    value: any;
 }

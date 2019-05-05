@@ -17,6 +17,7 @@ let groups = class groups {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -24,7 +25,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "name"
     }),
     __metadata("design:type", String)
@@ -39,7 +39,7 @@ __decorate([
 __decorate([
     typeorm_1.Column("int", {
         nullable: false,
-        default: "1",
+        default: () => "'1'",
         name: "type"
     }),
     __metadata("design:type", Number)
@@ -63,7 +63,7 @@ __decorate([
 __decorate([
     typeorm_1.Column("int", {
         nullable: false,
-        default: "0",
+        default: () => "'0'",
         name: "member_count"
     }),
     __metadata("design:type", Number)
@@ -71,23 +71,31 @@ __decorate([
 __decorate([
     typeorm_1.Column("int", {
         nullable: false,
-        default: "0",
+        default: () => "'0'",
         name: "follower_count"
     }),
     __metadata("design:type", Number)
 ], groups.prototype, "follower_count", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => albums_1.albums, albums => albums.id_group, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.Column("int", {
+        nullable: false,
+        default: () => "'0'",
+        name: "score"
+    }),
+    __metadata("design:type", Number)
+], groups.prototype, "score", void 0);
+__decorate([
+    typeorm_1.OneToMany(type => albums_1.albums, albums => albums.idGroup, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
 ], groups.prototype, "albumss", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => events_1.events, events => events.id_group, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => events_1.events, events => events.idGroup, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
 ], groups.prototype, "eventss", void 0);
 __decorate([
-    typeorm_1.OneToOne(type => lt_user_group_1.lt_user_group, lt_user_group => lt_user_group.id_group, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
-    __metadata("design:type", lt_user_group_1.lt_user_group)
-], groups.prototype, "lt_user_group", void 0);
+    typeorm_1.OneToMany(type => lt_user_group_1.lt_user_group, lt_user_group => lt_user_group.idGroup, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    __metadata("design:type", Array)
+], groups.prototype, "ltUserGroups", void 0);
 groups = __decorate([
     typeorm_1.Entity("groups", { schema: "groupdb" })
 ], groups);

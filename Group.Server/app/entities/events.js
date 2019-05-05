@@ -17,6 +17,7 @@ let events = class events {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -24,7 +25,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "name"
     }),
     __metadata("design:type", String)
@@ -46,7 +46,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "location"
     }),
     __metadata("design:type", String)
@@ -54,7 +53,6 @@ __decorate([
 __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
-        length: 255,
         name: "address"
     }),
     __metadata("design:type", String)
@@ -63,20 +61,20 @@ __decorate([
     typeorm_1.ManyToOne(type => groups_1.groups, groups => groups.eventss, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_group' }),
     __metadata("design:type", groups_1.groups)
-], events.prototype, "id_group", void 0);
+], events.prototype, "idGroup", void 0);
 __decorate([
     typeorm_1.ManyToOne(type => users_1.users, users => users.eventss, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_author' }),
     __metadata("design:type", users_1.users)
-], events.prototype, "id_author", void 0);
+], events.prototype, "idAuthor", void 0);
 __decorate([
-    typeorm_1.OneToMany(type => lt_user_event_1.lt_user_event, lt_user_event => lt_user_event.id_event, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.OneToMany(type => lt_user_event_1.lt_user_event, lt_user_event => lt_user_event.idEvent, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     __metadata("design:type", Array)
-], events.prototype, "lt_user_events", void 0);
+], events.prototype, "ltUserEvents", void 0);
 events = __decorate([
     typeorm_1.Entity("events", { schema: "groupdb" }),
-    typeorm_1.Index("fk_id_group_event", ["id_group",]),
-    typeorm_1.Index("id_author", ["id_author",])
+    typeorm_1.Index("fk_id_group_event", ["idGroup",]),
+    typeorm_1.Index("id_author", ["idAuthor",])
 ], events);
 exports.events = events;
 //# sourceMappingURL=events.js.map

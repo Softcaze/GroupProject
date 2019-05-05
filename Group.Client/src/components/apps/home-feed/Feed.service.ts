@@ -17,7 +17,7 @@ export class FeedService {
                 },
             } as AxiosRequestConfig).then((result: any) => {
                 if (result)
-                    resolve(result.data.map(lt => lt.id_group));
+                    resolve(result.data.map(lt => lt.idGroup));
                 else
                     resolve(null);
             }).catch((err) => {

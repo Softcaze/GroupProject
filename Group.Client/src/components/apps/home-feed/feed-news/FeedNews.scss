@@ -1,7 +1,48 @@
+@import "../../../../common/Constants.scss";
 
 .feed-event-container {
-
     .component-container {
+        .feed-item-container {
+            padding: 10px 0;
+            display: flex;
+            background-color: $white;
 
+            .feed-user-picture {
+                margin: 10px 5px;
+                width: 40px;
+                height: 40px;
+                border-radius: 100px;
+                border: 1px solid $white;
+            }
+
+            .feed-content {
+                margin: 10px;
+                flex: auto;
+                margin-right: 45px;
+
+                .feed-content-title {
+                    font-size: 14px;
+
+                    .feed-content-title-user {
+                        color: $primaryColor;
+                        font-weight: 600px;
+                    }
+
+                    .feed-content-title-user:hover {
+                        color: $primaryColor;
+                        font-weight: 600px;
+                    }
+                }
+
+                .feed-content-date {
+                    font-size: 10px;
+                    color: $lightGray;
+                }
+
+                .feed-card-container {
+                    margin-top: 10px;
+                }
+            }
+        }
     }
 }

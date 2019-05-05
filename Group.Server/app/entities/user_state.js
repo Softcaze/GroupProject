@@ -14,6 +14,7 @@ let user_state = class user_state {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "int",
         name: "id"
     }),
     __metadata("design:type", Number)
@@ -22,7 +23,6 @@ __decorate([
     typeorm_1.Column("varchar", {
         nullable: false,
         unique: true,
-        length: 255,
         name: "state"
     }),
     __metadata("design:type", String)

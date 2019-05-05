@@ -1,13 +1,13 @@
-import {Index,Entity, PrimaryColumn, PrimaryGeneratedColumn, Column, OneToOne, OneToMany, ManyToOne, ManyToMany, JoinColumn, JoinTable, RelationId} from "typeorm";
+import {BaseEntity,Column,Entity,Index,JoinColumn,JoinTable,ManyToMany,ManyToOne,OneToMany,OneToOne,PrimaryColumn,PrimaryGeneratedColumn,RelationId} from "typeorm";
 import {groups} from "./groups";
 
 
-@Entity("albums",{schema:"groupdb"})
-@Index("fk_id_group_album",["id_group",])
+@Entity("albums",{schema:"groupdb" } )
+@Index("fk_id_group_album",["idGroup",])
 export class albums {
 
     @PrimaryGeneratedColumn({
-   
+        type:"bigint", 
         name:"id"
         })
     id:string;
@@ -15,7 +15,6 @@ export class albums {
 
     @Column("varchar",{ 
         nullable:false,
-        length:255,
         name:"name"
         })
     name:string;
@@ -24,7 +23,7 @@ export class albums {
    
     @ManyToOne(type=>groups, groups=>groups.albumss,{  nullable:false,onDelete: 'RESTRICT',onUpdate: 'RESTRICT' })
     @JoinColumn({ name:'id_group'})
-    id_group:groups | null;
+    idGroup:groups | null;
 
 
     @Column("int",{ 

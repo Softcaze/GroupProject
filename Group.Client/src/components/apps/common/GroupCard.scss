@@ -3,6 +3,7 @@
 .groupcard-container {
     height: 120px;
     border: 1px solid $lightGray;
+    cursor: pointer;
 
     .group-card-top {
         height: 60px;
@@ -72,4 +73,20 @@
             }
         }
     }
+}
+
+.size-small {
+    width: 200px;
+}
+
+.size-medium {
+    width: 250px;
+}
+
+.size-large {
+    width: 400px;
+}
+
+.centered {
+    margin: auto;
 }

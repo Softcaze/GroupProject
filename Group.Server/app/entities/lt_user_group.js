@@ -16,6 +16,7 @@ let lt_user_group = class lt_user_group {
 };
 __decorate([
     typeorm_1.PrimaryGeneratedColumn({
+        type: "bigint",
         name: "id"
     }),
     __metadata("design:type", String)
@@ -28,15 +29,15 @@ __decorate([
     __metadata("design:type", Date)
 ], lt_user_group.prototype, "creation_date", void 0);
 __decorate([
-    typeorm_1.OneToOne(type => users_1.users, users => users.lt_user_group, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.ManyToOne(type => users_1.users, users => users.ltUserGroups, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_user' }),
     __metadata("design:type", users_1.users)
-], lt_user_group.prototype, "id_user", void 0);
+], lt_user_group.prototype, "idUser", void 0);
 __decorate([
-    typeorm_1.OneToOne(type => groups_1.groups, groups => groups.lt_user_group, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
+    typeorm_1.ManyToOne(type => groups_1.groups, groups => groups.ltUserGroups, { nullable: false, onDelete: 'RESTRICT', onUpdate: 'RESTRICT' }),
     typeorm_1.JoinColumn({ name: 'id_group' }),
     __metadata("design:type", groups_1.groups)
-], lt_user_group.prototype, "id_group", void 0);
+], lt_user_group.prototype, "idGroup", void 0);
 __decorate([
     typeorm_1.Column("smallint", {
         nullable: false,
@@ -53,8 +54,8 @@ __decorate([
 ], lt_user_group.prototype, "last_change_date", void 0);
 lt_user_group = __decorate([
     typeorm_1.Entity("lt_user_group", { schema: "groupdb" }),
-    typeorm_1.Index("unique_group_user", ["id_user", "id_group",], { unique: true }),
-    typeorm_1.Index("fk_id_group", ["id_group",])
+    typeorm_1.Index("unique_group_user", ["idUser", "idGroup",], { unique: true }),
+    typeorm_1.Index("fk_id_group", ["idGroup",])
 ], lt_user_group);
 exports.lt_user_group = lt_user_group;
 //# sourceMappingURL=lt_user_group.js.map

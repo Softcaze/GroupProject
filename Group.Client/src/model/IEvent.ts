@@ -8,6 +8,6 @@ export interface IEvent {
     type: number;
     location: string;
     address: string;
-    id_group: IGroup;
-    id_author: IUser;
+    idGroup: IGroup;
+    idAuthor: IUser;
 }
