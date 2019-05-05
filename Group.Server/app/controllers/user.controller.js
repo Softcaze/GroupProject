@@ -28,42 +28,57 @@ exports.getUser = (req, res) => __awaiter(this, void 0, void 0, function* () {
 exports.getNews = (req, res) => __awaiter(this, void 0, void 0, function* () {
     let result = [
         {
+            position: 1,
             type: "CREATE_EVENT",
-            id_user: 154513,
-            event: {
-                id: 1,
-                name: "Karting",
-                creation_date: "2018-10-11 17:32:50",
-                type: 2,
-                location: "-0.434402;43.333177",
-                address: "8 rue de la chiasse",
-                id_group: 2,
-                id_author: 154513
+            value: {
+                events: {
+                    id: 1,
+                    name: "Karting",
+                    creation_date: "2018-10-11 17:32:50",
+                    type: 2,
+                    location: "-0.434402;43.333177",
+                    address: "8 rue de la chiasse",
+                    id_group: 2,
+                    id_author: 3
+                },
+                user_event: [{
+                    id_user: 2,
+                    id_event: 1,
+                }, {
+                    id_user: 3,
+                    id_event: 1
+                }
+                ]
             }
         },
         {
+            position: 2,
             type: "JOIN_GROUP",
-            date: "2018-10-12 17:49:00",
-            id_user: 154513,
-            group: {
-                id: 3,
-                name: "Les Copains",
-                creation_date: "2018-09-06 08:19:25",
-                type: 1,
-                profile_picture: "http://localhost:3001/file/profilePicture/1537480103860-66216714095112314151319.jpg",
-                cover_picture: "http://localhost:3001/file/coverPicture/1537480103860-66216714095112314151319.jpg",
-                member_count: 10,
-                follower_count: 28
+            value: {
+                last_change_date: "2018-10-12 17:49:00",
+                id_user: "3",
+                group: {
+                    id: "3",
+                    name: "Les Copains",
+                    creation_date: "2018-09-06 08:19:25",
+                    type: 1,
+                    profile_picture: "http://localhost:3001/file/profilePicture/1537480103860-66216714095112314151319.jpg",
+                    cover_picture: "http://localhost:3001/file/coverPicture/1537480103860-66216714095112314151319.jpg",
+                    member_count: 10,
+                    follower_count: 28
+                }
             }
         },
         {
+            position: 3,
             type: "CREATE_ALBUM",
-            album: {
-                id: 1,
-                name: "Karting",
-                id_group: 2,
-                photo_count: 2,
-                photos: [{
+            value: {
+                album: {
+                    id: 1,
+                    name: "Karting",
+                    id_group: 2,
+                    photo_count: 2,
+                    photos: [{
                         url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
                         creation_date: "2018-10-12 15:40:20",
                         id_author: "3",
@@ -76,9 +91,11 @@ exports.getNews = (req, res) => __awaiter(this, void 0, void 0, function* () {
                         id_author: "3",
                         comment_count: 5,
                         like_count: 2
-                    }]
+                    }
+                    ]
+                }
             }
-        }
+        },
     ];
     res.status(200).send(result);
 });
