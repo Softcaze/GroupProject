@@ -1,11 +1,10 @@
 import * as React from "react";
 import { HomeFeedStrings } from "../loc/strings";
-import "./MyGroups.scss";
+import "./FeedNews.scss";
 import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
 import "react-placeholder/lib/reactPlaceholder.css"; import { IFeedEvent } from "../../../../model/IFeedEvent";
 import { Constants } from "../../../../common/Constants";
-;
 
 export interface IFeedNewsProps {
     webToken: string;
@@ -30,9 +29,10 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
         };
 
         // on charge les feed event
-        // FeedService.getMyGroups(this.props.webToken, this.props.currentUser.id).then((myGroups: IGroup[]) => {
-        //     this.setState({ myGroups: myGroups });
-        // });
+        FeedService.getFeedEvents(this.props.webToken, this.props.currentUser.id).then((feedEvent: IFeedEvent[]) => {
+            console.log(feedEvent);
+            this.setState({ feedEvent: feedEvent });
+        });
     }
 
     public render() {
@@ -40,7 +40,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
             <div className="feed-event-container">
                 {this.state.feedEvent && this.state.feedEvent.map((feedEvent) => {
                     return (
-                        <div className="component-container" key={"key_" + feedEvent.date.getMilliseconds()}>
+                        <div className="component-container" key={"key_" + Math.random()}>
                             {this.getFeedEvent(feedEvent)}
                         </div>
                     );
@@ -53,9 +53,9 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
         switch (feedEvent.type) {
             case Constants.FeedEventType.GROUP_JOINED:
                 return this.getFeedEventGroupJoined(feedEvent);
-            case Constants.FeedEventType.GROUP_EVENT:
+            case Constants.FeedEventType.CREATE_EVENT:
                 return this.getFeedEventGroupEvent(feedEvent);
-            case Constants.FeedEventType.GROUP_ALBUM:
+            case Constants.FeedEventType.CREATE_ALBUM:
                 return this.getFeedEventGroupAlbum(feedEvent);
         }
     }
@@ -63,7 +63,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
     public getFeedEventGroupJoined(feedEvent: IFeedEvent): JSX.Element {
         return (
             <div>
-
+                Group joinded
             </div>
         );
     }
@@ -71,7 +71,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
     public getFeedEventGroupEvent(feedEvent: IFeedEvent): JSX.Element {
         return (
             <div>
-
+                Group event
             </div>
         );
     }
@@ -79,7 +79,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
     public getFeedEventGroupAlbum(feedEvent: IFeedEvent): JSX.Element {
         return (
             <div>
-
+                Group ablum
             </div>
         );
     }

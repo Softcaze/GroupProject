@@ -3,9 +3,10 @@ import { IEvent } from "./IEvent";
 import { IGroup } from "./IGroup";
 
 export interface IFeedEvent {
-    type: number;
-    ablum: IAlbum;
-    event: IEvent;
-    group: IGroup;
-    date: Date;
+    type: string;
+    idUser: number;
+    ablum?: IAlbum;
+    event?: IEvent;
+    group?: IGroup;
+    date?: Date;
 }

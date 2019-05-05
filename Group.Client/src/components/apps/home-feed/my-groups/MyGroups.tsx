@@ -51,25 +51,25 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                     firstname: "Julie",
                     lastname: "Casasus",
                     profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
-                    id: "1242423",
+                    id: "1242463",
                 },
                 {
                     firstname: "Kévin",
                     lastname: "Bahurlet",
                     profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
-                    id: "1242423",
+                    id: "1246923",
                 },
                 {
                     firstname: "Niou",
                     lastname: "Niou",
                     profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
-                    id: "1242423",
+                    id: "12425786",
                 },
                 {
                     firstname: "Guillaume",
                     lastname: "Cazenave",
                     profil_picture: "https://www.ligue-cancer.net/sites/all/themes/ligue/images/empty_avatar_profil.png",
-                    id: "1242423",
+                    id: "1255423",
                 }
             ]
         };

@@ -3,6 +3,7 @@ import MyGroups from "./my-groups/MyGroups";
 import { IUser } from "../../../model/IUser";
 import "./Feed.scss";
 import Suggestions from "./suggestions/Suggestions";
+import FeedNews from "./feed-news/FeedNews";
 
 export interface IFeedProps {
     webToken: string;
@@ -34,6 +35,7 @@ export default class Feed extends React.Component<IFeedProps, IFeedState> {
                     <div className="component-container">
                         <MyGroups webToken={this.props.webToken} facebookId={this.props.facebookId} currentUser={this.props.currentUser} />
                     </div>
+                    <FeedNews webToken={this.props.webToken} facebookId={this.props.facebookId} currentUser={this.props.currentUser} />
                 </div>
                 <div className="right-feed">
                     <div className="component-container">

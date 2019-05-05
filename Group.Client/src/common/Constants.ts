@@ -51,8 +51,9 @@ export class Constants {
      * Type de feed dans le fil d'actualité home
      */
     public static FeedEventType = {
-        GROUP_JOINED: 1,
+        GROUP_JOINED: "JOIN_GROUP",
         GROUP_EVENT: 2,
-        GROUP_ALBUM: 3
+        CREATE_ALBUM: "CREATE_ALBUM",
+        CREATE_EVENT: "CREATE_EVENT"
     };
 }

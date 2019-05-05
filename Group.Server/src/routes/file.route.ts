@@ -12,7 +12,7 @@ var storageProfilePicture = multer.diskStorage({
     filename: function (req, file, cb) {
         cb(null, getNow() + "-" + getRandomString() + "." + getExtension(file.originalname));
     }
-})
+});
 
 const router = express.Router();
 
