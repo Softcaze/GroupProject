@@ -1,12 +1,11 @@
 @import "../../../common/Constants.scss";
 
 .groupcard-container {
-    height: 120px;
     border: 1px solid $lightGray;
     cursor: pointer;
 
     .group-card-top {
-        height: 60px;
+        height: 50%;
         width: 100%;
 
         .cover-picture {
@@ -17,25 +16,21 @@
             .cover-picture-img {
                 height: 100%;
                 width: 100%;
+                object-fit: cover;
             }
         }
     }
 
     .group-card-bottom {
-        height: 60px;
-        width: 100%;
 
         .profile-picture {
-            width: 40px;
-            height: 40px;
-            margin-left: 20px;
-            margin-top: -20px;
         
             .profile-picture-img {
                 width: 100%;
                 height: 100%;
                 border-radius: 100px;
-                border: 1px solid #ffffff; 
+                border: 1px solid #ffffff;
+                object-fit: cover;
             }
         }
 
@@ -53,7 +48,6 @@
 
         .group-stats-container {
             width: 100%;
-            margin-top: 10px;
 
             .group-stats-item {
                 width: 33%;
@@ -61,14 +55,13 @@
                 text-align: center;
 
                 .group-stats-item-value {
-                    font-size: 14px;
                     color: $primaryColor;
                 }
 
                 .group-stats-item-title {
-                    font-size: 8px;
                     color: #90949c;
                     line-height: 0.2;
+                    margin-top: 4px;
                 }
             }
         }
@@ -77,14 +70,55 @@
 
 .size-small {
     width: 200px;
+    height: 120px;
+
+    .profile-picture {
+        width: 40px;
+        height: 40px;
+        margin-left: 20px;
+        margin-top: -20px;
+    }
+
+    .group-stats-container {
+        margin-top: 10px;
+
+        .group-stats-item-title {
+            font-size: 10px;
+        }
+    
+        .group-stats-item-value {
+            font-size: 16px;
+        }
+    }
 }
 
 .size-medium {
     width: 250px;
+    height: 160px;
+
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        margin-left: 10px;
+        margin-top: -30px;
+    }
+
+    .group-stats-container {
+        margin-top: 20px;
+
+        .group-stats-item-title {
+            font-size: 12px;
+        }
+    
+        .group-stats-item-value {
+            font-size: 20px;
+        }
+    }
 }
 
 .size-large {
     width: 400px;
+    height: 200px;
 }
 
 .centered {

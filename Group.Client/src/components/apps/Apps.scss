@@ -1,8 +1,12 @@
 @import "../../common/Constants.scss";
 
-.app-content-container {
+body {
     background-color: $veryLightGray;
-    height: 100%;
+}
+
+.app-content-container {
+    padding-top: 50px;
+    background-color: $veryLightGray;
 }
 
 .app-content-subcontainer {

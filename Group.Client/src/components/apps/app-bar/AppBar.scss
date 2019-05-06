@@ -1,69 +1,43 @@
 @import "../../../common/Constants.scss";
 
-.appbar-container {
-    height: 50px;
-    width:100%;
-    background-color: $primaryColor;
+.appbar {
+    width: 100%;
+    height: 52px;
+    position: fixed;
+    z-index: 1000;
+    background: $primaryColor;
+    padding: 5px;
+    box-sizing: border-box;
 
-    .appbar-group-logo-container {
-        display: inline-block;
-        width: 33%;
-        text-align: right;
-        margin-top: 10px;
-        cursor: pointer;
+    .appbar-container {
+        display: flex;
+        width: 700px;
+        margin: 0 auto;
+        margin-top: 4px;
 
         .appbar-group-logo-text {
-            color: #ffffff;
+            font-size: 22px;
+            color: $white;
             font-weight: 600;
-            font-size: 21px;
+        }
+
+        .app-bar-search-input {
+            width: 380px;
+            height: 28px;
+            background-color: $white;
+            border-radius: 2px;
+            border: 2px solid #f5f6f7;
+            padding-left: 5px;
+            padding-right: 30px;
+            margin-left: 100px;
+        }
+
+        .app-bar-search-icon {
+            margin-left: -25px;
+            vertical-align: middle;
+            color: $gray;
+            font-weight: bold;
+            cursor: pointer;
         }
     }
-
-    .appbar-search-container {
-        text-align: center;
-        display: inline-block;
-        width: 33%;
-
-        .appbar-search-edittext-container {
-            width: 300px;
-            margin: auto;
-            display: inline-block;
-            white-space: nowrap;
-
-            .app-bar-search-input {
-                width: 100%;
-                height: 25px;
-                background-color: #ffffff;
-                border-radius: 2px;
-                border: 2px solid #f5f6f7;
-                padding-left: 5px;
-                padding-right: 30px;
-            }
-
-            .app-bar-search-icon {
-                margin-left: -25px;
-                vertical-align: middle;
-                color: $gray;
-                font-weight: bold;
-                cursor: pointer;
-            }
-        }
-    }
-
-    .appbar-action-container {
-        display: inline-block;
-        width: 33%;
-
-        .appbar-action-subcontainer {
-            margin-left: 20px;
-
-            .appbar-action-icon {
-                color: #ffffff;
-                margin-left: 10px;
-                vertical-align: middle;
-                cursor: pointer;
-            }
-        }
-    }
-    
 }

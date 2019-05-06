@@ -3,16 +3,16 @@
 .feed-event-container {
     .component-container {
         .feed-item-container {
-            padding: 10px 0;
             display: flex;
             background-color: $white;
 
             .feed-user-picture {
-                margin: 10px 5px;
+                margin: 5px;
                 width: 40px;
                 height: 40px;
                 border-radius: 100px;
                 border: 1px solid $white;
+                object-fit: cover;
             }
 
             .feed-content {
@@ -29,14 +29,14 @@
                     }
 
                     .feed-content-title-user:hover {
-                        color: $primaryColor;
-                        font-weight: 600px;
+                        cursor: pointer;
+                        text-decoration: underline;
                     }
                 }
 
                 .feed-content-date {
                     font-size: 10px;
-                    color: $lightGray;
+                    color: $gray;
                 }
 
                 .feed-card-container {

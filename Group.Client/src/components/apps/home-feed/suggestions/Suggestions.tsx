@@ -4,7 +4,7 @@ import { IGroup } from "../../../../model/IGroup";
 import { IUser } from "../../../../model/IUser";
 import { GoInfo } from "react-icons/go";
 import { HomeFeedStrings } from "../loc/strings";
-import GroupCard from "../../common/GroupCard";
+import GroupCard, { GroupCardSize } from "../../common/GroupCard";
 import { FeedService } from "../Feed.service";
 
 export interface ISuggestionsProps {
@@ -45,7 +45,7 @@ export default class Suggestions extends React.Component<ISuggestionsProps, ISug
                     {this.state.suggestedGroups && this.state.suggestedGroups.map((group) => {
                         return (
                             <div className="group-card-container" key={"key_" + group.id}>
-                                <GroupCard group={group} />
+                                <GroupCard size={GroupCardSize.Small} group={group} />
                             </div>
                         );
                     })}

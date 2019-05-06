@@ -58,14 +58,14 @@ exports.getNews = (req, res) => __awaiter(this, void 0, void 0, function* () {
                 last_change_date: "2018-10-12 17:49:00",
                 user: {
                     id: "3",
-                    profile_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
                 },
                 group: {
                     id: "3",
                     name: "Les Copains",
                     creation_date: "2018-09-06 08:19:25",
                     type: 1,
-                    profile_picture: "https://bde-eeigm.fr/wp-content/uploads/2016/11/photo-de-profil-generique-garcon.png",
+                    profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-1/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=939e29ba91e41ec1ba7974096033413b&oe=5D65B390",
                     cover_picture: "https://spark.adobe.com/images/landing/examples/hiking-fb-cover.jpg",
                     member_count: 10,
                     follower_count: 28

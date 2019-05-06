@@ -64,7 +64,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
     public getFeedEventGroupJoined(feedEvent: IFeedEvent): JSX.Element {
         return (
             <div className="feed-item-container">
-                <img className="feed-user-picture" src={feedEvent.value.user.profile_picture} alt="Profile picture" />
+                <img className="feed-user-picture" src={feedEvent.value.user.profil_picture} alt="Profile picture" />
                 <div className="feed-content">
                     <div className="feed-content-title">
                         <span className="feed-content-title-user">Kevin Bahurlet</span> a rejoint le groupe

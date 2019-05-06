@@ -26,6 +26,7 @@
                 img {
                     height: 60px;
                     width: 60px;
+                    object-fit: cover;
                 }
             }
 
@@ -47,7 +48,7 @@
                 overflow: hidden;
                 margin-left: 20px;
                 margin-bottom: 10px;
-                background-color: #dbdbdb;
+                background-color: #f5f6f7;
                 cursor: pointer;
                 position: relative;
 
@@ -62,7 +63,7 @@
             }
 
             .create-group-button-container:hover {
-                background-color:#fcfcfc;
+                background-color:$lightGray;
 
                 .create-group-icon {
                     color: $primaryColor;
@@ -90,12 +91,12 @@
             .dialog-new-group-picture-picker-icon-container {
                 height: 100px;
                 width: 100px;
-                border: 2px solid $lightGray;
+                border: 1px solid $lightGray;
                 border-radius: 500px;
                 overflow: hidden;
                 margin-left: 20px;
                 margin-bottom: 10px;
-                background-color: #dbdbdb;
+                background-color: #f5f6f7;
                 cursor: pointer;
                 position: relative;
                 margin: auto;
@@ -111,7 +112,7 @@
             }
 
             .dialog-new-group-picture-picker-icon-container:hover {
-                background-color:#fcfcfc;
+                background-color:$lightGray;
 
                 .dialog-new-group-picture-picker-icon {
                     color: $primaryColor;

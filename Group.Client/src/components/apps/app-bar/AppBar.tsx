@@ -22,23 +22,12 @@ export default class AppBar extends React.Component<IAppBarProps, IAppBarState> 
 
     public render() {
         return (
-            <div className="appbar-container">
-                <div className="appbar-group-logo-container">
-                    <div className="appbar-group-logo-text">
-                        Group
-                    </div>
-                </div>
-                <div className="appbar-search-container">
-                    <div className="appbar-search-edittext-container">
+            <div className="appbar">
+                <div className="appbar-container">
+                    <span className="appbar-group-logo-text">GROUP</span>
+                    <div>
                         <input className="app-bar-search-input" type="text" placeholder="Recherche un groupe, une personne..." />
                         <GoSearch className="app-bar-search-icon" />
-                    </div>
-                </div>
-                <div className="appbar-action-container">
-                    <div className="appbar-action-subcontainer">
-                        <FiSettings className="appbar-action-icon" style={{ fontSize: "20px" }} />
-                        <FiCalendar className="appbar-action-icon" style={{ fontSize: "22px" }} />
-                        <FiMenu className="appbar-action-icon" style={{ fontSize: "30px" }} />
                     </div>
                 </div>
             </div>
