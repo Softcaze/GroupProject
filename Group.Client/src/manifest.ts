@@ -4,7 +4,7 @@ const manifest = {
     "description": "Hello World Webpart test!"
 }
 let defaultManifest = manifest;
-if(typeof(ExternalConfig) !== "undefined"){
+if (typeof (ExternalConfig) !== "undefined") {
     defaultManifest = ExternalConfig;
 }
 export default defaultManifest;

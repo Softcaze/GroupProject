@@ -16,10 +16,12 @@ export class FeedService {
                     "Content-Type": "application/json",
                 },
             } as AxiosRequestConfig).then((result: any) => {
-                if (result)
+                if (result) {
                     resolve(result.data.map(lt => lt.idGroup));
-                else
+                }
+                else {
                     resolve(null);
+                }
             }).catch((err) => {
                 console.log(err);
             });

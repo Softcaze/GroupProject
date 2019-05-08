@@ -127,7 +127,7 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                         <GoPlus className="dialog-new-group-picture-picker-icon" />
                     </div>
                     <div className="dialog-new-group-picture-picker-description" >
-                        <span className="dialog-new-group-picture-picker-description-text">Choisissez une photo de profil pour votre groupe</span>
+                        <span className="dialog-new-group-picture-picker-description-text">{HomeFeedStrings.ChoosePicture}</span>
                     </div>
                 </div>
                 <div className="dialog-group-name-container">
@@ -162,7 +162,7 @@ export default class MyGroups extends React.Component<IMyGroupsProps, IMyGroupsS
                         {friend.firstname} {friend.lastname}
                     </div>
                     <div className="friend-details-additional">
-                        Utilise déjà group
+                        {HomeFeedStrings.UsingGroup}
                     </div>
                 </div>
                 <div className="friend-check">

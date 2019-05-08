@@ -31,7 +31,6 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
 
         // on charge les feed event
         FeedService.getFeedEvents(this.props.webToken, this.props.currentUser.id).then((feedEvent: IFeedEvent[]) => {
-            console.log(feedEvent);
             this.setState({ feedEvent: feedEvent });
         });
     }

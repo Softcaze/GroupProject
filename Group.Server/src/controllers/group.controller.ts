@@ -19,13 +19,28 @@ export let getGroups = async (req: Request, res: Response) => {
     });
 };
 
+/**
+ * Récupèrer un group à l'aide de son id
+ * @param req 
+ * @param res 
+ */
+export let getGroupById = async (req: Request, res: Response) => {
+    let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.getGroupById(req.query.groupId).then((result: any) => {
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    })
+}
+
 
 /**
  * Retourne la liste des membres d'un groupe
  * @param req 
  * @param res 
  */
-export let getMembers = async (req: Request, res: Response) => {
+export let getGroupMembers = async (req: Request, res: Response) => {
     let groupRepo: GroupRepo = new GroupRepo();
 
     groupRepo.getGroupMembers(req.query.groupId).then((result) => {
@@ -36,15 +51,42 @@ export let getMembers = async (req: Request, res: Response) => {
 }
 
 /**
+ * Récupère le nombre de membre d'un groupe
+ */
+export let countGroupMembers = async (req: Request, res: Response) => {
+    let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.countGroupMembers(req.query.groupId).then((result) => {
+        console.log(result);
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+}
+
+/**
  * Retourne la lsite des abonnées d'un groupe
  * @param req 
  * @param res 
  */
-export let getSubscribers = async (req: Request, res: Response) => {
+export let getGroupFollowers = async (req: Request, res: Response) => {
     let groupRepo: GroupRepo = new GroupRepo();
 
-    groupRepo.getGroupSubscribers(req.query.groupId).then((result) => {
+    groupRepo.getGroupFollowers(req.query.groupId).then((result) => {
         res.status(200).send(result.map((item) => item.idUser));
+    }).catch((err) => {
+        res.status(400).send(err);
+    });
+}
+
+/**
+ * Récupère le nombre d'abonnés d'un groupe
+ */
+export let countGroupFollowers = async (req: Request, res: Response) => {
+    let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.countGroupFollowers(req.query.groupId).then((result) => {
+        res.status(200).send(result);
     }).catch((err) => {
         res.status(400).send(err);
     });

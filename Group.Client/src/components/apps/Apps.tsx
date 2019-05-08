@@ -56,7 +56,7 @@ export default class Apps extends React.Component<IAppsProps, IAppsState> {
                             <Router>
                                 <div>
                                     <Switch>
-                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed groupid={props.match.params.groupid} />} />
+                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} />} />
                                         <Route component={() => <Feed webToken={this.state.webToken} facebookId={this.state.facebookId} currentUser={this.state.currentUser} />} /> {/* Page par defaut */}
                                     </Switch>
                                 </div>

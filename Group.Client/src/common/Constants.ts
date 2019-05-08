@@ -23,6 +23,11 @@ export class Constants {
      */
     public static GROUP_API_URL: string = "http://localhost:3001";
 
+    /** 
+     * IMAGE URL
+     */
+    public static GROUP_IMG_URL: string = "./src/images/";
+
     /**
      * Prefix de la rest api
      */

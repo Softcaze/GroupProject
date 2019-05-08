@@ -12,6 +12,8 @@ export const HomeFeedStrings = new LocalizedStrings({
         Cancel: "Cancel",
         Create: "Create",
         InviteFriends: "Invite friends",
+        UsingGroup: "Already uses Group",
+        ChoosePicture: "Choose a profil picture for your group",
     },
     fr: {
         MyGroupsTitle: "MES GROUPES",
@@ -24,5 +26,7 @@ export const HomeFeedStrings = new LocalizedStrings({
         Cancel: "Annuler",
         Create: "Créer",
         InviteFriends: "Inviter des amis",
+        UsingGroup: "Utile déjà Group",
+        ChoosePicture: "Choisissez une photo de profil pour votre groupe",
     }
 });

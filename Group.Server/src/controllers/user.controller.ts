@@ -81,7 +81,8 @@ export let getNews = async (req: Request, res: Response) => {
                     profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-1/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=939e29ba91e41ec1ba7974096033413b&oe=5D65B390",
                     cover_picture: "https://spark.adobe.com/images/landing/examples/hiking-fb-cover.jpg",
                     member_count: 10,
-                    follower_count: 28
+                    follower_count: 28,
+                    score: 500
                 }
             }
         },

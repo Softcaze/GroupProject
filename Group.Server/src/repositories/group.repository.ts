@@ -15,6 +15,12 @@ export class GroupRepo {
         });
     }
 
+    getGroupById(groupId: number) {
+        return getManager().getRepository(groups).find({
+            where: { id: groupId }
+        })
+    }
+
     addGroup(group: groups) {
         return getManager().getRepository(groups).save(group);
     }
@@ -34,15 +40,29 @@ export class GroupRepo {
 
     getGroupMembers(groupId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
-            .leftJoinAndSelect("lt_user_group.id_user", "users")
-            .where("lt_user_group.id_group = :id AND state = 1", { id: groupId })
+            .leftJoinAndSelect("lt_user_group.idUser", "users")
+            .where("lt_user_group.idGroup = :id AND state = 1", { id: groupId })
             .getMany();
     }
 
-    getGroupSubscribers(groupId: number) {
+    countGroupMembers(groupId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
-            .leftJoinAndSelect("lt_user_group.id_group", "users")
-            .where("lt_user_group.id_group = :id AND state = 2", { id: groupId })
+            .select("count(*) as countMembers")
+            .where("lt_user_group.idGroup = :id AND state = 1", { id: groupId })
+            .getRawMany();
+    }
+
+    getGroupFollowers(groupId: number) {
+        return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
+            .leftJoinAndSelect("lt_user_group.idUser", "user")
+            .where("lt_user_group.idGroup = :id AND state = 2", { id: groupId })
             .getMany();
+    }
+
+    countGroupFollowers(groupId: number) {
+        return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
+            .select("count(*) as countFollowers")
+            .where("lt_user_group.idGroup = :id AND state = 2", { id: groupId })
+            .getRawMany();
     }
 }
