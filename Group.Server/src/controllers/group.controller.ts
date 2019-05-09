@@ -92,6 +92,79 @@ export let countGroupFollowers = async (req: Request, res: Response) => {
     });
 }
 
+export let getGroupNews = async (req: Request, res: Response) => {
+    /*let groupRepo: GroupRepo = new GroupRepo();
+
+    groupRepo.getGroupNews(req.query.groupId).then((result) => {
+        res.status(200).send(result);
+    }).catch((err) => {
+        res.status(400).send(err);
+    })*/
+
+    let result = [
+        {
+            position: 1,
+            type: "CREATE_EVENT",
+            value: {
+                events: {
+                    id: 1,
+                    name: "Karting",
+                    creation_date: "2018-10-11 17:32:50",
+                    type: 2,
+                    location: "-0.434402;43.333177",
+                    address: "8 rue de la chiasse",
+                    idGroup: 2,
+                    idAuthor: 3
+                },
+                user_event: [{
+                    idUser: 2,
+                    idEvent: 1,
+                }, {
+                    idUser: 3,
+                    idEvent: 1
+                }
+                ]
+            }
+        },
+        {
+            position: 2,
+            type: "JOIN_GROUP",
+            value: {
+                last_change_date: "2018-10-12 17:49:00",
+                user: {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
+                }
+            }
+        },
+        {
+            position: 3,
+            type: "JOIN_GROUP",
+            value: {
+                last_change_date: "2018-10-12 17:49:00",
+                user: {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
+                }
+            }
+        },
+        {
+            position: 4,
+            type: "JOIN_GROUP",
+            value: {
+                last_change_date: "2018-10-12 17:49:00",
+                user: {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
+                }
+            }
+        },
+
+    ]
+
+    res.status(200).send(result);
+}
+
 /**
  * Récupèrer les groupes de suggestion
  * @param req 

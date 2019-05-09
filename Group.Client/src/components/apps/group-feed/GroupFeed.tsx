@@ -5,6 +5,7 @@ import { IGroup } from "../../../model/IGroup";
 import { Constants } from "../../../common/Constants";
 import GroupMembers from "./group-members/GroupMembers";
 import GroupFollowers from "./group-followers/GroupFollowers";
+import FeedNews from "../home-feed/feed-news/FeedNews";
 import "./GroupFeed.scss";
 import "../../../common/Constants.scss";
 
@@ -90,6 +91,7 @@ export default class GroupFeed extends React.Component<IGroupFeedProps, IGroupFe
                                 <span>{GroupFeedStrings.EventMenuLabel}</span>
                             </div>
                         </div>
+                        <FeedNews webToken={this.props.webToken} currentUser={null} groupId={this.props.groupid} isInsideGroup={true} />
                     </div>
 
                     <div className="right-feed">

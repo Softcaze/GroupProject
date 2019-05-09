@@ -2,12 +2,14 @@ import { IGroup } from "../../../model/IGroup";
 import { IUser } from "../../../model/IUser";
 import { Constants } from "../../../common/Constants";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
+import { IFeedEvent } from "../../../model/IFeedEvent";
 
 const GET_GROUP_BY_ID_API: string = "/getGroupById";
 const GET_GROUP_MEMBERS_API: string = "/getGroupMembers";
 const GET_GROUP_FOLLOWERS_API: string = "/getGroupFollowers";
 const COUNT_GROUP_MEMBERS_API: string = "/countGroupMembers";
 const COUNT_GROUP_FOLLOWERS_API: string = "/countGroupFollowers";
+const GET_GROUP_NEWS: string = "/getGroupNews";
 
 export class GroupFeedService {
     public static getGroupById(webToken: string, groupId: number): Promise<IGroup> {
@@ -91,6 +93,24 @@ export class GroupFeedService {
             } as AxiosRequestConfig).then((result: any) => {
                 if (result) {
                     resolve(result.data[0].countFollowers);
+                } else {
+                    resolve(null);
+                }
+            }).catch((err) => {
+                console.log(err);
+            });
+        });
+    }
+
+    public static getNewsGroup(webToken: string, groupId: number): Promise<IFeedEvent[]> {
+        return new Promise<IFeedEvent[]>((resolve, reject) => {
+            axios.get(`${Constants.GROUP_API_URL}${Constants.API_PREFIX}${Constants.API_ROUTES.GROUP}${GET_GROUP_NEWS}?groupId=${groupId}webToken=${webToken}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            } as AxiosRequestConfig).then((result: AxiosResponse<IFeedEvent[]>) => {
+                if (result) {
+                    resolve(result.data);
                 } else {
                     resolve(null);
                 }

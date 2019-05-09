@@ -2,6 +2,7 @@ import * as React from "react";
 import { HomeFeedStrings } from "../loc/strings";
 import "./FeedNews.scss";
 import { FeedService } from "../Feed.service";
+import { GroupFeedService } from "../../group-feed/GroupFeed.service";
 import { IUser } from "../../../../model/IUser";
 import "react-placeholder/lib/reactPlaceholder.css"; import { IFeedEvent } from "../../../../model/IFeedEvent";
 import { Constants } from "../../../../common/Constants";
@@ -9,8 +10,9 @@ import GroupCard, { GroupCardSize } from "../../common/GroupCard";
 
 export interface IFeedNewsProps {
     webToken: string;
-    facebookId: string;
     currentUser: IUser;
+    groupId: number;
+    isInsideGroup: boolean;
 }
 
 export interface IFeedNewsState {
@@ -30,9 +32,15 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
         };
 
         // on charge les feed event
-        FeedService.getFeedEvents(this.props.webToken, this.props.currentUser.id).then((feedEvent: IFeedEvent[]) => {
-            this.setState({ feedEvent: feedEvent });
-        });
+        if (!this.props.isInsideGroup) {
+            FeedService.getFeedEvents(this.props.webToken, this.props.currentUser.id).then((feedEvent: IFeedEvent[]) => {
+                this.setState({ feedEvent: feedEvent });
+            });
+        } else {
+            GroupFeedService.getNewsGroup(this.props.webToken, this.props.groupId).then((feedEvent: IFeedEvent[]) => {
+                this.setState({ feedEvent: feedEvent });
+            });
+        }
     }
 
     public render() {
@@ -61,6 +69,11 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
     }
 
     public getFeedEventGroupJoined(feedEvent: IFeedEvent): JSX.Element {
+        let containerClassNames: string[] = ["feed-card-container"];
+
+        if (this.props.isInsideGroup) {
+            containerClassNames.push("hidden");
+        }
         return (
             <div className="feed-item-container">
                 <img className="feed-user-picture" src={feedEvent.value.user.profil_picture} alt="Profile picture" />
@@ -70,7 +83,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
                     </div>
                     <div className="feed-content-date">9 aout 2017</div>
 
-                    <div className="feed-card-container">
+                    <div className={containerClassNames.join(" ")}>
                         <GroupCard size={GroupCardSize.Medium} group={feedEvent.value.group} centered={true} />
                     </div>
                 </div>

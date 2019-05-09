@@ -35,7 +35,7 @@ export default class Feed extends React.Component<IFeedProps, IFeedState> {
                     <div className="component-container">
                         <MyGroups webToken={this.props.webToken} facebookId={this.props.facebookId} currentUser={this.props.currentUser} />
                     </div>
-                    <FeedNews webToken={this.props.webToken} facebookId={this.props.facebookId} currentUser={this.props.currentUser} />
+                    <FeedNews webToken={this.props.webToken} currentUser={this.props.currentUser} groupId={null} isInsideGroup={false} />
                 </div>
                 <div className="right-feed">
                     <div className="component-container">
