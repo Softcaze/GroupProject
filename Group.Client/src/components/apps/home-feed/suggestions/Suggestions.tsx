@@ -49,7 +49,7 @@ export default class Suggestions extends React.Component<ISuggestionsProps, ISug
                             </div>
                         );
                     })}
-                    {!this.state.suggestedGroups || this.state.suggestedGroups.length == 0 ? (
+                    {!this.state.suggestedGroups || this.state.suggestedGroups.length === 0 ? (
                         <div className="no-suggestion">{HomeFeedStrings.NoSuggestion}</div>
                     ) : null}
                 </div>

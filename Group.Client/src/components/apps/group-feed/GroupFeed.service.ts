@@ -9,7 +9,7 @@ const GET_GROUP_MEMBERS_API: string = "/getGroupMembers";
 const GET_GROUP_FOLLOWERS_API: string = "/getGroupFollowers";
 const COUNT_GROUP_MEMBERS_API: string = "/countGroupMembers";
 const COUNT_GROUP_FOLLOWERS_API: string = "/countGroupFollowers";
-const GET_GROUP_NEWS: string = "/getGroupNews";
+const GET_FEED_EVENTS_BY_GROUP: string = "/getFeedEventsByGroup";
 
 export class GroupFeedService {
     public static getGroupById(webToken: string, groupId: number): Promise<IGroup> {
@@ -102,9 +102,9 @@ export class GroupFeedService {
         });
     }
 
-    public static getNewsGroup(webToken: string, groupId: number): Promise<IFeedEvent[]> {
+    public static getFeedEventsByGroup(webToken: string, groupId: number): Promise<IFeedEvent[]> {
         return new Promise<IFeedEvent[]>((resolve, reject) => {
-            axios.get(`${Constants.GROUP_API_URL}${Constants.API_PREFIX}${Constants.API_ROUTES.GROUP}${GET_GROUP_NEWS}?groupId=${groupId}webToken=${webToken}`, {
+            axios.get(`${Constants.GROUP_API_URL}${Constants.API_PREFIX}${Constants.API_ROUTES.GROUP}${GET_FEED_EVENTS_BY_GROUP}?groupId=${groupId}&webToken=${webToken}`, {
                 headers: {
                     "Content-Type": "application/json",
                 },

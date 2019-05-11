@@ -71,7 +71,8 @@ export let getNews = async (req: Request, res: Response) => {
                 last_change_date: "2018-10-12 17:49:00",
                 user: {
                     id: "3",
-                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs"
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs",
+                    name: "Guillaume Cazenave"
                 },
                 group: {
                     id: "3",
@@ -86,33 +87,37 @@ export let getNews = async (req: Request, res: Response) => {
                 }
             }
         },
+
         {
-            position: 3,
-            type: "CREATE_ALBUM",
+            position: 4,
+            type: "ADD_PHOTO",
             value: {
-                album: {
+                last_change_date: "2018-10-12 17:49:00",
+                user: {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs",
+                    name: "Guillaume Cazenave"
+                },
+                photo: {
                     id: 1,
-                    name: "Karting",
-                    idGroup: 2,
-                    photo_count: 2,
-                    photos: [{
-                        url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
-                        creation_date: "2018-10-12 15:40:20",
-                        id_author: "3",
-                        id_album: "1",
-                        comment_count: 5,
-                        like_count: 2
-                    }, {
-                        url: "http://localhost:3001/file/photos/1537480103860-66216714095112314151319.jpg",
-                        creation_date: "2018-10-12 15:40:20",
-                        id_author: "3",
-                        comment_count: 5,
-                        like_count: 2
-                    }
-                    ]
+                    url: "https://www.ot-batzsurmer.fr/medias/images/prestataires/multitailles/800x600_01-racing-kart-jade-1327042.jpg",
+                    creation_date: "2018-10-12 17:49:00",
+                    id_abldum: 2
+                },
+                group: {
+                    id: "3",
+                    name: "Les Copains",
+                    creation_date: "2018-09-06 08:19:25",
+                    type: 1,
+                    profil_picture: "https://www.ouest-france.fr/sites/default/files/styles/image-640x360/public/2015/06/21/les-minions-prets-conquerir-la-france.jpg?itok=OSQCCDZM",
+                    cover_picture: "https://spark.adobe.com/images/landing/examples/hiking-fb-cover.jpg",
+                    member_count: 10,
+                    follower_count: 28,
+                    score: 500
                 }
             }
-        }
+        },
+
     ]
 
     res.status(200).send(result);

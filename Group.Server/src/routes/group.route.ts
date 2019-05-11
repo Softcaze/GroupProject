@@ -13,6 +13,6 @@ router.get('/countGroupMembers', GroupController.countGroupMembers);
 router.get('/countGroupFollowers', GroupController.countGroupFollowers);
 router.get('/getGroupFollowers', GroupController.getGroupFollowers);
 router.get('/getGroupById', GroupController.getGroupById);
-router.get('/getGroupNews', GroupController.getGroupNews);
+router.get('/getFeedEventsByGroup', GroupController.getFeedEventsByGroup);
 
 export default router;

@@ -177,6 +177,7 @@
                     display: flex;
                     margin-top: 10px;
                     margin-bottom: 10px;
+
                     background-color: @white;
 
                     .photo-title {
@@ -187,6 +188,91 @@
                         &:hover {
                             cursor: pointer;
                             text-decoration: underline;
+                        }
+                    }
+
+                    .add-photo-content {
+                        margin-top: 20px;
+                        margin-left: -71px;
+
+                        img {
+                            width: 530px;
+                            height: 530px;
+                            object-fit: cover;                           
+                        } 
+                    }
+
+                    .container-count {
+                        width: 530px;
+                        margin-left: -71px;
+                        height: 12px;
+                    }
+
+                    .count-feed {
+                        float: right;
+                        padding-right: 10px;
+                        img {
+                            width: 15px;
+                            height: 15px;
+                        }
+
+                        span {
+                            font-size: 11px;
+                        }
+                    }
+
+                    .feed-line {
+                        margin-top: 15px;
+                        margin-bottom: 1px;
+                        border: 0;
+                        border-top: 1px solid rgba(0, 0, 0, 0.1);
+                        margin-left: -39px;
+                        margin-right: 34px;
+                    }
+
+                    .ombre {
+                        margin-top: -60px;
+                        background-color: #000;
+                        opacity: 0.8;
+                        height: 60px;
+                        width: 530px;
+                    }
+
+                    .container-bottom-bar {
+                        width: 530px;
+                        margin-left: -71px;
+                    }
+
+                    .bottom-bar {
+                        display: flex;
+                        margin-left: -40px;
+                        float: right;
+                        padding: 10px;
+                        padding-top: 2px;
+                        padding-bottom: 0px;
+
+                        .likes {
+                            margin-right: 25px;
+
+                            &.actif {
+                                color: #d91e18;
+                                font-weight: 600;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        .comments {
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
+
+                        img {
+                            width: 20px;
+                            height: 20px;
                         }
                     }
 

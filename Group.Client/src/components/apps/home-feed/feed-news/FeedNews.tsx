@@ -1,5 +1,5 @@
 import * as React from "react";
-import { HomeFeedStrings } from "../loc/strings";
+import { FeedNewsStrings } from "./loc/strings";
 import "./FeedNews.scss";
 import { FeedService } from "../Feed.service";
 import { GroupFeedService } from "../../group-feed/GroupFeed.service";
@@ -7,6 +7,11 @@ import { IUser } from "../../../../model/IUser";
 import "react-placeholder/lib/reactPlaceholder.css"; import { IFeedEvent } from "../../../../model/IFeedEvent";
 import { Constants } from "../../../../common/Constants";
 import GroupCard, { GroupCardSize } from "../../common/GroupCard";
+
+let LikeCountImg = require("./images/like_count.svg");
+let LikeEnabledImg = require("./images/like_enabled.svg");
+let LikeDisabledImg = require("./images/like_disabled.svg");
+let CommentImg = require("./images/comment.svg");
 
 export interface IFeedNewsProps {
     webToken: string;
@@ -37,7 +42,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
                 this.setState({ feedEvent: feedEvent });
             });
         } else {
-            GroupFeedService.getNewsGroup(this.props.webToken, this.props.groupId).then((feedEvent: IFeedEvent[]) => {
+            GroupFeedService.getFeedEventsByGroup(this.props.webToken, this.props.groupId).then((feedEvent: IFeedEvent[]) => {
                 this.setState({ feedEvent: feedEvent });
             });
         }
@@ -50,6 +55,24 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
                     return (
                         <div className="component-container" key={"key_" + Math.random()}>
                             {this.getFeedEvent(feedEvent)}
+                            <div className="count-like-comments">
+                                <span className="like-count">1</span>
+                                <img className="like-img" src={LikeCountImg} />
+                                <span className="comment-count">3</span><span className="comment-label">{FeedNewsStrings.CommentLabel}</span>
+                            </div>
+                            <div className="hr-line"></div>
+                            <div className="container-interaction">
+                                <div className="subcontainer-interaction">
+                                    <div className="like-button">
+                                        <img src={LikeDisabledImg} />
+                                        <span>{FeedNewsStrings.LikeButton}</span>
+                                    </div>
+                                    <div className="comment-button">
+                                        <img src={CommentImg} />
+                                        <span>{FeedNewsStrings.CommentButton}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     );
                 })}
@@ -63,8 +86,11 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
                 return this.getFeedEventGroupJoined(feedEvent);
             case Constants.FeedEventType.CREATE_EVENT:
                 return this.getFeedEventGroupEvent(feedEvent);
-            case Constants.FeedEventType.CREATE_ALBUM:
-                return this.getFeedEventGroupAlbum(feedEvent);
+            case Constants.FeedEventType.LEAVE_GROUP:
+                return this.getFeedEventGroupLeaved(feedEvent);
+            case Constants.FeedEventType.ADD_PHOTO:
+                return this.getFeedEventAddPhoto(feedEvent);
+            default:
         }
     }
 
@@ -79,13 +105,47 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
                 <img className="feed-user-picture" src={feedEvent.value.user.profil_picture} alt="Profile picture" />
                 <div className="feed-content">
                     <div className="feed-content-title">
-                        <span className="feed-content-title-user">Kevin Bahurlet</span> a rejoint le groupe
+                        <span className="feed-content-title-user">{feedEvent.value.user.name}</span>{FeedNewsStrings.JoinedGroup}
                     </div>
                     <div className="feed-content-date">9 aout 2017</div>
 
                     <div className={containerClassNames.join(" ")}>
                         <GroupCard size={GroupCardSize.Medium} group={feedEvent.value.group} centered={true} />
                     </div>
+                </div>
+            </div>
+        );
+    }
+
+    public getFeedEventGroupLeaved(feedEvent: IFeedEvent): JSX.Element {
+        return (
+            <div className="feed-item-container">
+                <img className="feed-user-picture" src={feedEvent.value.user.profil_picture} alt="Profile picture" />
+                <div className="feed-content">
+                    <div className="feed-content-title">
+                        <span className="feed-content-title-user">{feedEvent.value.user.name}</span>{FeedNewsStrings.LeavedGroup}
+                    </div>
+                    <div className="feed-content-date">9 aout 2017</div>
+                </div>
+            </div>
+        );
+    }
+
+    public getFeedEventAddPhoto(feedEvent: IFeedEvent): JSX.Element {
+        return (
+            <div>
+                <div className="feed-item-container">
+                    <img className="feed-user-picture" src={feedEvent.value.group.profil_picture} alt="Profile picture" />
+                    <div className="feed-content">
+                        <div className="feed-content-title">
+                            <span className="feed-content-title-user">{feedEvent.value.group.name}</span><span>{FeedNewsStrings.AddPhoto}</span>
+                        </div>
+                        <div className="feed-content-date">9 aout 2017</div>
+                    </div>
+                </div>
+                <div className="photo-container">
+                    <img src={feedEvent.value.photo.url} />
+
                 </div>
             </div>
         );

@@ -57,8 +57,14 @@ export class Constants {
      */
     public static FeedEventType = {
         GROUP_JOINED: "JOIN_GROUP",
-        GROUP_EVENT: 2,
-        CREATE_ALBUM: "CREATE_ALBUM",
-        CREATE_EVENT: "CREATE_EVENT"
+        LEAVE_GROUP: "LEAVE_GROUP",
+        CREATE_EVENT: "CREATE_EVENT",
+        UPDATE_EVENT: "UPDATE_EVENT",
+        DID_EVENT: "DID_EVENT",
+        ADD_PHOTO: "ADD_PHOTO",
+        COMMENT: "COMMENT",
+        LIKE: "LIKE",
+        UPDATE_GROUP: "UPDATE_GROUP",
+        SPONSORED_PUB: "SPONSORED_PUB",
     };
 }
