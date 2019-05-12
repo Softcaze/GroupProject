@@ -2,6 +2,7 @@ import * as React from "react";
 import { GroupFeedService } from "../../group-feed/GroupFeed.service";
 import { GroupFeedStrings } from "../loc/strings";
 import { IUser } from "../../../../model/IUser";
+import { Constants } from "../../../../common/Constants";
 import "./GroupMembers.scss";
 
 let MemberImg = require("./images/multiple_users_participants.png");
@@ -29,7 +30,7 @@ export default class GroupMembers extends React.Component<IGroupMembersProps, IG
         };
 
         // on charge les membres d'un groupe
-        GroupFeedService.getGroupMembers(this.props.webToken, this.props.groupId).then((users: IUser[]) => {
+        GroupFeedService.getGroupMembers(this.props.webToken, this.props.groupId, Constants.LimitPeopleDisplayed.PREVIEW).then((users: IUser[]) => {
             this.setState({ users: users });
         });
 

@@ -67,4 +67,17 @@ export class Constants {
         UPDATE_GROUP: "UPDATE_GROUP",
         SPONSORED_PUB: "SPONSORED_PUB",
     };
+
+    public static LocationType = {
+        FOLLOWER: "FOLLOWER",
+        MEMBER: "MEMBER",
+        JOURNAL: "JOURNAL",
+        PHOTO: "PHOTO",
+        EVENT: "EVENT",
+    };
+
+    public static LimitPeopleDisplayed = {
+        FULL: 100,
+        PREVIEW: 18,
+    }
 }

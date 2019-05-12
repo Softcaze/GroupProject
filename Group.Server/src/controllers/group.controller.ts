@@ -104,8 +104,20 @@ export let getFeedEventsByGroup = async (req: Request, res: Response) => {
     let result = [
         {
             position: 1,
-            type: "CREATE_EVENT",
+            type: "DID_EVENT",
             value: {
+                count_participant: 2,
+                group: {
+                    id: "3",
+                    name: "Les Copains",
+                    creation_date: "2018-09-06 08:19:25",
+                    type: 1,
+                    profil_picture: "https://www.ouest-france.fr/sites/default/files/styles/image-640x360/public/2015/06/21/les-minions-prets-conquerir-la-france.jpg?itok=OSQCCDZM",
+                    cover_picture: "https://spark.adobe.com/images/landing/examples/hiking-fb-cover.jpg",
+                    member_count: 10,
+                    follower_count: 28,
+                    score: 500
+                },
                 events: {
                     id: 1,
                     name: "Karting",
@@ -117,11 +129,13 @@ export let getFeedEventsByGroup = async (req: Request, res: Response) => {
                     idAuthor: 3
                 },
                 user_event: [{
-                    idUser: 2,
-                    idEvent: 1,
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs",
+                    name: "Guillaume Cazenave"
                 }, {
-                    idUser: 3,
-                    idEvent: 1
+                    id: "3",
+                    profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-9/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=1cf915a40872b84361ab269012d46bdc&oe=5D673920",
+                    name: "Nicolas Cazenave"
                 }
                 ]
             }
@@ -177,6 +191,30 @@ export let getFeedEventsByGroup = async (req: Request, res: Response) => {
                     follower_count: 28,
                     score: 500
                 }
+            }
+        },
+        {
+            position: 1,
+            type: "CREATE_EVENT",
+            value: {
+                events: {
+                    id: 1,
+                    name: "Karting",
+                    creation_date: "2018-10-11 17:32:50",
+                    type: 2,
+                    location: "-0.434402;43.333177",
+                    address: "8 rue de la chiasse",
+                    idGroup: 2,
+                    idAuthor: 3
+                },
+                user_event: [{
+                    idUser: 2,
+                    idEvent: 1,
+                }, {
+                    idUser: 3,
+                    idEvent: 1
+                }
+                ]
             }
         },
 

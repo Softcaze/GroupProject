@@ -3,6 +3,7 @@ import { GroupFeedService } from "../../group-feed/GroupFeed.service";
 import { GroupFeedStrings } from "../loc/strings";
 import { IUser } from "../../../../model/IUser";
 import "./GroupFollowers.scss";
+import { Constants } from "../../../../common/Constants";
 
 let FollowerImg = require("./images/multiple_users_abonnes.png");
 
@@ -29,7 +30,7 @@ export default class GroupFollowers extends React.Component<IGroupFollowersProps
         };
 
         // on charge les followers d'un groupe
-        GroupFeedService.getGroupFollowers(this.props.webToken, this.props.groupId).then((users: IUser[]) => {
+        GroupFeedService.getGroupFollowers(this.props.webToken, this.props.groupId, Constants.LimitPeopleDisplayed.PREVIEW).then((users: IUser[]) => {
             this.setState({ users: users });
         });
 

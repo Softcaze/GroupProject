@@ -2,6 +2,7 @@ import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Feed from "./home-feed/Feed";
 import GroupFeed from "./group-feed/GroupFeed";
+import GroupMembers from "./group-feed/group-members/GroupMembers";
 import { Constants } from "../../common/Constants";
 import Login from "./login/Login";
 import { SecurityService } from "../../common/SecurityService";
@@ -56,7 +57,11 @@ export default class Apps extends React.Component<IAppsProps, IAppsState> {
                             <Router>
                                 <div>
                                     <Switch>
-                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} />} />
+                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.JOURNAL} />} />
+                                        <Route exact={true} path="/group/:groupid/photo" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.PHOTO} />} />
+                                        <Route exact={true} path="/group/:groupid/event" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.EVENT} />} />
+                                        <Route exact={true} path="/group/:groupid/member" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.MEMBER} />} />
+                                        <Route exact={true} path="/group/:groupid/follower" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.FOLLOWER} />} />
                                         <Route component={() => <Feed webToken={this.state.webToken} facebookId={this.state.facebookId} currentUser={this.state.currentUser} />} /> {/* Page par defaut */}
                                     </Switch>
                                 </div>

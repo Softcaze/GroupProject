@@ -12,11 +12,13 @@ let LikeCountImg = require("./images/like_count.svg");
 let LikeEnabledImg = require("./images/like_enabled.svg");
 let LikeDisabledImg = require("./images/like_disabled.svg");
 let CommentImg = require("./images/comment.svg");
+let DateImg = require("./images/date_ico.png");
+let MapImg = require("./images/map_ico.png");
 
 export interface IFeedNewsProps {
     webToken: string;
     currentUser: IUser;
-    groupId: number;
+    groupId: string;
     isInsideGroup: boolean;
 }
 
@@ -90,6 +92,8 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
                 return this.getFeedEventGroupLeaved(feedEvent);
             case Constants.FeedEventType.ADD_PHOTO:
                 return this.getFeedEventAddPhoto(feedEvent);
+            case Constants.FeedEventType.DID_EVENT:
+                return this.getFeedEventDidEvent(feedEvent);
             default:
         }
     }
@@ -101,7 +105,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
             containerClassNames.push("hidden");
         }
         return (
-            <div className="feed-item-container">
+            <div className="feed-event-group-joined feed-item-container">
                 <img className="feed-user-picture" src={feedEvent.value.user.profil_picture} alt="Profile picture" />
                 <div className="feed-content">
                     <div className="feed-content-title">
@@ -117,9 +121,54 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
         );
     }
 
+    public getFeedEventDidEvent(feedEvent: IFeedEvent): JSX.Element {
+        return (
+            <div className="feed-event-did-event feed-item-container">
+                <img className="feed-user-picture" src={feedEvent.value.group.profil_picture} alt="Profile picture" />
+                <div className="feed-content">
+                    <div className="feed-content-title">
+                        <span className="feed-content-title-user">{feedEvent.value.group.name}</span>{FeedNewsStrings.DidEvent}
+                    </div>
+                    <div className="feed-content-date">9 aout 2017</div>
+
+                    <div className="event-content">
+                        <div className="event-content-title">
+                            <span>{feedEvent.value.events.name}</span>
+                        </div>
+                        <div className="event-content-two-columns">
+                            <div className="event-content-information">
+                                <span className="information-title">{FeedNewsStrings.InformationEventLabel}</span>
+                                <div className="information-date">
+                                    <img src={DateImg} />
+                                    <span>{feedEvent.value.events.creation_date}</span>
+                                </div>
+                                <div className="information-map">
+                                    <img src={MapImg} />
+                                    <span>{feedEvent.value.events.address}</span>
+                                </div>
+                            </div>
+                            <div className="event-content-participant">
+                                <span className="information-title">{FeedNewsStrings.ParticipantEventLabel} ({feedEvent.value.count_participant})</span><br />
+
+                                {feedEvent.value.user_event.map((user) => {
+                                    return (
+                                        <div className="event-content-user" key={"key_" + user.id}>
+                                            <img src={user.profil_picture} /><br />
+                                            <span>{user.name}</span>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     public getFeedEventGroupLeaved(feedEvent: IFeedEvent): JSX.Element {
         return (
-            <div className="feed-item-container">
+            <div className="feed-event-group-leaved feed-item-container">
                 <img className="feed-user-picture" src={feedEvent.value.user.profil_picture} alt="Profile picture" />
                 <div className="feed-content">
                     <div className="feed-content-title">
@@ -133,7 +182,7 @@ export default class FeedNews extends React.Component<IFeedNewsProps, IFeedNewsS
 
     public getFeedEventAddPhoto(feedEvent: IFeedEvent): JSX.Element {
         return (
-            <div>
+            <div className="feed-event-photo-added ">
                 <div className="feed-item-container">
                     <img className="feed-user-picture" src={feedEvent.value.group.profil_picture} alt="Profile picture" />
                     <div className="feed-content">

@@ -3,8 +3,10 @@ import { GroupFeedService } from "../group-feed/GroupFeed.service";
 import { GroupFeedStrings } from "./loc/strings";
 import { IGroup } from "../../../model/IGroup";
 import { Constants } from "../../../common/Constants";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import GroupMembers from "./group-members/GroupMembers";
 import GroupFollowers from "./group-followers/GroupFollowers";
+import ListGroupPeople from "./list-group-people/ListGroupPeople";
 import FeedNews from "../home-feed/feed-news/FeedNews";
 import "./GroupFeed.scss";
 import "../../../common/Constants.scss";
@@ -15,8 +17,9 @@ let NewsMenuImg = require("./images/menu_group_news.png");
 let PhotoMenuImg = require("./images/menu_group_photos.png");
 
 export interface IGroupFeedProps {
-    groupid: number;
+    groupid: string;
     webToken: string;
+    location: string;
 }
 
 export interface IGroupFeedState {
@@ -35,7 +38,7 @@ export default class GroupFeed extends React.Component<IGroupFeedProps, IGroupFe
             group: null
         };
 
-        // on charge les groupes de l'utilisateur
+        // on récupère les informations du groupe
         GroupFeedService.getGroupById(this.props.webToken, this.props.groupid).then((resultGroup) => {
             this.setState({ group: resultGroup });
         });
@@ -91,7 +94,20 @@ export default class GroupFeed extends React.Component<IGroupFeedProps, IGroupFe
                                 <span>{GroupFeedStrings.EventMenuLabel}</span>
                             </div>
                         </div>
-                        <FeedNews webToken={this.props.webToken} currentUser={null} groupId={this.props.groupid} isInsideGroup={true} />
+                        {this.props.location === Constants.LocationType.JOURNAL ? (
+                            <FeedNews webToken={this.props.webToken} currentUser={null} groupId={this.props.groupid} isInsideGroup={true} />
+                        ) : this.props.location === Constants.LocationType.MEMBER ? (
+                            <ListGroupPeople webToken={this.props.webToken} groupId={this.props.groupid} location={Constants.LocationType.MEMBER} />
+                        ) : this.props.location === Constants.LocationType.FOLLOWER ? (
+                            <ListGroupPeople webToken={this.props.webToken} groupId={this.props.groupid} location={Constants.LocationType.FOLLOWER} />
+                        ) : this.props.location === Constants.LocationType.PHOTO ? (
+                            <div>PHOTO</div>
+                        ) : this.props.location === Constants.LocationType.EVENT ? (
+                            <div>EVENT</div>
+                        ) : (
+                                                <div></div>
+                                            )}
+
                     </div>
 
                     <div className="right-feed">
