@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GroupFeedService } from "../../group-feed/GroupFeed.service";
+import { GroupFeedService } from "../GroupFeed.service";
 import { GroupFeedStrings } from "../loc/strings";
 import { IUser } from "../../../../model/IUser";
 import { Constants } from "../../../../common/Constants";

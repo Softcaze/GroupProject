@@ -9,10 +9,11 @@ export const GroupFeedStrings = new LocalizedStrings({
         PhotosMenuLabel: "Photos",
         EventMenuLabel: "Events",
         InvitePeople: "Invite people",
+        CreateEvent: "Create an event",
         FollowButton: "Follow",
         JoinButton: "Join",
-        ListMembersLabel: "Members",
-        ListFollowersLabel: "Followers",
+        ListMembersLabel: "MEMBERS",
+        ListFollowersLabel: "FOLLOWERS",
     },
     fr: {
         ScoreLabel: "SCORE",
@@ -22,9 +23,10 @@ export const GroupFeedStrings = new LocalizedStrings({
         PhotosMenuLabel: "Photos",
         EventMenuLabel: "Evenements",
         InvitePeople: "Invitez des personnes",
+        CreateEvent: "Créer un évenement",
         FollowButton: "Suivre",
         JoinButton: "Rejoindre",
-        ListMembersLabel: "Membres",
-        ListFollowersLabel: "Abonnés",
+        ListMembersLabel: "MEMBRES",
+        ListFollowersLabel: "ABONNES",
     }
 });

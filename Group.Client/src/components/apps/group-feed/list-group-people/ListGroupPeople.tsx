@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GroupFeedService } from "./../GroupFeed.service";
+import { GroupFeedService } from "../GroupFeed.service";
 import { IUser } from "../../../../model/IUser";
 import { Constants } from "../../../../common/Constants";
 import { ListGroupPeopleStrings } from "./loc/strings";
@@ -13,6 +13,7 @@ export interface IListGroupPeopleProps {
 
 export interface IListGroupPeopleState {
     users: IUser[];
+    countPeople: number;
 }
 
 export default class ListGroupPeople extends React.Component<IListGroupPeopleProps, IListGroupPeopleState> {
@@ -21,29 +22,36 @@ export default class ListGroupPeople extends React.Component<IListGroupPeoplePro
 
         this.state = {
             users: null,
+            countPeople: null,
         };
 
         if (this.props.location === Constants.LocationType.MEMBER) {
             GroupFeedService.getGroupMembers(this.props.webToken, this.props.groupId, Constants.LimitPeopleDisplayed.FULL).then((users: IUser[]) => {
                 this.setState({ users: users });
             });
+            GroupFeedService.countGroupMembers(this.props.webToken, this.props.groupId).then((result: number) => {
+                this.setState({ countPeople: result });
+            });
         } else if (this.props.location === Constants.LocationType.FOLLOWER) {
             GroupFeedService.getGroupFollowers(this.props.webToken, this.props.groupId, Constants.LimitPeopleDisplayed.FULL).then((users: IUser[]) => {
                 this.setState({ users: users });
+            });
+            GroupFeedService.countGroupFollowers(this.props.webToken, this.props.groupId).then((result: number) => {
+                this.setState({ countPeople: result });
             });
         }
     }
 
     public render() {
-        if (this.state.users != null) {
+        if (this.state.users != null && this.state.countPeople != null) {
             return (
                 <div className="list-group-people-container">
                     <div className="component-container">
                         <div className="list-group-people-title">
                             {this.props.location === Constants.LocationType.MEMBER ? (
-                                <span>{ListGroupPeopleStrings.MembersLabel}</span>
+                                <span>{ListGroupPeopleStrings.MembersLabel} ({this.state.countPeople})</span>
                             ) : this.props.location === Constants.LocationType.FOLLOWER ? (
-                                <span>{ListGroupPeopleStrings.FollowersLabel}</span>
+                                <span>{ListGroupPeopleStrings.FollowersLabel} ({this.state.countPeople})</span>
                             ) : (
                                         <div></div>
                                     )}

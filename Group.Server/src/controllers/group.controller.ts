@@ -136,6 +136,33 @@ export let getFeedEventsByGroup = async (req: Request, res: Response) => {
                     id: "3",
                     profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-9/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=1cf915a40872b84361ab269012d46bdc&oe=5D673920",
                     name: "Nicolas Cazenave"
+                },
+                {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs",
+                    name: "Guillaume Cazenave"
+                }, {
+                    id: "3",
+                    profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-9/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=1cf915a40872b84361ab269012d46bdc&oe=5D673920",
+                    name: "Nicolas Cazenave"
+                },
+                {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs",
+                    name: "Guillaume Cazenave"
+                }, {
+                    id: "3",
+                    profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-9/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=1cf915a40872b84361ab269012d46bdc&oe=5D673920",
+                    name: "Nicolas Cazenave"
+                },
+                {
+                    id: "3",
+                    profil_picture: "https://media.licdn.com/dms/image/C5603AQF819ZsXXnvqg/profile-displayphoto-shrink_200_200/0?e=1562198400&v=beta&t=m1fLXUD2rPAb9z6Pe8FBN0veAqEt_ilPblc0G8oNxIs",
+                    name: "Guillaume Cazenave"
+                }, {
+                    id: "3",
+                    profil_picture: "https://scontent.fcdg1-1.fna.fbcdn.net/v/t1.0-9/27657225_10213287695540003_4813781958765842156_n.jpg?_nc_cat=105&_nc_ht=scontent.fcdg1-1.fna&oh=1cf915a40872b84361ab269012d46bdc&oe=5D673920",
+                    name: "Nicolas Cazenave"
                 }
                 ]
             }

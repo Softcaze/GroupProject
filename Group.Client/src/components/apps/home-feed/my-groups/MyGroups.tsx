@@ -5,7 +5,7 @@ import { IGroup } from "../../../../model/IGroup";
 import { GoPlus } from "react-icons/go";
 import { FeedService } from "../Feed.service";
 import { IUser } from "../../../../model/IUser";
-import ReactPlaceholder from "react-placeholder";
+import ReactPlaceholder from "react-placeholder/lib";
 import "react-placeholder/lib/reactPlaceholder.css";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle"

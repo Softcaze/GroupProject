@@ -10,6 +10,7 @@ import user from './routes/user.route';
 import auth from './routes/auth.route';
 import group from './routes/group.route';
 import file from './routes/file.route';
+import event from './routes/event.route';
 
 import * as ejs from 'ejs';
 import "reflect-metadata";
@@ -21,6 +22,7 @@ import { verifyJWT_MW } from './common/middleware';
 import { PasspordStrategies } from './common/passport.config';
 
 const app: express.Express = express();
+const URL_API: string = "/_api/";
 
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', ejs.renderFile);
@@ -63,13 +65,15 @@ PasspordStrategies.initialize();
 // API
 //app.use('*', verifyJWT_MW);
 
-app.use('/_api/user', user);
+app.use(URL_API + 'user', user);
 
-app.use('/_api/auth', auth);
+app.use(URL_API + 'auth', auth);
 
-app.use('/_api/group', group);
+app.use(URL_API + 'group', group);
 
-app.use('/_api/file', file);
+app.use(URL_API + 'event', event);
+
+app.use(URL_API + 'file', file);
 
 //catch 404 and forward to error handler
 app.use((req, res, next) => {

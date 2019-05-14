@@ -57,11 +57,11 @@ export default class Apps extends React.Component<IAppsProps, IAppsState> {
                             <Router>
                                 <div>
                                     <Switch>
-                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.JOURNAL} />} />
-                                        <Route exact={true} path="/group/:groupid/photo" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.PHOTO} />} />
-                                        <Route exact={true} path="/group/:groupid/event" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.EVENT} />} />
-                                        <Route exact={true} path="/group/:groupid/member" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.MEMBER} />} />
-                                        <Route exact={true} path="/group/:groupid/follower" component={(props) => <GroupFeed webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.FOLLOWER} />} />
+                                        <Route exact={true} path="/group/:groupid" component={(props) => <GroupFeed eventid={null} webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.JOURNAL} />} />
+                                        <Route exact={true} path="/group/:groupid/photo" component={(props) => <GroupFeed eventid={null} webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.PHOTO} />} />
+                                        <Route exact={true} path="/group/:groupid/event/:eventid" component={(props) => <GroupFeed eventid={props.match.params.eventid} webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.EVENT} />} />
+                                        <Route exact={true} path="/group/:groupid/member" component={(props) => <GroupFeed eventid={null} webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.MEMBER} />} />
+                                        <Route exact={true} path="/group/:groupid/follower" component={(props) => <GroupFeed eventid={null} webToken={this.state.webToken} groupid={props.match.params.groupid} location={Constants.LocationType.FOLLOWER} />} />
                                         <Route component={() => <Feed webToken={this.state.webToken} facebookId={this.state.facebookId} currentUser={this.state.currentUser} />} /> {/* Page par defaut */}
                                     </Switch>
                                 </div>

@@ -1,0 +1,15 @@
+@import "../../../../common/Constants.scss";
+
+.list-group-event-preview-container {
+    .list-group-event-preview-title {
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .hr-line {
+        height: 1px;
+        background-color: #dddfe2;
+        margin: 4px 2px;
+    }
+}

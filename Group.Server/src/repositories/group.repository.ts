@@ -2,6 +2,7 @@ import { groups } from "../entities/groups";
 import { users } from "../entities/users";
 import { lt_user_group } from "../entities/lt_user_group";
 import { getManager } from "typeorm";
+import { Constants } from "../common/Constants";
 import { NOTFOUND } from "dns";
 
 /**
@@ -10,7 +11,7 @@ import { NOTFOUND } from "dns";
 export class GroupRepo {
     getGroups(userId: number) {
         return getManager().getRepository(lt_user_group).find({
-            where: { idUser: userId, state: 1 },
+            where: { idUser: userId, state: Constants.GroupState.MEMBER },
             relations: ["idGroup"]
         });
     }
@@ -41,28 +42,28 @@ export class GroupRepo {
     getGroupMembers(groupId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
             .leftJoinAndSelect("lt_user_group.idUser", "users")
-            .where("lt_user_group.idGroup = :id AND state = 1", { id: groupId })
+            .where("lt_user_group.idGroup = :id AND state = " + Constants.GroupState.MEMBER, { id: groupId })
             .getMany();
     }
 
     countGroupMembers(groupId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
             .select("count(*) as countMembers")
-            .where("lt_user_group.idGroup = :id AND state = 1", { id: groupId })
+            .where("lt_user_group.idGroup = :id AND state = " + Constants.GroupState.MEMBER, { id: groupId })
             .getRawMany();
     }
 
     getGroupFollowers(groupId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
             .leftJoinAndSelect("lt_user_group.idUser", "user")
-            .where("lt_user_group.idGroup = :id AND state = 2", { id: groupId })
+            .where("lt_user_group.idGroup = :id AND state = " + Constants.GroupState.FOLLOWER, { id: groupId })
             .getMany();
     }
 
     countGroupFollowers(groupId: number) {
         return getManager().getRepository(lt_user_group).createQueryBuilder("lt_user_group")
             .select("count(*) as countFollowers")
-            .where("lt_user_group.idGroup = :id AND state = 2", { id: groupId })
+            .where("lt_user_group.idGroup = :id AND state = " + Constants.GroupState.FOLLOWER, { id: groupId })
             .getRawMany();
     }
 }

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GroupFeedService } from "../group-feed/GroupFeed.service";
+import { GroupFeedService } from "./GroupFeed.service";
 import { GroupFeedStrings } from "./loc/strings";
 import { IGroup } from "../../../model/IGroup";
 import { Constants } from "../../../common/Constants";
@@ -8,6 +8,9 @@ import GroupMembers from "./group-members/GroupMembers";
 import GroupFollowers from "./group-followers/GroupFollowers";
 import ListGroupPeople from "./list-group-people/ListGroupPeople";
 import FeedNews from "../home-feed/feed-news/FeedNews";
+import GroupEvent from "./group-event/GroupEvent";
+import GroupPhoto from "./group-photo/GroupPhoto";
+import ListGroupEventPreview from "../group-feed/list-group-event-preview/ListGroupEventPreview";
 import "./GroupFeed.scss";
 import "../../../common/Constants.scss";
 
@@ -20,6 +23,7 @@ export interface IGroupFeedProps {
     groupid: string;
     webToken: string;
     location: string;
+    eventid: string;
 }
 
 export interface IGroupFeedState {
@@ -101,27 +105,41 @@ export default class GroupFeed extends React.Component<IGroupFeedProps, IGroupFe
                         ) : this.props.location === Constants.LocationType.FOLLOWER ? (
                             <ListGroupPeople webToken={this.props.webToken} groupId={this.props.groupid} location={Constants.LocationType.FOLLOWER} />
                         ) : this.props.location === Constants.LocationType.PHOTO ? (
-                            <div>PHOTO</div>
+                            <GroupPhoto webToken={this.props.webToken} groupId={this.props.groupid} location={Constants.LocationType.PHOTO} />
                         ) : this.props.location === Constants.LocationType.EVENT ? (
-                            <div>EVENT</div>
+                            <GroupEvent webToken={this.props.webToken} eventId={this.props.eventid} groupId={this.props.groupid} location={Constants.LocationType.EVENT} />
                         ) : (
-                                                <div></div>
+                                                null
                                             )}
 
                     </div>
 
-                    <div className="right-feed">
-                        <div className="invite-people">
-                            <img src={AddPeopleImg} />
-                            <span>{GroupFeedStrings.InvitePeople}</span>
+                    {this.props.location === Constants.LocationType.PHOTO ? (
+                        <div></div>
+                    ) : this.props.location === Constants.LocationType.EVENT ? (
+                        <div className="right-feed">
+                            <div className="invite-people">
+                                <img src={AddPeopleImg} />
+                                <span>{GroupFeedStrings.CreateEvent}</span>
+                            </div>
+                            <div className="component-container">
+                                <ListGroupEventPreview webToken={this.props.webToken} eventId={""} groupId={this.state.group.id} />
+                            </div>
                         </div>
-                        <div className="component-container">
-                            <GroupMembers webToken={this.props.webToken} groupId={this.state.group.id} />
-                        </div>
-                        <div className="component-container">
-                            <GroupFollowers webToken={this.props.webToken} groupId={this.state.group.id} />
-                        </div>
-                    </div>
+                    ) : (
+                                <div className="right-feed">
+                                    <div className="invite-people">
+                                        <img src={AddPeopleImg} />
+                                        <span>{GroupFeedStrings.InvitePeople}</span>
+                                    </div>
+                                    <div className="component-container">
+                                        <GroupMembers webToken={this.props.webToken} groupId={this.state.group.id} />
+                                    </div>
+                                    <div className="component-container">
+                                        <GroupFollowers webToken={this.props.webToken} groupId={this.state.group.id} />
+                                    </div>
+                                </div>
+                            )}
                 </div>
             );
         } else {

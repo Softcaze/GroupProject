@@ -1,0 +1,71 @@
+@import "../../../../common/Constants.scss";
+
+.group-event-container {
+    .group-event-title {
+        text-align: center;
+        margin: 10px 0px;
+        padding: 30px;
+        background-color: $primaryColor;
+
+        span {
+            color: $white;
+            font-size: 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+        } 
+    }
+
+    .group-event-author-img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid $white;
+        border-radius: 100px;
+        margin-top: -30px;
+        float: right;
+        margin-right: 20px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .group-event-date-title {
+        color: $primaryColorLight;
+        font-size: 14px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+    .group-event-date-value {
+        margin-left: 50px;
+
+        img {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        span {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+    }
+
+    .user-event-container {
+        margin: 20px 50px;
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: 50px;
+            border: 1px solid $white;
+            vertical-align: middle;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        span {
+            font-size: 14px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+    }
+}

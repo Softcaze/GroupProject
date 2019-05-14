@@ -39,7 +39,8 @@ export class Constants {
     public static API_ROUTES = {
         USER: "/user",
         AUTH: "/auth",
-        GROUP: "/group"
+        GROUP: "/group",
+        EVENT: "/event"
     };
 
     /**
